@@ -1,4 +1,5 @@
 import { ACCESS_NEEDS, CHECKS, LISTINGS } from "../data.js";
+import { lifeReport } from "../life.js";
 import { findingFor, money, STATUS_LABEL } from "../logic.js";
 import { Status } from "./Status.jsx";
 
@@ -12,8 +13,8 @@ export function Compare({ prefs, saved, onToggleSaved }) {
         <p className="eyebrow">Compare</p>
         <h1 id="page-title">The same list, different homes</h1>
         <p className="dek">
-          A home that works for one list can fail another. This table only includes the access
-          needs you selected.
+          A home that works for one list can fail another. The rows cover the building and the
+          sample trips around it, only for the access needs you selected.
         </p>
       </div>
 
@@ -28,7 +29,7 @@ export function Compare({ prefs, saved, onToggleSaved }) {
       ) : profiles.length === 0 ? (
         <div className="empty">
           <h2>Your access list is empty</h2>
-          <p>Choose wheelchair, low vision, or hard of hearing and the comparison will use those rows.</p>
+          <p>Choose an access need and the comparison will use those rows.</p>
           <a className="button primary" href="#/needs">
             Edit needs
           </a>
@@ -79,6 +80,39 @@ export function Compare({ prefs, saved, onToggleSaved }) {
                 })}
               </tbody>
             ))}
+            {profiles.map((profile) => {
+              const sample = lifeReport(homes[0].id, [profile.id]).sections[0];
+              if (!sample) return null;
+              const rows = [
+                ...sample.street.map((item) => ({ kind: "street", id: item.id, label: item.label })),
+                ...sample.trips.map((item) => ({ kind: "trip", id: item.id, label: item.label })),
+              ];
+              return (
+                <tbody key={`life-${profile.id}`}>
+                  <tr className="group-row">
+                    <th scope="colgroup" colSpan={homes.length + 1}>
+                      Life around here · {profile.label}
+                    </th>
+                  </tr>
+                  {rows.map((row) => (
+                    <tr key={`${row.kind}-${row.id}`}>
+                      <th scope="row">{row.label}</th>
+                      {homes.map((home) => {
+                        const section = lifeReport(home.id, [profile.id]).sections[0];
+                        const list = row.kind === "street" ? section.street : section.trips;
+                        const finding = list.find((item) => item.id === row.id);
+                        return (
+                          <td key={home.id}>
+                            <Status status={finding.status} />
+                            <span className="cell-title">{finding.title}</span>
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              );
+            })}
           </table>
           <p className="sr-only">
             Status words are {Object.values(STATUS_LABEL).join(", ")}.

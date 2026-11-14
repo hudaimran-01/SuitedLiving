@@ -32,6 +32,12 @@ export const ACCESS_NEEDS = [
     detail: "Visual alarms, a doorbell you can see, and an intercom that is not sound-only.",
     checks: ["alarms", "doorbell", "intercom"],
   },
+  {
+    id: "hills",
+    label: "Stairs and hills",
+    detail: "You can walk a short distance, but stairs and steep slopes are hard.",
+    checks: ["step-free", "elevator"],
+  },
 ];
 
 export const DEMO_PREFS = {

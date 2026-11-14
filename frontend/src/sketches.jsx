@@ -206,6 +206,63 @@ function NoScan() {
   );
 }
 
+function StreetLevel() {
+  return (
+    <Frame>
+      <rect x="0" y="300" width="800" height="180" fill="#d9d2c3" />
+      <rect x="70" y="250" width="660" height="50" fill="#c4b8a4" />
+      <path d="M70 300 L730 300" stroke="#fffdf8" strokeWidth="8" strokeDasharray="28 18" />
+      <rect x="250" y="150" width="300" height="100" fill="#efe7d8" stroke="#1a1714" strokeWidth="3" />
+      <text x="310" y="210" fill="#3f3a33" fontSize="22" fontFamily="Outfit, system-ui, sans-serif">
+        Sample store
+      </text>
+    </Frame>
+  );
+}
+
+function StreetGap() {
+  return (
+    <Frame>
+      <rect x="0" y="300" width="800" height="180" fill="#d9d2c3" />
+      <rect x="40" y="250" width="280" height="50" fill="#c4b8a4" />
+      <rect x="480" y="250" width="280" height="50" fill="#c4b8a4" />
+      <rect x="360" y="300" width="80" height="28" fill="#8a8174" />
+      <text x="250" y="180" fill="#1a1714" fontSize="26" fontFamily="Fraunces, Georgia, serif">
+        No curb ramp
+      </text>
+      <text x="230" y="220" fill="#5e584e" fontSize="18" fontFamily="Outfit, system-ui, sans-serif">
+        Sample corner, not a city map
+      </text>
+    </Frame>
+  );
+}
+
+function StreetHill() {
+  return (
+    <Frame>
+      <polygon points="40,360 760,180 760,430 40,430" fill="#d9d2c3" />
+      <polygon points="40,310 760,140 760,190 40,360" fill="#c4b8a4" />
+      <text x="250" y="250" fill="#1a1714" fontSize="26" fontFamily="Fraunces, Georgia, serif">
+        Steep sample block
+      </text>
+    </Frame>
+  );
+}
+
+function StreetSignal() {
+  return (
+    <Frame>
+      <rect x="0" y="300" width="800" height="180" fill="#d9d2c3" />
+      <rect x="70" y="250" width="660" height="50" fill="#c4b8a4" />
+      <rect x="560" y="90" width="70" height="180" fill="#1a1714" />
+      <circle cx="595" cy="140" r="18" fill="#9d3f2c" />
+      <text x="150" y="180" fill="#1a1714" fontSize="24" fontFamily="Fraunces, Georgia, serif">
+        Crossing signal
+      </text>
+    </Frame>
+  );
+}
+
 const SCENES = {
   linden: Linden,
   witherspoon: Witherspoon,
@@ -219,6 +276,10 @@ const SCENES = {
   "note-strobe": () => <Note lines={["Strobe smoke alarms: listed"]} />,
   "note-doorbell": () => <Note lines={["Video doorbell: listed"]} />,
   "no-scan": NoScan,
+  "street-level": StreetLevel,
+  "street-gap": StreetGap,
+  "street-hill": StreetHill,
+  "street-signal": StreetSignal,
 };
 
 export function EvidenceSketch({ scene, label }) {

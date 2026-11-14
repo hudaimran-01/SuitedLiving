@@ -1,4 +1,5 @@
 import { ACCESS_NEEDS, CHECKS } from "./data.js";
+import { lifeReport } from "./life.js";
 
 export const STATUS_LABEL = {
   observed: "Observed",
@@ -110,9 +111,19 @@ export function visibleListings(listings, prefs) {
   return matched.slice().sort((a, b) => compareFit(a, b, prefs.needs));
 }
 
+export function combinedCounts(listing, profileIds) {
+  const inside = summarize(listing, profileIds).counts;
+  const around = lifeReport(listing.id, profileIds).counts;
+  return {
+    barrier: inside.barrier + around.barrier,
+    unknown: inside.unknown + around.unknown,
+    observed: inside.observed + around.observed,
+  };
+}
+
 function compareFit(a, b, profileIds) {
-  const left = summarize(a, profileIds).counts;
-  const right = summarize(b, profileIds).counts;
+  const left = combinedCounts(a, profileIds);
+  const right = combinedCounts(b, profileIds);
   return (
     left.barrier - right.barrier ||
     left.unknown - right.unknown ||

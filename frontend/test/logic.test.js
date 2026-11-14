@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { DEMO_PREFS, LISTINGS } from "../src/data.js";
+import { lifeReport } from "../src/life.js";
 import {
   findingFor,
   leadFinding,
@@ -14,13 +15,24 @@ const demo = { ...DEMO_PREFS, needs: [...DEMO_PREFS.needs] };
 
 test("a wheelchair search puts the ground-floor home first", () => {
   const ids = visibleListings(LISTINGS, demo).map((listing) => listing.id);
-  assert.deepEqual(ids, ["linden", "quarry", "witherspoon", "palmer"]);
+  assert.deepEqual(ids, ["linden", "quarry", "palmer", "witherspoon"]);
+});
+
+test("the same grocery trip changes with the access need", () => {
+  const grocery = (need) =>
+    lifeReport("linden", [need]).sections[0].trips.find((item) => item.id === "grocery");
+  assert.equal(grocery("wheelchair").status, "barrier");
+  assert.equal(grocery("hills").status, "observed");
+  const hills = visibleListings(LISTINGS, { ...demo, needs: ["hills"] }).map((listing) => listing.id);
+  assert.deepEqual(hills, ["linden", "quarry", "palmer", "witherspoon"]);
+  const steep = lifeReport("quarry", ["hills"]).findings.find((item) => item.id === "slope");
+  assert.equal(steep.status, "barrier");
 });
 
 test("low vision and hard of hearing reorder the same homes", () => {
   const lowVision = visibleListings(LISTINGS, { ...demo, needs: ["low-vision"] }).map((listing) => listing.id);
   const hearing = visibleListings(LISTINGS, { ...demo, needs: ["hard-of-hearing"] }).map((listing) => listing.id);
-  assert.deepEqual(lowVision, ["quarry", "linden", "witherspoon", "palmer"]);
+  assert.deepEqual(lowVision, ["quarry", "witherspoon", "linden", "palmer"]);
   assert.deepEqual(hearing, ["palmer", "quarry", "witherspoon", "linden"]);
 });
 

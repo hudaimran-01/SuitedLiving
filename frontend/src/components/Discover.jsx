@@ -1,4 +1,5 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
+import { lifeHeadline, lifeReport } from "../life.js";
 import { bedsLabel, leadFinding, money, summarize, visibleListings } from "../logic.js";
 import { EvidenceSketch } from "../sketches.jsx";
 import { Counts } from "./Status.jsx";
@@ -25,7 +26,7 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved }) {
         <p className="dek">
           {bedsLabel(prefs.beds)} up to {money(prefs.maxRent)}.{" "}
           {prefs.needs.length
-            ? "Ordered by fewer likely barriers for this search. Switching a need can change the order."
+            ? "Ordered by fewer likely barriers in the home and on daily trips. Switching a need can change both the order and the neighborhood notes."
             : "Choose an access need and each home will be read for it."}
         </p>
         <div className="chip-row" role="group" aria-label="Access needs">
@@ -61,7 +62,8 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved }) {
         <div className="cards">
           {homes.map((home, index) => {
             const summary = summarize(home, prefs.needs);
-            const lead = leadFinding(summary.findings);
+            const around = lifeReport(home.id, prefs.needs);
+            const insideLead = leadFinding(summary.findings);
             const savedOn = saved.includes(home.id);
             return (
               <article key={home.id} className="card">
@@ -92,8 +94,29 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved }) {
                     {home.floor} · {bedsLabel(home.beds)} · {home.baths} bath · {home.sqft} sqft ·{" "}
                     {home.available}
                   </p>
-                  {lead ? <p className="lead">{lead.title}</p> : null}
-                  {prefs.needs.length > 0 ? <Counts counts={summary.counts} /> : null}
+                  {insideLead ? (
+                    <p className="lead">
+                      <span className="source">Inside</span> {insideLead.title}
+                    </p>
+                  ) : null}
+                  {around.sections.map((section) => {
+                    const headline = lifeHeadline([...section.street, ...section.trips]);
+                    if (!headline) return null;
+                    return (
+                      <p className="lead" key={section.id}>
+                        <span className="source">
+                          {around.sections.length > 1 ? section.label : "Around"}
+                        </span>{" "}
+                        {headline.title}
+                      </p>
+                    );
+                  })}
+                  {prefs.needs.length > 0 ? (
+                    <>
+                      <Counts counts={summary.counts} label="Inside" />
+                      <Counts counts={around.counts} label="Around" />
+                    </>
+                  ) : null}
                   <div className="card-actions">
                     <a className="button primary" href={`#/home/${home.id}`}>
                       Investigate

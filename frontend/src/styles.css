@@ -486,6 +486,45 @@ input[type="range"] { width: 100%; accent-color: var(--pine); margin-top: 0.7rem
 
 .asks li { margin-bottom: 0.7rem; }
 
+.section-title { margin-top: 0.4rem; }
+
+.life { margin-top: 1.6rem; display: grid; gap: 1rem; }
+
+.life-section { display: grid; gap: 0.7rem; }
+
+.life h4 {
+  margin: 0.4rem 0 0;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.trip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+
+.trip {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 0.4rem;
+}
+
+.trip-route { display: grid; gap: 0.55rem; margin: 0.2rem 0 0.8rem; }
+
+.trip-route div { margin: 0; }
+
+.trip-route dt {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.trip-route dd { margin: 0.15rem 0 0; }
+
 .table-wrap { overflow-x: auto; margin-top: 1rem; }
 
 .compare-table {
@@ -546,7 +585,10 @@ html[data-vision="true"] body {
 }
 
 @media (max-width: 860px) {
-  .hero, .needs-layout, .report-layout, .invest, .steps, .cards { grid-template-columns: 1fr; }
+  .header-inner { flex-wrap: wrap; padding: 0.45rem 0; }
+  .nav { flex-wrap: wrap; }
+  .nav a { white-space: nowrap; }
+  .hero, .needs-layout, .report-layout, .invest, .steps, .cards, .trip-grid { grid-template-columns: 1fr; }
   .rail { position: static; }
   .report-head, .action-bar { flex-direction: column; align-items: flex-start; }
   .report-side { align-items: flex-start; }

@@ -1,8 +1,17 @@
 import { useEffect, useState } from "react";
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
+import { lifeReport } from "../life.js";
 import { bedsLabel, money, questionsFor, summarize } from "../logic.js";
 import { EvidenceSketch } from "../sketches.jsx";
+import { LifeAround } from "./Life.jsx";
 import { Counts, Status } from "./Status.jsx";
+
+function investigationSteps(listing) {
+  return [
+    ...listing.investigations,
+    { source: "Sample streets", text: lifeReport(listing.id, []).look },
+  ];
+}
 
 function searchLabel(needIds) {
   const labels = ACCESS_NEEDS.filter((item) => needIds.includes(item.id)).map((item) => item.label);
@@ -24,7 +33,7 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
 
   useEffect(() => {
     if (!listing) return undefined;
-    const steps = listing.investigations;
+    const steps = investigationSteps(listing);
     if (reduce) {
       setShown(steps.length);
       setDone(true);
@@ -50,13 +59,15 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
     );
   }
 
+  const steps = investigationSteps(listing);
   const summary = summarize(listing, prefs.needs);
+  const life = lifeReport(listing.id, prefs.needs);
   const questions = questionsFor(summary.findings);
   const savedOn = saved.includes(listing.id);
-  const latest = listing.investigations[Math.min(shown, listing.investigations.length) - 1];
+  const latest = steps[Math.min(shown, steps.length) - 1];
 
   function skip() {
-    setShown(listing.investigations.length);
+    setShown(steps.length);
     setDone(true);
   }
 
@@ -100,7 +111,7 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
             <h2 id="invest-title">Looking through {listing.name}</h2>
             <p>{searchLabel(prefs.needs)}</p>
             <ol className="timeline">
-              {listing.investigations.map((step, index) => (
+              {steps.map((step, index) => (
                 <li key={step.source} className={index < shown ? "is-on" : undefined}>
                   <span className="source">{step.source}</span>
                   <p>{index < shown ? step.text : "Not checked yet"}</p>
@@ -123,10 +134,14 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
         <div className="report-layout">
           <div>
             <div className="report-intro">
-              <h2>What we can say for this search</h2>
+              <h2>Inside this home, and the day around it</h2>
+              <p>
+                Can you move through this home, and can you get through an ordinary errand from
+                the front door?
+              </p>
               <p className="meta">{searchLabel(prefs.needs)}</p>
               {prefs.needs.length > 0 ? (
-                <Counts counts={summary.counts} />
+                <Counts counts={summary.counts} label="Inside" />
               ) : (
                 <p>Add access needs and this page will read the home against them.</p>
               )}
@@ -139,6 +154,8 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
                 <a href="#/needs">Describe what you need</a>
               </p>
             ) : (
+              <>
+              <h2 className="section-title">Inside this home</h2>
               <ul className="findings">
                 {summary.findings.map((finding, index) => {
                   const previous = summary.findings[index - 1];
@@ -166,13 +183,15 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
                   );
                 })}
               </ul>
+              <LifeAround listingId={listing.id} profileIds={prefs.needs} />
+              </>
             )}
           </div>
           <aside className="rail">
             <section className="panel">
               <h2>Sources checked</h2>
               <ul className="source-list">
-                {listing.investigations.map((step) => (
+                {steps.map((step) => (
                   <li key={step.source}>
                     <span className="source">{step.source}</span>
                     <p>{step.text}</p>
@@ -181,18 +200,32 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
               </ul>
             </section>
             <section className="panel">
-              <h2>Ask the building</h2>
-              {questions.length === 0 ? (
+              <h2>Ask before you visit</h2>
+              {questions.length === 0 && life.questions.length === 0 ? (
                 <p>
                   Nothing on your list produced a follow-up. Confirm the details with the building
                   before you sign.
                 </p>
               ) : (
-                <ol className="asks">
-                  {questions.map((item) => (
-                    <li key={item.requirementId}>{item.ask}</li>
-                  ))}
-                </ol>
+                <>
+                  {questions.length > 0 ? (
+                    <ol className="asks">
+                      {questions.map((item) => (
+                        <li key={item.requirementId}>{item.ask}</li>
+                      ))}
+                    </ol>
+                  ) : null}
+                  {life.questions.length > 0 ? (
+                    <>
+                      <h3>About the neighborhood</h3>
+                      <ol className="asks">
+                        {life.questions.map((item) => (
+                          <li key={item.ask}>{item.ask}</li>
+                        ))}
+                      </ol>
+                    </>
+                  ) : null}
+                </>
               )}
             </section>
             <p className="fine">This is evidence and open questions. It is not an accessibility certification.</p>

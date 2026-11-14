@@ -1,4 +1,5 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
+import { lifeReport } from "../life.js";
 import { findingFor, money } from "../logic.js";
 import { EvidenceSketch } from "../sketches.jsx";
 import { Status } from "./Status.jsx";
@@ -15,6 +16,7 @@ export function Welcome({ onDemo }) {
     profile: ACCESS_NEEDS.find((item) => item.id === profileId).label,
     ...findingFor(home, checkId),
   }));
+  const grocery = lifeReport(home.id, ["wheelchair"]).sections[0].trips.find((item) => item.id === "grocery");
 
   return (
     <div className="welcome">
@@ -23,9 +25,9 @@ export function Welcome({ onDemo }) {
           <p className="eyebrow">Accessible housing, investigated</p>
           <h1 id="page-title">Know before you visit.</h1>
           <p className="dek">
-            Apartment search that starts from how you move, see, and hear. InsideOut reads each
-            home for wheelchair, low vision, or hard of hearing, then separates what it observed,
-            what might block you, and what it still cannot tell.
+            Apartment search that starts from how you move, see, and hear. InsideOut reads the
+            home and the ordinary trips around it, then separates what it observed, what might
+            block you, and what it still cannot tell.
           </p>
           <div className="actions">
             <a className="button primary" href="#/needs">
@@ -54,6 +56,11 @@ export function Welcome({ onDemo }) {
                   <span>{finding.title}</span>
                 </li>
               ))}
+              <li>
+                <span className="source">Around</span>
+                <Status status={grocery.status} />
+                <span>{grocery.title}</span>
+              </li>
             </ul>
             <p className="fine">Evidence and open questions. Not a certification.</p>
           </div>
@@ -64,21 +71,21 @@ export function Welcome({ onDemo }) {
           <span>1</span>
           <div>
             <h2>Say what to look for</h2>
-            <p>Wheelchair, low vision, hard of hearing, or any mix. Budget and bedrooms still narrow the search.</p>
+            <p>Wheelchair, low vision, hard of hearing, stairs and hills, or any mix. Budget and bedrooms still narrow the search.</p>
           </div>
         </li>
         <li>
           <span>2</span>
           <div>
             <h2>Browse apartments for that search</h2>
-            <p>Homes are ordered for the needs you picked. A different need can put a different home first.</p>
+            <p>Homes are ordered for the building and the errands around it. A different need can change both.</p>
           </div>
         </li>
         <li>
           <span>3</span>
           <div>
             <h2>Read the evidence, including the gaps</h2>
-            <p>Observed features, possible barriers, and unknowns stay separate, with a question to ask next.</p>
+            <p>The report covers the home and the block. Observed features, possible barriers, and unknowns stay separate.</p>
           </div>
         </li>
       </ol>

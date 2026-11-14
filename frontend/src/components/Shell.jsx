@@ -38,8 +38,8 @@ export function Shell({ route, savedCount, lowVision, children }) {
       <footer className="footer">
         <div className="wrap footer-inner">
           <p>
-            InsideOut reads evidence and leaves gaps visible. It does not certify that a home is
-            accessible.
+            InsideOut reads the home and the block, and leaves gaps visible. It does not certify
+            that either is accessible.
           </p>
           <p>HackPrinceton sample. Four fictional Princeton homes, not live listings.</p>
         </div>
