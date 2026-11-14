@@ -16,6 +16,8 @@ Note: The data is mostly houses:
 224 Condominium (12%), 
 162 Townhome (9%), 
 57 Multifamily (3%).
+
+Script prints how often fields are filled in; Basic coverage.
 """
 
 # opening the JSON file

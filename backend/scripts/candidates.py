@@ -14,7 +14,9 @@ REMARK = re.compile(
     r"wheelchair|handicap|accessib|step[- ]?free|no steps|roll-in|zero[- ]entry|\bramp\b|grab bar|elevator",
     re.I,
 )
-
+"""
+Finds all possible canidates for website's listings 
+"""
 
 def yn(v):
     return "-" if v is None else ("Y" if v else "n")
@@ -72,14 +74,17 @@ def main():
           f"reso flag only={only_reso}, features only={only_feat}, remarks only={remark_only}")
 
     rows.sort(key=lambda r: (-(r["n_explicit"] + bool(r["remark_hits"])), r["id"]))
+
     print(f"\n{'id':>10} {'city':<14} {'tx':<4} {'price':>10} {'type':<9} {'st':>2} {'flr':>4} "
           f"{'elev':<4} {'reso':<4} {'mls':>3}  remarks")
+    
     for r in rows[:top]:
         price = f"{r['price']:,.0f}" if r["price"] else "-"
         print(f"{r['id']:>10} {r['city'][:14]:<14} {r['tx']:<4} {price:>10} {str(r['type']):<9} "
               f"{str(r['stories'] or '-'):>2} {r['floor']:>4} {r['elev']:<4} {r['reso_a11y']:<4} "
               f"{r['n_explicit']:>3}  {r['remark_hits']}")
 
+    # Dump viable canidates into CSV via the cache directory
     config.CACHE_DIR.mkdir(parents=True, exist_ok=True)
     out = config.CACHE_DIR / "candidates.csv"
     with open(out, "w", newline="", encoding="utf-8") as fh:

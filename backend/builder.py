@@ -15,16 +15,17 @@ def scan_model_id(l):
     hit = re.search(r"[?&]m=([A-Za-z0-9]+)", (scan or {}).get("uri") or "")
     return hit.group(1) if hit else None
 
-
 def _images(l, model_id):
     media = l.get("media") or []
     scan = next((m for m in media if m.get("type") == 43), None)
     photos = sorted((m for m in media if m.get("type") == 4 and m.get("uri")),
                     key=lambda m: (m.get("displayOrder") is None, m.get("displayOrder") or 0))
     photo_urls = [_size(m["uri"], 102) for m in photos[:8]]
+    plans = list(dict.fromkeys(m["uri"] for m in media if m.get("type") == 10 and m.get("uri")))
     still = _size(scan["thumbnailUri"], 102) if scan and scan.get("thumbnailUri") else None
     return {"matterport": still or (photo_urls[0] if photo_urls else None),
-            "vexcel": None, "hasScan": bool(model_id), "modelId": model_id, "photos": photo_urls}
+            "vexcel": None, "hasScan": bool(model_id), "modelId": model_id,
+            "photos": photo_urls, "floorplans": plans}
 
 def _listed(l):
     s = l.get("listDate")
