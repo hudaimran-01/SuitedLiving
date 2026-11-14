@@ -16,6 +16,6 @@ npm test
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173). If that command says the port is already in use, the app is already running there. Use that address. Do not open a second port.
+Open [http://localhost:5173](http://localhost:5173). If the command says InsideOut is already running, use that address.
 
 Choose **Try the Princeton example**. That search is a 1-bedroom up to $2,400 for a wheelchair user who asked, in their own words, for a grocery store they can get to. Linden Court is the strongest interior, and the life section answers only that grocery trip. Switch the chips to **Stairs and hills** and the same walk is treated as manageable. A request the sample notes cannot check, such as a cafe, stays unanswered.
