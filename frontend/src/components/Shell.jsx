@@ -38,7 +38,7 @@ export function Shell({ route, savedCount, lowVision, children }) {
             InsideOut reads the home and the block, and leaves gaps visible. It does not certify
             that either is accessible.
           </p>
-          <p>HackPrinceton sample. Four fictional Princeton homes, not live listings.</p>
+          <p>Sample only. Four fictional homes for sale in Houston and Los Angeles, not live listings.</p>
         </div>
       </footer>
     </div>

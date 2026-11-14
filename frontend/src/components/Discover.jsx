@@ -1,6 +1,6 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife, interpretNearby, lifeHeadline } from "../life.js";
-import { bedsLabel, leadFinding, money, RENT_MAX, RENT_MIN, summarize, visibleListings } from "../logic.js";
+import { bedsLabel, leadFinding, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
 import { EvidenceSketch } from "../sketches.jsx";
 import { Counts } from "./Status.jsx";
 
@@ -8,7 +8,6 @@ const PHRASES = [
   "a grocery store I can get to",
   "a pharmacy",
   "a clinic or doctor",
-  "a bus or train",
 ];
 
 const BEDS = [
@@ -19,12 +18,12 @@ const BEDS = [
   { value: 3, label: "3+" },
 ];
 
-const EMPTY_PREFS = { maxRent: RENT_MAX, beds: null, needs: [], nearby: "" };
+const EMPTY_PREFS = { maxPrice: PRICE_MAX, beds: null, needs: [], nearby: "" };
 
 export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
   const homes = visibleListings(LISTINGS, prefs);
   const nearby = prefs.nearby || "";
-  const open = prefs.needs.length === 0 && prefs.beds == null && prefs.maxRent >= RENT_MAX && !nearby.trim();
+  const open = prefs.needs.length === 0 && prefs.beds == null && prefs.maxPrice >= PRICE_MAX && !nearby.trim();
 
   function toggleNeed(id) {
     setPrefs((current) => {
@@ -46,7 +45,7 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
 
   const summaryLine = open
     ? "Nothing is selected, so every sample home is listed."
-    : `${bedsLabel(prefs.beds)} up to ${money(prefs.maxRent)}. ${
+    : `${bedsLabel(prefs.beds)} up to ${money(prefs.maxPrice)}. ${
         prefs.needs.length
           ? nearby.trim()
             ? "Ordered for your access needs and what you asked for nearby."
@@ -57,7 +56,7 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
   return (
     <div className="discover">
       <div className="page-head">
-        <p className="eyebrow">Princeton sample</p>
+        <p className="eyebrow">Houston and Los Angeles</p>
         <h1 id="page-title">{homes.length === 1 ? "1 home" : `${homes.length} homes`}</h1>
         <p className="dek">{summaryLine}</p>
       </div>
@@ -82,7 +81,7 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
             })}
           </div>
           <button type="button" className="text-button" onClick={onDemo}>
-            Princeton example
+            Sample search
           </button>
           <button type="button" className="text-button" onClick={() => setPrefs(EMPTY_PREFS)}>
             Clear
@@ -108,18 +107,18 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
           </fieldset>
           <div className="field budget-field">
             <div className="rent-head">
-              <label htmlFor="rent">Budget</label>
-              <output htmlFor="rent">{money(prefs.maxRent)}</output>
+              <label htmlFor="price">Price</label>
+              <output htmlFor="price">{money(prefs.maxPrice)}</output>
             </div>
             <input
-              id="rent"
+              id="price"
               type="range"
-              min={RENT_MIN}
-              max={RENT_MAX}
-              step="20"
-              value={prefs.maxRent}
+              min={PRICE_MIN}
+              max={PRICE_MAX}
+              step="10000"
+              value={prefs.maxPrice}
               onChange={(event) =>
-                setPrefs((current) => ({ ...current, maxRent: Number(event.target.value) }))
+                setPrefs((current) => ({ ...current, maxPrice: Number(event.target.value) }))
               }
             />
           </div>
@@ -150,8 +149,7 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
           </p>
         ) : (
           <p className="fine">
-            Vexcel can show a grocery store, a pharmacy, and steps between them. Bus stops are not
-            identified from those images.
+            Vexcel can show a grocery store, a pharmacy, and steps between them.
           </p>
         )}
       </section>
@@ -159,7 +157,7 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
       {homes.length === 0 ? (
         <div className="empty">
           <h2>No sample home fits that filter</h2>
-          <p>The prototype includes four 1-bedroom homes, from $2,090 to $2,360.</p>
+          <p>The sample includes four 1-bedroom homes for sale, from $285,000 to $810,000.</p>
           <button type="button" className="button" onClick={() => setPrefs(EMPTY_PREFS)}>
             Clear filters
           </button>
@@ -193,13 +191,13 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
                       </p>
                     </div>
                     <p className="rent">
-                      {money(home.rent)}
-                      <span> / mo</span>
+                      {money(home.price)}
+                      <span> for sale</span>
                     </p>
                   </div>
                   <p className="meta">
-                    {home.floor} · {bedsLabel(home.beds)} · {home.baths} bath · {home.sqft} sqft ·{" "}
-                    {home.available}
+                    {home.kind} · {home.place} · {home.floor} · {bedsLabel(home.beds)} · {home.baths} bath ·{" "}
+                    {home.sqft} sqft · {home.available}
                   </p>
                   {insideLead ? (
                     <p className="lead">

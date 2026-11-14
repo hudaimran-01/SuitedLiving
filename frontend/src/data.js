@@ -41,7 +41,7 @@ export const ACCESS_NEEDS = [
 ];
 
 export const DEMO_PREFS = {
-  maxRent: 2400,
+  maxPrice: 1200000,
   beds: 1,
   needs: ["wheelchair"],
   nearby: "A grocery store I can get to from the front door",
@@ -51,15 +51,16 @@ export const LISTINGS = [
   {
     id: "linden",
     name: "Linden Court",
-    unit: "Unit 1",
+    kind: "House",
+    unit: "Single story",
     address: "14 Linden Lane",
-    place: "Princeton, NJ",
-    rent: 2280,
+    place: "Houston, TX",
+    price: 349000,
     beds: 1,
     baths: 1,
     sqft: 740,
     floor: "Ground floor",
-    available: "Available now",
+    available: "For sale",
     scene: "linden",
     images: { matterport: null, vexcel: null, hasScan: true },
     sketchLabel:
@@ -67,7 +68,7 @@ export const LISTINGS = [
     investigations: [
       {
         source: "CoStar",
-        text: "Unit 1 is listed on the ground floor at $2,280. The listing does not describe the entrance, parking, or bathroom.",
+        text: "This one-story house in Houston is listed for sale at $349,000. The listing does not describe the entrance, parking, or bathroom.",
       },
       {
         source: "Vexcel",
@@ -183,15 +184,16 @@ export const LISTINGS = [
   {
     id: "quarry",
     name: "Quarry House",
+    kind: "Condo",
     unit: "Unit 2B",
     address: "9 Quarry Road",
-    place: "Princeton, NJ",
-    rent: 2090,
+    place: "Houston, TX",
+    price: 285000,
     beds: 1,
     baths: 1,
     sqft: 690,
     floor: "2nd floor",
-    available: "Available September 1",
+    available: "For sale",
     scene: "quarry",
     images: { matterport: null, vexcel: null, hasScan: false },
     sketchLabel:
@@ -199,7 +201,7 @@ export const LISTINGS = [
     investigations: [
       {
         source: "CoStar",
-        text: "Unit 2B is listed on the second floor at $2,090. The building listing includes an elevator and a video intercom.",
+        text: "Unit 2B, a Houston condo, is listed for sale at $285,000. The building listing includes an elevator and a video intercom.",
       },
       {
         source: "Vexcel",
@@ -313,22 +315,23 @@ export const LISTINGS = [
   {
     id: "witherspoon",
     name: "Witherspoon House",
+    kind: "Condo",
     unit: "Unit 4",
     address: "42 Witherspoon Street",
-    place: "Princeton, NJ",
-    rent: 2150,
+    place: "Los Angeles, CA",
+    price: 725000,
     beds: 1,
     baths: 1,
     sqft: 710,
     floor: "2nd floor",
-    available: "Available now",
+    available: "For sale",
     scene: "witherspoon",
     images: { matterport: null, vexcel: null, hasScan: false },
     sketchLabel: "Sample sketch of four steps up to a front door, with no ramp in view.",
     investigations: [
       {
         source: "CoStar",
-        text: "Unit 4 is listed on the second floor at $2,150. An elevator is listed for the building. The entrance is not described.",
+        text: "Unit 4, a Los Angeles condo, is listed for sale at $725,000. An elevator is listed for the building. The entrance is not described.",
       },
       {
         source: "Vexcel",
@@ -444,26 +447,27 @@ export const LISTINGS = [
   {
     id: "palmer",
     name: "Palmer Walk-up",
+    kind: "Condo",
     unit: "Unit 3",
     address: "19 Palmer Lane",
-    place: "Princeton, NJ",
-    rent: 2360,
+    place: "Los Angeles, CA",
+    price: 810000,
     beds: 1,
     baths: 1,
     sqft: 680,
     floor: "3rd floor walk-up",
-    available: "Available August 15",
+    available: "For sale",
     scene: "palmer",
     images: { matterport: null, vexcel: null, hasScan: false },
-    sketchLabel: "Sample sketch of an exterior staircase leading up to the apartment door.",
+    sketchLabel: "Sample sketch of an exterior staircase leading up to the condo door.",
     investigations: [
       {
         source: "CoStar",
-        text: "Unit 3 is listed as a third-floor walk-up at $2,360. No elevator is listed. The unit notes strobe smoke alarms and a video doorbell.",
+        text: "Unit 3, a Los Angeles walk-up condo, is listed for sale at $810,000. No elevator is listed. The listing notes strobe smoke alarms and a video doorbell.",
       },
       {
         source: "Vexcel",
-        text: "The apartment door is at the top of an exterior stair. Street parking in frame is unmarked.",
+        text: "The condo door is at the top of an exterior stair. Street parking in frame is unmarked.",
       },
       {
         source: "Matterport",
@@ -475,7 +479,7 @@ export const LISTINGS = [
         status: "barrier",
         source: "Vexcel",
         scene: "palmer",
-        title: "The apartment is up an exterior stair",
+        title: "The condo is up an exterior stair",
         detail:
           "The unit door sits at the top of a long exterior stair. No step-free entrance to this unit appears in the frame.",
         ask: "Is a ground-floor unit available with a level entrance?",

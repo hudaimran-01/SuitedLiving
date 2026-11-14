@@ -1,6 +1,8 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife } from "../life.js";
 import { bedsLabel, money, questionsFor, summarize } from "../logic.js";
+import { floorPlanFor } from "../floorplans.js";
+import { FloorPlan } from "./FloorPlan.jsx";
 import { ImageSlot } from "./ImageSlot.jsx";
 import { LifeAround } from "./Life.jsx";
 import { Status } from "./Status.jsx";
@@ -83,14 +85,14 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
           <p className="eyebrow">{listing.floor}</p>
           <h1 id="page-title">{listing.name}</h1>
           <p className="meta">
-            {listing.unit} · {listing.address}, {listing.place} · {bedsLabel(listing.beds)} ·{" "}
+            {listing.kind} · {listing.unit} · {listing.address}, {listing.place} · {bedsLabel(listing.beds)} ·{" "}
             {listing.baths} bath · {listing.sqft} sqft · {listing.available}
           </p>
         </div>
         <div className="report-side">
           <p className="rent">
-            {money(listing.rent)}
-            <span> / mo</span>
+            {money(listing.price)}
+            <span> for sale</span>
           </p>
           <button
             type="button"
@@ -102,6 +104,8 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
           </button>
         </div>
       </header>
+
+      <FloorPlan key={listing.id} plan={floorPlanFor(listing.id)} needIds={prefs.needs} />
 
       <div className="report-layout">
         <div>

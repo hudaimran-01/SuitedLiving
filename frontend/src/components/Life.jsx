@@ -23,7 +23,7 @@ export function LifeAround({ listingId, profileIds, nearby, vexcelSrc }) {
       <section className="life" aria-labelledby="life-title">
         <h2 id="life-title">Life around here</h2>
         <p>You wrote “{focus.query.text}”.</p>
-        <p>Sample notes can check a grocery, a pharmacy, a clinic, or transit. This request is not covered, so no route is filled in.</p>
+        <p>Sample notes can check a grocery, a pharmacy, or a clinic. This request is not covered, so no route is filled in.</p>
       </section>
     );
   }

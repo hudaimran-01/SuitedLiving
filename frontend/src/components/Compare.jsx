@@ -45,7 +45,7 @@ export function Compare({ prefs, saved, onToggleSaved }) {
                   <th scope="col" key={home.id}>
                     <a href={`#/home/${home.id}`}>{home.name}</a>
                     <span className="meta">
-                      {money(home.rent)} · {home.floor}
+                      {money(home.price)} · {home.place}
                     </span>
                     <button type="button" className="text-button" onClick={() => onToggleSaved(home.id)}>
                       Remove

@@ -1335,7 +1335,6 @@ const NEARBY_INTENTS = [
   { id: "grocery", patterns: [/grocer/, /supermarket/, /\bmarket\b/, /\bfood\b/] },
   { id: "pharmacy", patterns: [/pharmac/, /prescription/, /medicine/, /drug\s*store/] },
   { id: "clinic", patterns: [/clinic/, /doctor/, /hospital/, /healthcare/, /health care/, /\bmedical\b/, /urgent care/] },
-  { id: "transit", patterns: [/\bbus\b/, /transit/, /\btrain\b/, /subway/, /commute/] },
 ];
 
 export function interpretNearby(text) {
@@ -1388,7 +1387,7 @@ export function requestStep(profileIds, text) {
   if (!query.recognized) {
     return {
       source: "Your request",
-      text: `You wrote “${query.text}”. These sample notes can follow a grocery, a pharmacy, a clinic, or transit. They do not cover this request, so no route is filled in.`,
+      text: `You wrote “${query.text}”. These sample notes can follow a grocery, a pharmacy, or a clinic. They do not cover this request, so no route is filled in.`,
     };
   }
   const names = query.intents.map((id) => (id === "clinic" ? "healthcare" : id));
@@ -1397,7 +1396,7 @@ export function requestStep(profileIds, text) {
   const needText = spokenList(who);
   return {
     source: "Your request",
-    text: `You asked about ${asked}. Vexcel aerial images can show a grocery store or a pharmacy, and steps along that route, for ${needText}. Bus stops are not identified from those images. Other blockages stay unknown.`,
+    text: `You asked about ${asked}. Vexcel aerial images can show a grocery store or a pharmacy, and steps along that route, for ${needText}. Other blockages stay unknown.`,
   };
 }
 

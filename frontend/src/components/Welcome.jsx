@@ -25,7 +25,7 @@ export function Welcome({ onDemo }) {
           <p className="eyebrow">Accessible housing, investigated</p>
           <h1 id="page-title">Know before you visit.</h1>
           <p className="dek">
-            Apartment search that starts from how you move, see, and hear. Say what you need
+            Home search that starts from how you move, see, and hear. Say what you need
             nearby in your own words. InsideOut reads the home, then that trip, and separates what
             it observed, what might block you, and what it still cannot tell.
           </p>
@@ -34,7 +34,7 @@ export function Welcome({ onDemo }) {
               Browse homes
             </a>
             <a className="button" href="#/discover" onClick={onDemo}>
-              Try the Princeton example
+              Try the sample search
             </a>
           </div>
         </div>
@@ -46,7 +46,7 @@ export function Welcome({ onDemo }) {
             <p className="eyebrow">Sample report</p>
             <h2>{home.name}</h2>
             <p className="sheet-meta">
-              {home.floor} · {money(home.rent)} / month
+              {home.place} · {money(home.price)} for sale
             </p>
             <ul className="preview-list">
               {findings.map((finding) => (

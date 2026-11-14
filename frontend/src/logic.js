@@ -7,8 +7,8 @@ export const STATUS_LABEL = {
   unknown: "Unknown",
 };
 
-export const RENT_MIN = 1200;
-export const RENT_MAX = 4000;
+export const PRICE_MIN = 200000;
+export const PRICE_MAX = 1200000;
 const BED_OPTIONS = [0, 1, 2, 3];
 
 export function money(amount) {
@@ -27,18 +27,18 @@ export function bedsLabel(beds) {
 }
 
 export function sanitizePrefs(value) {
-  const fallback = { maxRent: RENT_MAX, beds: null, needs: [], nearby: "" };
+  const fallback = { maxPrice: PRICE_MAX, beds: null, needs: [], nearby: "" };
   if (!value || typeof value !== "object") return fallback;
-  const maxRent = Number(value.maxRent);
+  const maxPrice = Number(value.maxPrice);
   const beds = Number(value.beds);
   const allowed = new Set(ACCESS_NEEDS.map((item) => item.id));
   const needs = Array.isArray(value.needs)
     ? value.needs.filter((id) => allowed.has(id))
     : [];
   return {
-    maxRent: Number.isFinite(maxRent)
-      ? Math.min(RENT_MAX, Math.max(RENT_MIN, maxRent))
-      : fallback.maxRent,
+    maxPrice: Number.isFinite(maxPrice)
+      ? Math.min(PRICE_MAX, Math.max(PRICE_MIN, maxPrice))
+      : fallback.maxPrice,
     beds: BED_OPTIONS.includes(beds) ? beds : null,
     needs,
     nearby: typeof value.nearby === "string" ? value.nearby.replace(/\s+/g, " ").trim().slice(0, 280) : "",
@@ -106,10 +106,10 @@ export function visibleListings(listings, prefs) {
   const matched = listings.filter((listing) => {
     const bedroomOk =
       prefs.beds == null || (prefs.beds === 3 ? listing.beds >= 3 : listing.beds === prefs.beds);
-    return listing.rent <= prefs.maxRent && bedroomOk;
+    return listing.price <= prefs.maxPrice && bedroomOk;
   });
   if (prefs.needs.length === 0) {
-    return matched.slice().sort((a, b) => a.rent - b.rent || a.name.localeCompare(b.name));
+    return matched.slice().sort((a, b) => a.price - b.price || a.name.localeCompare(b.name));
   }
   return matched.slice().sort((a, b) => compareFit(a, b, prefs));
 }
@@ -132,7 +132,7 @@ function compareFit(a, b, prefs) {
     left.barrier - right.barrier ||
     left.unknown - right.unknown ||
     right.observed - left.observed ||
-    a.rent - b.rent ||
+    a.price - b.price ||
     a.name.localeCompare(b.name)
   );
 }
