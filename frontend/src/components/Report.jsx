@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
-import { lifeReport } from "../life.js";
+import { focusLife, requestStep } from "../life.js";
 import { bedsLabel, money, questionsFor, summarize } from "../logic.js";
 import { EvidenceSketch } from "../sketches.jsx";
 import { LifeAround } from "./Life.jsx";
 import { Counts, Status } from "./Status.jsx";
 
-function investigationSteps(listing) {
-  return [
-    ...listing.investigations,
-    { source: "Sample streets", text: lifeReport(listing.id, []).look },
-  ];
+function investigationSteps(listing, prefs) {
+  const request = requestStep(prefs.needs, prefs.nearby);
+  return [...listing.investigations, ...(request ? [request] : [])];
 }
 
 function searchLabel(needIds) {
@@ -33,7 +31,7 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
 
   useEffect(() => {
     if (!listing) return undefined;
-    const steps = investigationSteps(listing);
+    const steps = investigationSteps(listing, prefs);
     if (reduce) {
       setShown(steps.length);
       setDone(true);
@@ -46,7 +44,7 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
     );
     timers.push(window.setTimeout(() => setDone(true), 700 * steps.length + 400));
     return () => timers.forEach((timer) => window.clearTimeout(timer));
-  }, [listing, reduce, replay]);
+  }, [listing, reduce, replay, prefs.nearby, prefs.needs]);
 
   if (!listing) {
     return (
@@ -59,9 +57,9 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
     );
   }
 
-  const steps = investigationSteps(listing);
+  const steps = investigationSteps(listing, prefs);
   const summary = summarize(listing, prefs.needs);
-  const life = lifeReport(listing.id, prefs.needs);
+  const life = focusLife(listing.id, prefs.needs, prefs.nearby);
   const questions = questionsFor(summary.findings);
   const savedOn = saved.includes(listing.id);
   const latest = steps[Math.min(shown, steps.length) - 1];
@@ -183,7 +181,7 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
                   );
                 })}
               </ul>
-              <LifeAround listingId={listing.id} profileIds={prefs.needs} />
+              <LifeAround listingId={listing.id} profileIds={prefs.needs} nearby={prefs.nearby} />
               </>
             )}
           </div>

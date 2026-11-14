@@ -357,7 +357,9 @@ input[type="range"] { width: 100%; accent-color: var(--pine); margin-top: 0.7rem
 
 .segmented label:focus-within { outline: 3px solid var(--clay); outline-offset: 3px; }
 
-.need-grid { display: grid; gap: 0.6rem; padding-bottom: 4.5rem; }
+.needs { padding-bottom: 5.5rem; }
+
+.need-grid { display: grid; gap: 0.6rem; }
 
 .need {
   display: flex;
@@ -524,6 +526,27 @@ input[type="range"] { width: 100%; accent-color: var(--pine); margin-top: 0.7rem
 }
 
 .trip-route dd { margin: 0.15rem 0 0; }
+
+.nearby-panel { margin-top: 1rem; }
+
+.nearby-input {
+  display: block;
+  width: 100%;
+  min-height: 6.5rem;
+  margin-top: 0.45rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.trip-focus { overflow: hidden; padding: 0; }
+
+.need-read + .need-read { margin-top: 0.8rem; }
 
 .table-wrap { overflow-x: auto; margin-top: 1rem; }
 

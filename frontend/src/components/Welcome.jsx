@@ -25,9 +25,9 @@ export function Welcome({ onDemo }) {
           <p className="eyebrow">Accessible housing, investigated</p>
           <h1 id="page-title">Know before you visit.</h1>
           <p className="dek">
-            Apartment search that starts from how you move, see, and hear. InsideOut reads the
-            home and the ordinary trips around it, then separates what it observed, what might
-            block you, and what it still cannot tell.
+            Apartment search that starts from how you move, see, and hear. Say what you need
+            nearby in your own words. InsideOut reads the home, then that trip, and separates what
+            it observed, what might block you, and what it still cannot tell.
           </p>
           <div className="actions">
             <a className="button primary" href="#/needs">
@@ -71,7 +71,7 @@ export function Welcome({ onDemo }) {
           <span>1</span>
           <div>
             <h2>Say what to look for</h2>
-            <p>Wheelchair, low vision, hard of hearing, stairs and hills, or any mix. Budget and bedrooms still narrow the search.</p>
+            <p>Wheelchair, low vision, hard of hearing, stairs and hills, or any mix. Then say what you need nearby, in your own words.</p>
           </div>
         </li>
         <li>

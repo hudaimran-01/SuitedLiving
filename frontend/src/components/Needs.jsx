@@ -1,5 +1,13 @@
 import { ACCESS_NEEDS, DEMO_PREFS, LISTINGS } from "../data.js";
+import { interpretNearby } from "../life.js";
 import { bedsLabel, money, visibleListings } from "../logic.js";
+
+const PHRASES = [
+  "a grocery store I can get to",
+  "a pharmacy",
+  "a clinic or doctor",
+  "a bus or train",
+];
 
 const BEDS = [
   { value: 0, label: "Studio" },
@@ -11,6 +19,15 @@ const BEDS = [
 export function Needs({ prefs, setPrefs, onDemo }) {
   const count = visibleListings(LISTINGS, prefs).length;
   const countLabel = count === 1 ? "Show 1 home" : `Show ${count} homes`;
+
+  function addPhrase(phrase) {
+    setPrefs((current) => {
+      const existing = current.nearby || "";
+      if (existing.toLowerCase().includes(phrase.toLowerCase())) return current;
+      const next = existing.trim() ? `${existing.trim()}, and ${phrase}` : phrase[0].toUpperCase() + phrase.slice(1);
+      return { ...current, nearby: next };
+    });
+  }
 
   function toggleNeed(id) {
     setPrefs((current) => {
@@ -27,8 +44,8 @@ export function Needs({ prefs, setPrefs, onDemo }) {
         <p className="eyebrow">Your needs</p>
         <h1 id="page-title">What are your access needs?</h1>
         <p className="dek">
-          Choose wheelchair, low vision, hard of hearing, or any mix. InsideOut reads every
-          apartment for those needs. This prototype has four sample homes in Princeton.
+          Choose how you need to move, see, or hear. Then describe, in your own words, what you
+          need to reach from home. The report follows that instead of listing every errand.
         </p>
       </div>
 
@@ -108,6 +125,44 @@ export function Needs({ prefs, setPrefs, onDemo }) {
           </div>
         </section>
       </div>
+
+      {prefs.needs.length > 0 ? (
+        <section className="panel nearby-panel" aria-labelledby="nearby-heading">
+          <h2 id="nearby-heading">What do you need nearby?</h2>
+          <p>
+            Write it the way you would say it. A grocery you can roll to, a clinic, the bus. The
+            life section of each home will answer this and leave the rest out.
+          </p>
+          <label className="field" htmlFor="nearby">
+            <span className="field-label">In your own words</span>
+            <textarea
+              id="nearby"
+              className="nearby-input"
+              maxLength={280}
+              value={prefs.nearby}
+              placeholder="A grocery store I can roll to, and a clinic"
+              onChange={(event) =>
+                setPrefs((current) => ({ ...current, nearby: event.target.value }))
+              }
+            />
+          </label>
+          <div className="chip-row">
+            {PHRASES.map((phrase) => (
+              <button key={phrase} type="button" className="chip" onClick={() => addPhrase(phrase)}>
+                {phrase}
+              </button>
+            ))}
+          </div>
+          {prefs.nearby.trim() && !interpretNearby(prefs.nearby).recognized ? (
+            <p className="fine">
+              These sample notes can follow a grocery, a pharmacy, a clinic, or transit. This
+              sentence is saved, and the route stays unanswered until it can be checked.
+            </p>
+          ) : (
+            <p className="fine">Sample places only. A later version can send this sentence to the investigation.</p>
+          )}
+        </section>
+      ) : null}
 
       <div className="action-bar">
         <p>

@@ -1,5 +1,5 @@
 import { ACCESS_NEEDS, CHECKS } from "./data.js";
-import { lifeReport } from "./life.js";
+import { focusLife } from "./life.js";
 
 export const STATUS_LABEL = {
   observed: "Observed",
@@ -26,7 +26,7 @@ export function bedsLabel(beds) {
 }
 
 export function sanitizePrefs(value) {
-  const fallback = { maxRent: 2400, beds: 1, needs: [] };
+  const fallback = { maxRent: 2400, beds: 1, needs: [], nearby: "" };
   if (!value || typeof value !== "object") return fallback;
   const maxRent = Number(value.maxRent);
   const beds = Number(value.beds);
@@ -40,6 +40,7 @@ export function sanitizePrefs(value) {
       : fallback.maxRent,
     beds: BED_OPTIONS.includes(beds) ? beds : fallback.beds,
     needs,
+    nearby: typeof value.nearby === "string" ? value.nearby.replace(/\s+/g, " ").trim().slice(0, 280) : "",
   };
 }
 
@@ -108,22 +109,23 @@ export function visibleListings(listings, prefs) {
   if (prefs.needs.length === 0) {
     return matched.slice().sort((a, b) => a.rent - b.rent || a.name.localeCompare(b.name));
   }
-  return matched.slice().sort((a, b) => compareFit(a, b, prefs.needs));
+  return matched.slice().sort((a, b) => compareFit(a, b, prefs));
 }
 
-export function combinedCounts(listing, profileIds) {
-  const inside = summarize(listing, profileIds).counts;
-  const around = lifeReport(listing.id, profileIds).counts;
+export function combinedCounts(listing, prefs) {
+  const inside = summarize(listing, prefs.needs).counts;
+  const around = focusLife(listing.id, prefs.needs, prefs.nearby);
+  const life = around.focused ? around.counts : { observed: 0, barrier: 0, unknown: 0 };
   return {
-    barrier: inside.barrier + around.barrier,
-    unknown: inside.unknown + around.unknown,
-    observed: inside.observed + around.observed,
+    barrier: inside.barrier + life.barrier,
+    unknown: inside.unknown + life.unknown,
+    observed: inside.observed + life.observed,
   };
 }
 
-function compareFit(a, b, profileIds) {
-  const left = combinedCounts(a, profileIds);
-  const right = combinedCounts(b, profileIds);
+function compareFit(a, b, prefs) {
+  const left = combinedCounts(a, prefs);
+  const right = combinedCounts(b, prefs);
   return (
     left.barrier - right.barrier ||
     left.unknown - right.unknown ||

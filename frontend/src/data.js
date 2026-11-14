@@ -44,6 +44,7 @@ export const DEMO_PREFS = {
   maxRent: 2400,
   beds: 1,
   needs: ["wheelchair"],
+  nearby: "A grocery store I can get to from the front door",
 };
 
 export const LISTINGS = [

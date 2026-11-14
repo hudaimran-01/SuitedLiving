@@ -1,5 +1,5 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
-import { lifeHeadline, lifeReport } from "../life.js";
+import { focusLife, lifeHeadline } from "../life.js";
 import { bedsLabel, leadFinding, money, summarize, visibleListings } from "../logic.js";
 import { EvidenceSketch } from "../sketches.jsx";
 import { Counts } from "./Status.jsx";
@@ -26,7 +26,9 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved }) {
         <p className="dek">
           {bedsLabel(prefs.beds)} up to {money(prefs.maxRent)}.{" "}
           {prefs.needs.length
-            ? "Ordered by fewer likely barriers in the home and on daily trips. Switching a need can change both the order and the neighborhood notes."
+            ? prefs.nearby.trim()
+              ? "Ordered for your access needs and what you asked for nearby. Other errands stay off the cards."
+              : "Ordered by the building. Describe what you need nearby and the daily trip will show up here."
             : "Choose an access need and each home will be read for it."}
         </p>
         <div className="chip-row" role="group" aria-label="Access needs">
@@ -62,8 +64,9 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved }) {
         <div className="cards">
           {homes.map((home, index) => {
             const summary = summarize(home, prefs.needs);
-            const around = lifeReport(home.id, prefs.needs);
+            const around = focusLife(home.id, prefs.needs, prefs.nearby);
             const insideLead = leadFinding(summary.findings);
+            const aroundLead = lifeHeadline(around.trips.flatMap((item) => item.byNeed.map((entry) => entry.trip)));
             const savedOn = saved.includes(home.id);
             return (
               <article key={home.id} className="card">
@@ -99,24 +102,13 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved }) {
                       <span className="source">Inside</span> {insideLead.title}
                     </p>
                   ) : null}
-                  {around.sections.map((section) => {
-                    const headline = lifeHeadline([...section.street, ...section.trips]);
-                    if (!headline) return null;
-                    return (
-                      <p className="lead" key={section.id}>
-                        <span className="source">
-                          {around.sections.length > 1 ? section.label : "Around"}
-                        </span>{" "}
-                        {headline.title}
-                      </p>
-                    );
-                  })}
-                  {prefs.needs.length > 0 ? (
-                    <>
-                      <Counts counts={summary.counts} label="Inside" />
-                      <Counts counts={around.counts} label="Around" />
-                    </>
+                  {aroundLead ? (
+                    <p className="lead">
+                      <span className="source">Around</span> {aroundLead.title}
+                    </p>
                   ) : null}
+                  {prefs.needs.length > 0 ? <Counts counts={summary.counts} label="Inside" /> : null}
+                  {around.focused ? <Counts counts={around.counts} label="Around" /> : null}
                   <div className="card-actions">
                     <a className="button primary" href={`#/home/${home.id}`}>
                       Investigate

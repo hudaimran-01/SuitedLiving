@@ -1325,6 +1325,82 @@ export function lifeHeadline(findings) {
   );
 }
 
+function spokenList(items) {
+  if (items.length <= 1) return items[0] || "";
+  if (items.length === 2) return `${items[0]} and ${items[1]}`;
+  return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
+const NEARBY_INTENTS = [
+  { id: "grocery", patterns: [/grocer/, /supermarket/, /\bmarket\b/, /\bfood\b/] },
+  { id: "pharmacy", patterns: [/pharmac/, /prescription/, /medicine/, /drug\s*store/] },
+  { id: "clinic", patterns: [/clinic/, /doctor/, /hospital/, /healthcare/, /health care/, /\bmedical\b/, /urgent care/] },
+  { id: "transit", patterns: [/\bbus\b/, /transit/, /\btrain\b/, /subway/, /commute/] },
+];
+
+export function interpretNearby(text) {
+  const cleaned = typeof text === "string" ? text.replace(/\s+/g, " ").trim().slice(0, 280) : "";
+  const lower = cleaned.toLowerCase();
+  const intents = NEARBY_INTENTS.filter((intent) => intent.patterns.some((pattern) => pattern.test(lower))).map(
+    (intent) => intent.id,
+  );
+  return { text: cleaned, intents, recognized: intents.length > 0 };
+}
+
+export function focusLife(listingId, profileIds = [], text = "") {
+  const query = interpretNearby(text);
+  const full = lifeReport(listingId, profileIds);
+  const empty = { query, focused: false, trips: [], counts: { observed: 0, barrier: 0, unknown: 0 }, questions: [] };
+  if (!query.recognized || full.sections.length === 0) return empty;
+  const trips = query.intents
+    .map((id) => {
+      const byNeed = full.sections
+        .map((section) => ({
+          needId: section.id,
+          needLabel: section.label,
+          trip: section.trips.find((item) => item.id === id),
+        }))
+        .filter((item) => item.trip);
+      const sketch =
+        byNeed.find((item) => item.trip.status === "barrier" && item.trip.scene !== "street-level")?.trip ||
+        byNeed.find((item) => item.trip.scene !== "street-level")?.trip ||
+        byNeed[0]?.trip ||
+        null;
+      return { id, byNeed, sketch };
+    })
+    .filter((item) => item.byNeed.length > 0);
+  const findings = trips.flatMap((item) => item.byNeed.map((entry) => entry.trip));
+  const counts = { observed: 0, barrier: 0, unknown: 0 };
+  for (const finding of findings) counts[finding.status] += 1;
+  const seen = new Set();
+  const questions = [];
+  for (const finding of findings) {
+    if (finding.status === "observed" || !finding.ask || seen.has(finding.ask)) continue;
+    seen.add(finding.ask);
+    questions.push(finding);
+  }
+  return { query, focused: true, trips, counts, questions };
+}
+
+export function requestStep(profileIds, text) {
+  const query = interpretNearby(text);
+  if (!query.text || profileIds.length === 0) return null;
+  if (!query.recognized) {
+    return {
+      source: "Your request",
+      text: `You wrote “${query.text}”. These sample notes can follow a grocery, a pharmacy, a clinic, or transit. They do not cover this request, so no route is filled in.`,
+    };
+  }
+  const names = query.intents.map((id) => (id === "clinic" ? "healthcare" : id));
+  const who = ACCESS_NEEDS.filter((item) => profileIds.includes(item.id)).map((item) => item.label.toLowerCase());
+  const asked = spokenList(names);
+  const needText = spokenList(who);
+  return {
+    source: "Your request",
+    text: `You asked about ${asked}. The street sample is checked only for that, using the ${needText} notes. Errands you did not mention stay out of the report. These are not live directions.`,
+  };
+}
+
 export function lifeReport(listingId, profileIds = []) {
   const place = LIFE[listingId];
   if (!place) return EMPTY;

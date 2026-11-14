@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { DEMO_PREFS, LISTINGS } from "../src/data.js";
-import { lifeReport } from "../src/life.js";
+import { focusLife, lifeReport } from "../src/life.js";
 import {
   findingFor,
   leadFinding,
@@ -15,18 +15,22 @@ const demo = { ...DEMO_PREFS, needs: [...DEMO_PREFS.needs] };
 
 test("a wheelchair search puts the ground-floor home first", () => {
   const ids = visibleListings(LISTINGS, demo).map((listing) => listing.id);
-  assert.deepEqual(ids, ["linden", "quarry", "palmer", "witherspoon"]);
+  assert.deepEqual(ids, ["linden", "quarry", "witherspoon", "palmer"]);
 });
 
-test("the same grocery trip changes with the access need", () => {
-  const grocery = (need) =>
-    lifeReport("linden", [need]).sections[0].trips.find((item) => item.id === "grocery");
-  assert.equal(grocery("wheelchair").status, "barrier");
-  assert.equal(grocery("hills").status, "observed");
-  const hills = visibleListings(LISTINGS, { ...demo, needs: ["hills"] }).map((listing) => listing.id);
-  assert.deepEqual(hills, ["linden", "quarry", "palmer", "witherspoon"]);
+test("a nearby note limits the life report to that errand", () => {
+  const asked = "A grocery store I can roll to";
+  const wheelchair = focusLife("linden", ["wheelchair"], asked);
+  const hills = focusLife("linden", ["hills"], asked);
+  assert.deepEqual(wheelchair.trips.map((item) => item.id), ["grocery"]);
+  assert.equal(wheelchair.trips[0].byNeed[0].trip.status, "barrier");
+  assert.equal(hills.trips[0].byNeed[0].trip.status, "observed");
+  assert.equal(focusLife("linden", ["wheelchair"], "a quiet cafe").focused, false);
+  assert.equal(focusLife("linden", ["wheelchair"], "").focused, false);
   const steep = lifeReport("quarry", ["hills"]).findings.find((item) => item.id === "slope");
   assert.equal(steep.status, "barrier");
+  const pharmacy = focusLife("quarry", ["hills"], "the pharmacy up the hill");
+  assert.equal(pharmacy.trips[0].byNeed[0].trip.status, "barrier");
 });
 
 test("low vision and hard of hearing reorder the same homes", () => {
@@ -60,4 +64,6 @@ test("prefs ignore unknown needs and clamp rent", () => {
   assert.equal(prefs.maxRent, 4000);
   assert.equal(prefs.beds, 1);
   assert.deepEqual(prefs.needs, ["wheelchair"]);
+  assert.equal(prefs.nearby, "");
+  assert.equal(sanitizePrefs({ nearby: "  a clinic  " }).nearby, "a clinic");
 });

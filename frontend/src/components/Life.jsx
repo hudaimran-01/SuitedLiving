@@ -1,84 +1,94 @@
-import { lifeReport } from "../life.js";
+import { focusLife } from "../life.js";
 import { EvidenceSketch } from "../sketches.jsx";
 import { Counts, Status } from "./Status.jsx";
 
-export function LifeAround({ listingId, profileIds }) {
-  const life = lifeReport(listingId, profileIds);
-  if (life.sections.length === 0) return null;
+export function LifeAround({ listingId, profileIds, nearby }) {
+  const focus = focusLife(listingId, profileIds, nearby);
+  if (profileIds.length === 0) return null;
+
+  if (!focus.query.text) {
+    return (
+      <section className="life" aria-labelledby="life-title">
+        <div className="report-intro">
+          <h2 id="life-title">Life around here</h2>
+          <p>
+            The notes above are about the building. Say what you need nearby, in your own words, and
+            this part will follow that instead of listing every errand.
+          </p>
+          <a className="button" href="#/needs">
+            Describe what you need nearby
+          </a>
+        </div>
+      </section>
+    );
+  }
+
+  if (!focus.focused) {
+    return (
+      <section className="life" aria-labelledby="life-title">
+        <div className="report-intro">
+          <h2 id="life-title">Life around here</h2>
+          <p>You wrote “{focus.query.text}”.</p>
+          <p>
+            These sample notes can check a grocery, a pharmacy, a clinic, or transit. They do not
+            cover this request, so nothing is filled in here.
+          </p>
+          <p className="fine">
+            A later version can send this sentence to the backend. It will not invent a place.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="life" aria-labelledby="life-title">
       <div className="report-intro">
         <h2 id="life-title">Life around here</h2>
-        <p>
-          An accessible apartment can still sit on a hard block. These notes ask whether a grocery
-          trip, a pharmacy, a clinic, and a bus stop are realistic for the needs you selected.
-        </p>
-        <Counts counts={life.counts} label="Around" />
+        <p>You asked: “{focus.query.text}”</p>
+        <Counts counts={focus.counts} label="Around" />
         <p className="fine">
-          Sample neighborhood notes, not a live map and not a measured route. A later version can
-          connect this section to the backend and to Vexcel imagery.
+          Sample neighborhood notes for this request only. Not a live map and not a measured route.
+          A later version can connect this sentence to the backend and to Vexcel imagery.
         </p>
       </div>
-      {life.sections.map((section) => (
-        <div key={section.id} className="life-section">
-          <h3>{section.label}</h3>
-          <p>{section.story}</p>
-          <h4>The block</h4>
-          <ul className="findings">
-            {section.street.map((finding, index) => {
-              const previous = section.street[index - 1];
-              const showSketch = finding.scene !== "street-level" && (!previous || previous.scene !== finding.scene);
-              return (
-                <li key={finding.id} className="finding">
-                  {showSketch ? (
-                    <div className="plate">
-                      <EvidenceSketch
-                        scene={finding.scene}
-                        label={`Sample sketch. ${finding.title}. ${finding.detail}`}
-                      />
-                    </div>
-                  ) : null}
-                  <div className="finding-copy">
-                    <div className="finding-top">
-                      <Status status={finding.status} />
-                      <span className="source">{finding.source}</span>
-                    </div>
-                    <h3>{finding.title}</h3>
-                    <p>{finding.detail}</p>
-                    <p className="fine">{finding.label}.</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-          <h4>Daily trips</h4>
-          <div className="trip-grid">
-            {section.trips.map((item) => (
-              <article key={item.id} className="trip">
+      {focus.trips.map((item) => (
+        <article key={item.id} className="trip trip-focus">
+          {item.sketch && item.sketch.scene !== "street-level" ? (
+            <div className="plate">
+              <EvidenceSketch
+                scene={item.sketch.scene}
+                label={`Sample sketch. ${item.sketch.title}. ${item.sketch.detail}`}
+              />
+            </div>
+          ) : null}
+          <div className="finding-copy">
+            <h3>{item.sketch.name}</h3>
+            {item.byNeed.map((entry) => (
+              <div key={entry.needId} className="need-read">
                 <div className="finding-top">
-                  <Status status={item.status} />
-                  <span className="source">{item.label}</span>
+                  <Status status={entry.trip.status} />
+                  {item.byNeed.length > 1 ? <span className="source">{entry.needLabel}</span> : null}
                 </div>
-                <h3>{item.name}</h3>
-                <p>{item.title}</p>
-                <p className="fine">{item.involves}</p>
-                <dl className="trip-route">
-                  <div>
-                    <dt>Route</dt>
-                    <dd>
-                      {item.route}. {item.routeDistance}.
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>Straight line</dt>
-                    <dd>{item.straightLine}. This skips the sidewalk and the crossings.</dd>
-                  </div>
-                </dl>
-              </article>
+                <p className="lead">{entry.trip.title}</p>
+                <p>{entry.trip.detail}</p>
+              </div>
             ))}
+            <p className="fine">{item.sketch.involves}</p>
+            <dl className="trip-route">
+              <div>
+                <dt>Route</dt>
+                <dd>
+                  {item.sketch.route}. {item.sketch.routeDistance}.
+                </dd>
+              </div>
+              <div>
+                <dt>Straight line</dt>
+                <dd>{item.sketch.straightLine}. This skips the sidewalk and the crossings.</dd>
+              </div>
+            </dl>
           </div>
-        </div>
+        </article>
       ))}
     </section>
   );
