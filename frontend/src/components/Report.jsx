@@ -4,7 +4,44 @@ import { focusLife, requestStep } from "../life.js";
 import { bedsLabel, money, questionsFor, summarize } from "../logic.js";
 import { EvidenceSketch } from "../sketches.jsx";
 import { LifeAround } from "./Life.jsx";
-import { Counts, Status } from "./Status.jsx";
+import { Status } from "./Status.jsx";
+
+const GROUPS = [
+  ["barrier", "Issues"],
+  ["observed", "What checks out"],
+  ["unknown", "Not checked yet"],
+];
+
+function FindingList({ findings, statuses }) {
+  return GROUPS.filter(([status]) => statuses.includes(status)).map(([status, label]) => {
+    const items = findings.filter((finding) => finding.status === status);
+    if (items.length === 0) return null;
+    return (
+      <section key={status} className="check-group" aria-labelledby={`inside-${status}`}>
+        <h3 id={`inside-${status}`}>
+          {label}
+          <span>{items.length}</span>
+        </h3>
+        <ul className="check-list">
+          {items.map((finding) => (
+            <li key={finding.requirementId}>
+              <details>
+                <summary>
+                  <Status status={finding.status} />
+                  <span>
+                    <strong>{finding.label}.</strong> {finding.title}
+                  </span>
+                </summary>
+                <p>{finding.detail}</p>
+                <p className="fine">{finding.source}</p>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  });
+}
 
 function investigationSteps(listing, prefs) {
   const request = requestStep(prefs.needs, prefs.nearby);
@@ -131,102 +168,48 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
       ) : (
         <div className="report-layout">
           <div>
-            <div className="report-intro">
-              <h2>Inside this home, and the day around it</h2>
-              <p>
-                Can you move through this home, and can you get through an ordinary errand from
-                the front door?
-              </p>
-              <p className="meta">{searchLabel(prefs.needs)}</p>
-              {prefs.needs.length > 0 ? (
-                <Counts counts={summary.counts} label="Inside" />
-              ) : (
-                <p>Add access needs and this page will read the home against them.</p>
-              )}
-              <button type="button" className="text-button" onClick={() => setReplay((n) => n + 1)}>
-                Replay the investigation
-              </button>
-            </div>
             {prefs.needs.length === 0 ? (
               <p>
                 <a href="#/needs">Describe what you need</a>
               </p>
             ) : (
               <>
-              <h2 className="section-title">Inside this home</h2>
-              <ul className="findings">
-                {summary.findings.map((finding, index) => {
-                  const previous = summary.findings[index - 1];
-                  const showSketch = !previous || previous.scene !== finding.scene;
-                  return (
-                  <li key={finding.requirementId} className="finding">
-                    {showSketch ? (
-                      <div className="plate">
-                        <EvidenceSketch
-                          scene={finding.scene}
-                          label={`${finding.source}. ${finding.title}. ${finding.detail}`}
-                        />
-                      </div>
-                    ) : null}
-                    <div className="finding-copy">
-                      <div className="finding-top">
-                        <Status status={finding.status} />
-                        <span className="source">{finding.source}</span>
-                      </div>
-                      <h3>{finding.title}</h3>
-                      <p>{finding.detail}</p>
-                      <p className="fine">Your requirement: {finding.label}.</p>
-                    </div>
-                  </li>
-                  );
-                })}
-              </ul>
-              <LifeAround listingId={listing.id} profileIds={prefs.needs} nearby={prefs.nearby} />
+                <section className="check-group" aria-labelledby="inside-title">
+                  <h2 id="inside-title">Inside this home</h2>
+                  <p className="meta">{searchLabel(prefs.needs)} Open a line for the evidence.</p>
+                  <FindingList findings={summary.findings} statuses={["barrier"]} />
+                </section>
+                <LifeAround listingId={listing.id} profileIds={prefs.needs} nearby={prefs.nearby} />
+                <FindingList findings={summary.findings} statuses={["observed", "unknown"]} />
+                <button type="button" className="text-button" onClick={() => setReplay((n) => n + 1)}>
+                  Replay the investigation
+                </button>
               </>
             )}
           </div>
           <aside className="rail">
             <section className="panel">
-              <h2>Sources checked</h2>
-              <ul className="source-list">
-                {steps.map((step) => (
-                  <li key={step.source}>
-                    <span className="source">{step.source}</span>
-                    <p>{step.text}</p>
-                  </li>
-                ))}
-              </ul>
-            </section>
-            <section className="panel">
               <h2>Ask before you visit</h2>
               {questions.length === 0 && life.questions.length === 0 ? (
-                <p>
-                  Nothing on your list produced a follow-up. Confirm the details with the building
-                  before you sign.
-                </p>
+                <p>No follow-up questions for this search.</p>
               ) : (
-                <>
-                  {questions.length > 0 ? (
-                    <ol className="asks">
-                      {questions.map((item) => (
-                        <li key={item.requirementId}>{item.ask}</li>
-                      ))}
-                    </ol>
-                  ) : null}
-                  {life.questions.length > 0 ? (
-                    <>
-                      <h3>About the neighborhood</h3>
-                      <ol className="asks">
-                        {life.questions.map((item) => (
-                          <li key={item.ask}>{item.ask}</li>
-                        ))}
-                      </ol>
-                    </>
-                  ) : null}
-                </>
+                <ul className="asks">
+                  {questions.map((item) => (
+                    <li key={item.requirementId}>
+                      <strong>{item.label}.</strong> {item.ask}
+                    </li>
+                  ))}
+                  {life.questions.map((item) => (
+                    <li key={item.ask}>
+                      <strong>{item.label}.</strong> {item.ask}
+                    </li>
+                  ))}
+                </ul>
               )}
+              <p className="fine">
+                Sources: {steps.map((step) => step.source).join(", ")}. Sample notes, not a certification.
+              </p>
             </section>
-            <p className="fine">This is evidence and open questions. It is not an accessibility certification.</p>
           </aside>
         </div>
       )}

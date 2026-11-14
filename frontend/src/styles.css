@@ -484,13 +484,64 @@ input[type="range"] { width: 100%; accent-color: var(--pine); margin-top: 0.7rem
 
 .rail { display: grid; gap: 0.8rem; position: sticky; top: 5.2rem; }
 
-.asks { padding-left: 1.2rem; list-style: decimal; }
+.asks { list-style: none; padding: 0; margin: 0; }
 
 .asks li { margin-bottom: 0.7rem; }
 
 .section-title { margin-top: 0.4rem; }
 
-.life { margin-top: 1.6rem; display: grid; gap: 1rem; }
+.check-group { margin-top: 1.2rem; }
+
+.check-group h2, .life h2 { margin-bottom: 0.35rem; }
+
+.check-group h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  margin: 0.85rem 0 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.check-group h3 span {
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.check-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.45rem; }
+
+.check-list details {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.65rem 0.85rem;
+}
+
+.check-list summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  cursor: pointer;
+}
+
+.check-list summary::-webkit-details-marker { display: none; }
+
+.check-list summary::marker { content: ""; }
+
+.check-list summary span { min-width: 0; }
+
+.check-list details p { margin: 0.55rem 0 0; }
+
+.plate-compact { border-radius: var(--radius); overflow: hidden; max-height: 180px; }
+
+.plate-compact .sketch-svg { margin-top: -40px; }
+
+.life { margin-top: 1.6rem; display: grid; gap: 0.7rem; }
 
 .life-section { display: grid; gap: 0.7rem; }
 

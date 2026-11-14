@@ -1,6 +1,6 @@
 import { focusLife } from "../life.js";
 import { EvidenceSketch } from "../sketches.jsx";
-import { Counts, Status } from "./Status.jsx";
+import { Status } from "./Status.jsx";
 
 export function LifeAround({ listingId, profileIds, nearby }) {
   const focus = focusLife(listingId, profileIds, nearby);
@@ -9,16 +9,11 @@ export function LifeAround({ listingId, profileIds, nearby }) {
   if (!focus.query.text) {
     return (
       <section className="life" aria-labelledby="life-title">
-        <div className="report-intro">
-          <h2 id="life-title">Life around here</h2>
-          <p>
-            The notes above are about the building. Say what you need nearby, in your own words, and
-            this part will follow that instead of listing every errand.
-          </p>
-          <a className="button" href="#/needs">
-            Describe what you need nearby
-          </a>
-        </div>
+        <h2 id="life-title">Life around here</h2>
+        <p>Add what you need nearby, and only that errand will show up here.</p>
+        <a className="button" href="#/needs">
+          Describe what you need nearby
+        </a>
       </section>
     );
   }
@@ -26,70 +21,49 @@ export function LifeAround({ listingId, profileIds, nearby }) {
   if (!focus.focused) {
     return (
       <section className="life" aria-labelledby="life-title">
-        <div className="report-intro">
-          <h2 id="life-title">Life around here</h2>
-          <p>You wrote “{focus.query.text}”.</p>
-          <p>
-            These sample notes can check a grocery, a pharmacy, a clinic, or transit. They do not
-            cover this request, so nothing is filled in here.
-          </p>
-          <p className="fine">
-            A later version can send this sentence to the backend. It will not invent a place.
-          </p>
-        </div>
+        <h2 id="life-title">Life around here</h2>
+        <p>You wrote “{focus.query.text}”.</p>
+        <p>Sample notes can check a grocery, a pharmacy, a clinic, or transit. This request is not covered, so no route is filled in.</p>
       </section>
     );
   }
 
+  const sketch = focus.trips.find((item) => item.sketch && item.sketch.scene !== "street-level")?.sketch;
+
   return (
     <section className="life" aria-labelledby="life-title">
-      <div className="report-intro">
-        <h2 id="life-title">Life around here</h2>
-        <p>You asked: “{focus.query.text}”</p>
-        <Counts counts={focus.counts} label="Around" />
-        <p className="fine">
-          Sample neighborhood notes for this request only. Not a live map and not a measured route.
-          A later version can connect this sentence to the backend and to Vexcel imagery.
-        </p>
-      </div>
-      {focus.trips.map((item) => (
-        <article key={item.id} className="trip trip-focus">
-          {item.sketch && item.sketch.scene !== "street-level" ? (
-            <div className="plate">
-              <EvidenceSketch
-                scene={item.sketch.scene}
-                label={`Sample sketch. ${item.sketch.title}. ${item.sketch.detail}`}
-              />
-            </div>
-          ) : null}
-          <div className="finding-copy">
-            <h3>{item.sketch.name}</h3>
-            {item.byNeed.map((entry) => (
-              <div key={entry.needId} className="need-read">
-                <div className="finding-top">
+      <h2 id="life-title">Life around here</h2>
+      <p className="meta">You asked: “{focus.query.text}”</p>
+      {sketch ? (
+        <div className="plate plate-compact">
+          <EvidenceSketch scene={sketch.scene} label={`Sample sketch. ${sketch.title}`} />
+        </div>
+      ) : null}
+      <ul className="check-list">
+        {focus.trips.flatMap((item) =>
+          item.byNeed.map((entry) => (
+            <li key={`${item.id}-${entry.needId}`}>
+              <details>
+                <summary>
                   <Status status={entry.trip.status} />
-                  {item.byNeed.length > 1 ? <span className="source">{entry.needLabel}</span> : null}
-                </div>
-                <p className="lead">{entry.trip.title}</p>
+                  <span>
+                    <strong>
+                      {entry.trip.label}
+                      {item.byNeed.length > 1 ? ` · ${entry.needLabel}` : ""}.
+                    </strong>{" "}
+                    {entry.trip.title}
+                  </span>
+                </summary>
                 <p>{entry.trip.detail}</p>
-              </div>
-            ))}
-            <p className="fine">{item.sketch.involves}</p>
-            <dl className="trip-route">
-              <div>
-                <dt>Route</dt>
-                <dd>
-                  {item.sketch.route}. {item.sketch.routeDistance}.
-                </dd>
-              </div>
-              <div>
-                <dt>Straight line</dt>
-                <dd>{item.sketch.straightLine}. This skips the sidewalk and the crossings.</dd>
-              </div>
-            </dl>
-          </div>
-        </article>
-      ))}
+                <p className="fine">
+                  {entry.trip.name}. Route {entry.trip.routeDistance}. Straight line {entry.trip.straightLine}, which
+                  skips the crossings.
+                </p>
+              </details>
+            </li>
+          )),
+        )}
+      </ul>
     </section>
   );
 }
