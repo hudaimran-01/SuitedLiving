@@ -35,6 +35,7 @@ class Images(BaseModel):
     hasScan: bool = False
     modelId: Optional[str] = None     # Matterport model id for the SDK embed
     photos: list[Photo] = []          # listing photos, with the room and a description
+    floorplans: list[str] = []        # Matterport floor plan images (SVG), one per level
 
 
 class Listing(BaseModel):

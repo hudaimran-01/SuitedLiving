@@ -203,7 +203,7 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
                   </p>
                   {home.agentNotes?.[0] ? (
                     <p className="lead note-line">
-                      <span className="source">Listing</span> {home.agentNotes[0]}
+                      <span className="source">Agent, not verified</span> {home.agentNotes[0]}
                     </p>
                   ) : null}
                   {insideLead ? (

@@ -2,10 +2,10 @@ import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife } from "../life.js";
 import { listingFacts, money, questionsFor, summarize } from "../logic.js";
 import { Gallery } from "./Gallery.jsx";
-import { floorPlanFor } from "../floorplans.js";
-import { FloorPlan } from "./FloorPlan.jsx";
 import { LifeAround } from "./Life.jsx";
-import { AerialNearby, ScannedPlan } from "./PropertyView.jsx";
+import { AerialNearby, ScanNotes } from "./PropertyView.jsx";
+import { ListingPlan } from "./ListingPlan.jsx";
+import { Tour } from "./Tour.jsx";
 import { propertyMediaFor } from "../propertyMedia.js";
 import { Status } from "./Status.jsx";
 
@@ -104,14 +104,11 @@ export function Report({ homeId, listings = LISTINGS, prefs, saved, onToggleSave
         </div>
       </header>
 
-      {media ? (
-        <ScannedPlan media={media} />
-      ) : (
-        <FloorPlan key={listing.id} plan={floorPlanFor(listing.id)} needIds={prefs.needs} />
-      )}
+      <Tour listing={listing} />
+      <ListingPlan listing={listing} needIds={prefs.needs} />
       {listing.agentNotes?.length > 0 ? (
         <section className="agent-notes" aria-labelledby="notes-title">
-          <h2 id="notes-title">From the listing</h2>
+          <h2 id="notes-title">From the agent's description, not verified</h2>
           <ul>
             {listing.agentNotes.map((note) => (
               <li key={note}>{note}</li>
@@ -120,6 +117,7 @@ export function Report({ homeId, listings = LISTINGS, prefs, saved, onToggleSave
           <p className="fine">The agent wrote this. It is useful, and it is not a measurement.</p>
         </section>
       ) : null}
+      <ScanNotes media={media} />
       <Gallery listing={listing} needIds={prefs.needs} />
       {media ? <AerialNearby media={media} nearby={prefs.nearby} /> : null}
 

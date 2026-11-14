@@ -2,21 +2,30 @@ import { useEffect, useState } from "react";
 
 function shotsFor(listing) {
   const shots = [];
-  if (listing.images?.matterport) {
-    shots.push({
-      src: listing.images.matterport,
-      label: "3D scan",
-      detail: `Scan of ${listing.name}. Walk the entrance, the doors, and the bathroom.`,
-      note: "Widths are not measured in this view.",
-      tour: listing.images.modelId ? `https://my.matterport.com/show/?m=${listing.images.modelId}` : null,
-    });
+  const address = listing.address || listing.name;
+  const still = listing.images?.matterport;
+  if (still) {
+    shots.push(
+      listing.images.hasScan
+        ? {
+            src: still,
+            label: "Scan preview",
+            detail: `Still image of the 3D scan of ${address}. Widths are not measured in this picture.`,
+            note: null,
+          }
+        : {
+            src: still,
+            label: "Photo",
+            detail: `Photo of ${address}.`,
+            note: null,
+          },
+    );
   }
   for (const photo of listing.images?.photos || []) shots.push(photo);
   return shots;
 }
 
 function lookFor(shot, needIds) {
-  if (shot.tour) return "Open the scan and check the entrance, the doors, and the bathroom.";
   const room = `${shot.label} ${shot.detail}`.toLowerCase();
   const needs = new Set(needIds || []);
   const moving = needs.has("wheelchair") || needs.has("hills");
@@ -56,7 +65,9 @@ export function Gallery({ listing, needIds }) {
           <li key={`${item.src}-${index}`}>
             <button type="button" className="shot" onClick={() => setOpen(index)}>
               <img src={item.src} alt="" />
-              <span>{item.label}</span>
+              <span>
+                <strong>{item.label}.</strong> {item.detail}
+              </span>
             </button>
           </li>
         ))}
@@ -71,11 +82,6 @@ export function Gallery({ listing, needIds }) {
               <p>{shot.detail}</p>
               {hint ? <p className="look">{hint}</p> : null}
               {shot.note ? <p className="fine">{shot.note}</p> : null}
-              {shot.tour ? (
-                <a className="button" href={shot.tour} target="_blank" rel="noreferrer">
-                  Open the 3D walkthrough
-                </a>
-              ) : null}
             </figcaption>
             <div className="lightbox-nav">
               <button type="button" onClick={() => setOpen((index) => (index - 1 + shots.length) % shots.length)}>

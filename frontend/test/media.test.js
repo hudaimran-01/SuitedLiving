@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { canTour, floorPlanCaption, heatmapZones, tourUrl } from "../src/heatmap.js";
 import { aerialReport, closestAmenities, notesFromScan, propertyMediaFor } from "../src/propertyMedia.js";
+import { LISTINGS } from "../src/data.js";
 
 test("scan notes keep one useful line per access topic", () => {
   const notes = notesFromScan(
@@ -15,14 +17,24 @@ test("scan notes keep one useful line per access topic", () => {
   ]);
 });
 
-test("uploaded homes expose a floor plan and the closest aerial place", () => {
-  for (const id of ["236060791", "233992469", "238641283", "228418897", "235969334", "228897977"]) {
+test("uploaded homes keep the aerial search and the listing carries the floor plans", () => {
+  const plans = {
+    "236060791": 1,
+    "233992469": 1,
+    "238641283": 3,
+    "228418897": 5,
+    "235969334": 3,
+    "228897977": 5,
+  };
+  for (const [id, count] of Object.entries(plans)) {
     const media = propertyMediaFor(id);
-    assert.ok(media.floorScan.endsWith("floorplan_matterport.jpg"));
+    const home = LISTINGS.find((listing) => listing.id === id);
+    assert.equal(media.floorScan, undefined);
+    assert.ok(media.neighborhood.includes("/vexcel/"));
     assert.equal(closestAmenities(media.amenities).length, 4);
+    assert.equal(home.images.floorplans.length, count);
   }
   assert.equal(propertyMediaFor("missing"), null);
-  assert.equal(propertyMediaFor("236060791").furnished.endsWith("furnished_vs_defurnished.jpg"), true);
   const dennis = aerialReport(propertyMediaFor("228897977"), "");
   assert.match(dennis.places.find((place) => place.category === "Retail Store").text, /7 minutes/);
   const gallant = propertyMediaFor("235969334");
@@ -35,4 +47,22 @@ test("uploaded homes expose a floor plan and the closest aerial place", () => {
   const clinic = aerialReport(propertyMediaFor("238641283"), "a clinic");
   assert.equal(clinic.places[0].category, "Medical Place");
   assert.match(clinic.places[0].text, /3 minutes/);
+});
+
+test("a 3D tour opens only when the listing has a scan and a model id", () => {
+  assert.equal(canTour({ hasScan: true, modelId: "vwDtYGo2VUz" }), true);
+  assert.equal(canTour({ hasScan: false, modelId: "vwDtYGo2VUz" }), false);
+  assert.equal(canTour({ hasScan: true, modelId: "" }), false);
+  assert.equal(tourUrl("vwDtYGo2VUz"), "https://my.matterport.com/show/?m=vwDtYGo2VUz&play=1");
+});
+
+test("the access heatmap uses the selected checks and the listing floor plan", () => {
+  const home = LISTINGS.find((listing) => listing.id === "236060791");
+  assert.equal(home.images.floorplans.length, 1);
+  assert.match(floorPlanCaption(home.address, 0, 1), /Floor plan for 9918 Dipping Woods Street/);
+  const zones = heatmapZones(home, ["wheelchair"]);
+  assert.equal(zones.find((zone) => zone.id === "step-free").status, "observed");
+  assert.equal(zones.find((zone) => zone.id === "parking").status, "unknown");
+  assert.equal(heatmapZones(home, []).length, 0);
+  assert.equal(zones.some((zone) => zone.id === "lighting"), false);
 });

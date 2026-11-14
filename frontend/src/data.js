@@ -78,6 +78,7 @@ export function normalizeListing(listing) {
       hasScan: Boolean(images.hasScan),
       modelId: images.modelId || null,
       photos: Array.isArray(images.photos) ? images.photos.map(normalizePhoto).filter(Boolean) : [],
+      floorplans: Array.isArray(images.floorplans) ? images.floorplans.filter((src) => typeof src === "string" && src) : [],
     },
   };
 }

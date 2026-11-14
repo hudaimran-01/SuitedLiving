@@ -26,71 +26,25 @@ function Zoom({ shot, onClose }) {
 function Photo({ shot, onOpen }) {
   return (
     <button type="button" className="plan-hit" onClick={() => onOpen(shot)}>
-      <img src={shot.src} alt={shot.detail} />
-      <span>{shot.label}</span>
+      <img src={shot.src} alt="" />
+      <span>
+        <strong>{shot.label}.</strong> {shot.detail}
+      </span>
     </button>
   );
 }
 
-export function ScannedPlan({ media }) {
-  const views = [
-    {
-      id: "scan",
-      label: "Scan plan",
-      src: media.floorScan,
-      detail: "Matterport floor plan with the scan points.",
-    },
-    {
-      id: "drawn",
-      label: "Drawn walls",
-      src: media.floorDrawn,
-      detail: "Drawn wall plan from the Matterport scan.",
-    },
-  ];
-  if (media.furnished) {
-    views.push({
-      id: "furnished",
-      label: "Furnished and empty",
-      src: media.furnished,
-      detail: "The same rooms furnished and empty, so the floor and the doorways are easier to see.",
-    });
-  }
-  const [viewId, setViewId] = useState(views[0].id);
-  const [zoom, setZoom] = useState(null);
-  const view = views.find((item) => item.id === viewId) || views[0];
-
+export function ScanNotes({ media }) {
+  if (!media?.scanNotes?.length) return null;
   return (
-    <section className="scanned-plan" aria-labelledby="plan-title">
-      <h2 id="plan-title">Floor plan</h2>
-      <p className="meta">From the Matterport scan. Open it to look at the rooms.</p>
-      <div className="view-switch" role="group" aria-label="Floor plan views">
-        {views.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            aria-pressed={item.id === view.id}
-            onClick={() => setViewId(item.id)}
-          >
-            {item.label}
-          </button>
+    <section className="agent-notes" aria-labelledby="scan-notes-title">
+      <h2 id="scan-notes-title">From the scan</h2>
+      <ul>
+        {media.scanNotes.map((note) => (
+          <li key={note}>{note}</li>
         ))}
-      </div>
-      <Photo shot={view} onOpen={setZoom} />
-      <p className="fine">
-        This is the plan image. Room colors need each room’s outline, and that outline is not in the file.
-      </p>
-      {media.scanNotes.length > 0 ? (
-        <>
-          <h3>From the scan</h3>
-          <ul>
-            {media.scanNotes.map((note) => (
-              <li key={note}>{note}</li>
-            ))}
-          </ul>
-          <p className="fine">The person who scanned the home wrote this. It is not a measurement.</p>
-        </>
-      ) : null}
-      <Zoom shot={zoom} onClose={() => setZoom(null)} />
+      </ul>
+      <p className="fine">The person who scanned the home wrote this. It is not a measurement.</p>
     </section>
   );
 }

@@ -1,5 +1,4 @@
 import { interpretNearby } from "./life.js";
-import gallantScan from "../../property_media/5_11413_Gallant_Ridge_Ln_Houston_TX/matterport/matterport_summary.json" with { type: "json" };
 import dippingNearby from "../../property_media/1_9918_Dipping_Woods_St_Houston_TX/vexcel/nearby_amenities_and_accessibility.json" with { type: "json" };
 import dippingElements from "../../property_media/1_9918_Dipping_Woods_St_Houston_TX/vexcel/elements_summary.json" with { type: "json" };
 import sageNearby from "../../property_media/2_Sage_Condominiums_Unit_909_Houston_TX/vexcel/nearby_amenities_and_accessibility.json" with { type: "json" };
@@ -50,13 +49,18 @@ export function notesFromScan(description) {
   return TOPICS.map(([topic]) => best.get(topic)).filter(Boolean).map((item) => period(item.sentence));
 }
 
+const GALLANT_SCAN_NOTES = [
+  "Entryway light not working.",
+  "Two bathroom doors on 2nd floor would not stay open fully.",
+  "Side yard gate stuck in open position, one side gate stuck closed.",
+  "One side of home blocked by pool plumbing equipment.",
+  "Client declined both garages due to being full of moving items.",
+];
+
 function folderMedia(id, folder, nearby, elements, options = {}) {
   const base = `/property_media/${folder}`;
   return {
     id,
-    floorScan: `${base}/matterport/floorplan_matterport.jpg`,
-    floorDrawn: `${base}/matterport/floorplan_drawn.png`,
-    furnished: options.furnished ? `${base}/matterport/furnished_vs_defurnished.jpg` : null,
     neighborhood: `${base}/vexcel/neighborhood_overview_accessibility.jpg`,
     parcel: `${base}/vexcel/ortho_parcel.jpg`,
     groceryMatch: `${base}/vexcel/embeddings/grocery_stores_match_1.jpg`,
@@ -72,7 +76,6 @@ const MEDIA = {
     "1_9918_Dipping_Woods_St_Houston_TX",
     dippingNearby,
     dippingElements,
-    { furnished: true },
   ),
   "233992469": folderMedia(
     "233992469",
@@ -85,21 +88,19 @@ const MEDIA = {
     "3_1819_S_Norton_Ave_Los_Angeles_CA",
     nortonNearby,
     nortonElements,
-    { furnished: true },
   ),
   "228418897": folderMedia(
     "228418897",
     "4_205_Portland_St_Houston_TX",
     portlandNearby,
     portlandElements,
-    { furnished: true },
   ),
   "235969334": folderMedia(
     "235969334",
     "5_11413_Gallant_Ridge_Ln_Houston_TX",
     gallantNearby,
     gallantElements,
-    { scanNotes: notesFromScan(gallantScan.description) },
+    { scanNotes: GALLANT_SCAN_NOTES },
   ),
   "228897977": folderMedia(
     "228897977",

@@ -38,8 +38,11 @@ def _images(l, model_id):
                     key=lambda m: (m.get("displayOrder") is None, m.get("displayOrder") or 0))
     shots = [_photo(m) for m in photos[:8]]
     still = _size(scan["thumbnailUri"], 102) if scan and scan.get("thumbnailUri") else None
+    # Type 10 is the Matterport floor plan, usually one SVG per level.
+    plans = list(dict.fromkeys(m["uri"] for m in media if m.get("type") == 10 and m.get("uri")))
     return {"matterport": still or (shots[0]["src"] if shots else None),
-            "vexcel": None, "hasScan": bool(model_id), "modelId": model_id, "photos": shots}
+            "vexcel": None, "hasScan": bool(model_id), "modelId": model_id,
+            "photos": shots, "floorplans": plans}
 
 def _listed(l):
     s = l.get("listDate")
