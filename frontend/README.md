@@ -4,7 +4,7 @@ InsideOut is the HackPrinceton web app for accessible home search. The name is p
 
 A person chooses wheelchair, low vision, hard of hearing, stairs and hills, or a mix. The sample listings are then ordered and reported for the home and for sample daily trips around it. Findings stay split into observed features, possible barriers, and unknowns. Neighborhood notes are labeled samples, not a live map.
 
-Homes come from `src/listings.json`. That file is the listing format the app reads. The repository path for the live file can replace this import later.
+Homes come from the backend builder. `backend/scripts/build_cache.py` reads the CoStar kit and writes `src/listings.json`, including agent notes and photo descriptions. The page also reads `/api/listings` when the API is running.
 
 ## Run
 

@@ -3,8 +3,8 @@ import { interpretNearby, lifeReport } from "../life.js";
 import { findingFor, money, STATUS_LABEL } from "../logic.js";
 import { Status } from "./Status.jsx";
 
-export function Compare({ prefs, saved, onToggleSaved }) {
-  const homes = LISTINGS.filter((listing) => saved.includes(listing.id));
+export function Compare({ listings = LISTINGS, prefs, saved, onToggleSaved }) {
+  const homes = listings.filter((listing) => saved.includes(listing.id));
   const profiles = ACCESS_NEEDS.filter((item) => prefs.needs.includes(item.id));
 
   return (

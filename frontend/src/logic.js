@@ -4,7 +4,7 @@ import { focusLife } from "./life.js";
 export const STATUS_LABEL = {
   observed: "Observed",
   barrier: "Potential barrier",
-  unknown: "Unknown",
+  unknown: "Confirm",
 };
 
 export const PRICE_MIN = 100000;

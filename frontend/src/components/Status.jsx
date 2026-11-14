@@ -12,7 +12,7 @@ export function Counts({ counts, label }) {
       {label ? <span className="source">{label}</span> : null}
       <span>{counts.observed} observed</span>
       <span>{barriers}</span>
-      <span>{counts.unknown} unknown</span>
+      <span>{counts.unknown} to confirm</span>
     </p>
   );
 }

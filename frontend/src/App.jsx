@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { DEMO_PREFS, LISTINGS } from "./data.js";
+import { DEMO_PREFS, LISTINGS, normalizeListings } from "./data.js";
 import { sanitizePrefs } from "./logic.js";
 import { useSessionState } from "./storage.js";
 import { Compare } from "./components/Compare.jsx";
@@ -34,6 +34,27 @@ function useRoute() {
   return route;
 }
 
+function useListings() {
+  const [listings, setListings] = useState(LISTINGS);
+  useEffect(() => {
+    let cancel = false;
+    fetch("/api/listings")
+      .then((response) => {
+        if (!response.ok) throw new Error("listings unavailable");
+        return response.json();
+      })
+      .then((data) => {
+        const next = normalizeListings(data);
+        if (!cancel && next.length > 0) setListings(next);
+      })
+      .catch(() => {});
+    return () => {
+      cancel = true;
+    };
+  }, []);
+  return listings;
+}
+
 export default function App() {
   const route = useRoute();
   const [prefs, setPrefs] = useSessionState(
@@ -41,6 +62,7 @@ export default function App() {
     { maxPrice: 2000000, beds: null, needs: [], nearby: "" },
     sanitizePrefs,
   );
+  const listings = useListings();
   const [saved, setSaved] = useSessionState("insideout-saved", [], (value) => {
     const ids = new Set(LISTINGS.map((listing) => listing.id));
     return Array.isArray(value) ? value.filter((id) => ids.has(id)) : [];
@@ -49,7 +71,7 @@ export default function App() {
   const skipFocus = useRef(true);
 
   useEffect(() => {
-    const listing = LISTINGS.find((item) => item.id === route.id);
+    const listing = listings.find((item) => item.id === route.id);
     const titles = {
       welcome: "InsideOut",
       discover: "Homes · InsideOut",
@@ -66,7 +88,7 @@ export default function App() {
       return;
     }
     heading.focus();
-  }, [route.name, route.id]);
+  }, [listings, route.name, route.id]);
 
   useEffect(() => {
     document.documentElement.dataset.vision = prefs.needs.includes("low-vision") ? "true" : "false";
@@ -82,10 +104,11 @@ export default function App() {
     );
   }
 
-  let page = <Welcome onDemo={applyDemo} />;
+  let page = <Welcome listings={listings} onDemo={applyDemo} />;
   if (route.name === "discover") {
     page = (
       <Discover
+        listings={listings}
         prefs={prefs}
         setPrefs={setPrefs}
         saved={saved}
@@ -98,6 +121,7 @@ export default function App() {
     page = (
       <Report
         key={route.id}
+        listings={listings}
         homeId={route.id}
         prefs={prefs}
         saved={saved}
@@ -106,7 +130,7 @@ export default function App() {
     );
   }
   if (route.name === "compare") {
-    page = <Compare prefs={prefs} saved={saved} onToggleSaved={toggleSaved} />;
+    page = <Compare listings={listings} prefs={prefs} saved={saved} onToggleSaved={toggleSaved} />;
   }
 
   return (

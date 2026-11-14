@@ -10,8 +10,8 @@ const PREVIEW = [
   ["hard-of-hearing", "alarms"],
 ];
 
-export function Welcome({ onDemo }) {
-  const home = LISTINGS[0];
+export function Welcome({ listings = LISTINGS, onDemo }) {
+  const home = listings[0];
   const findings = PREVIEW.map(([profileId, checkId]) => ({
     profile: ACCESS_NEEDS.find((item) => item.id === profileId).label,
     ...findingFor(home, checkId),

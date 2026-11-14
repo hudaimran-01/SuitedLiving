@@ -49,12 +49,25 @@ export const DEMO_PREFS = {
   nearby: "A grocery store I can get to from the front door",
 };
 
-function normalizeListing(listing) {
+function normalizePhoto(photo) {
+  if (!photo) return null;
+  if (typeof photo === "string") return { src: photo, label: "Listing photo", detail: "Listing photo", note: null };
+  if (!photo.src) return null;
+  return {
+    src: photo.src,
+    label: photo.label || "Listing photo",
+    detail: photo.detail || photo.label || "Listing photo",
+    note: photo.note || null,
+  };
+}
+
+export function normalizeListing(listing) {
   const images = listing.images || {};
   const unit = typeof listing.unit === "string" ? listing.unit.trim() : "";
   return {
     ...listing,
     unit: unit || null,
+    agentNotes: Array.isArray(listing.agentNotes) ? listing.agentNotes.filter(Boolean) : [],
     price: Number(listing.price),
     beds: Number(listing.beds),
     baths: Number(listing.baths),
@@ -64,10 +77,14 @@ function normalizeListing(listing) {
       vexcel: images.vexcel || null,
       hasScan: Boolean(images.hasScan),
       modelId: images.modelId || null,
-      photos: Array.isArray(images.photos) ? images.photos.filter(Boolean) : [],
+      photos: Array.isArray(images.photos) ? images.photos.map(normalizePhoto).filter(Boolean) : [],
     },
   };
 }
 
-// Listings follow this file until the repository path is ready.
-export const LISTINGS = rawListings.map(normalizeListing);
+export function normalizeListings(listings) {
+  return Array.isArray(listings) ? listings.map(normalizeListing) : [];
+}
+
+// Built by backend/scripts/build_cache.py from the CoStar kit.
+export const LISTINGS = normalizeListings(rawListings);

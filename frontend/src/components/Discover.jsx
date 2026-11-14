@@ -1,6 +1,6 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife, interpretNearby, lifeHeadline } from "../life.js";
-import { leadFinding, listingFacts, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
+import { bedsLabel, leadFinding, listingFacts, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
 import { ListingPhoto } from "./ListingPhoto.jsx";
 import { Counts } from "./Status.jsx";
 
@@ -20,8 +20,8 @@ const BEDS = [
 
 const EMPTY_PREFS = { maxPrice: PRICE_MAX, beds: null, needs: [], nearby: "" };
 
-export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
-  const homes = visibleListings(LISTINGS, prefs);
+export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggleSaved, onDemo }) {
+  const homes = visibleListings(listings, prefs);
   const nearby = prefs.nearby || "";
   const open = prefs.needs.length === 0 && prefs.beds == null && prefs.maxPrice >= PRICE_MAX && !nearby.trim();
 
@@ -158,8 +158,8 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
         <div className="empty">
           <h2>No sample home fits that filter</h2>
           <p>
-            The sample includes {LISTINGS.length} homes for sale, from {money(Math.min(...LISTINGS.map((item) => item.price)))} to{" "}
-            {money(Math.max(...LISTINGS.map((item) => item.price)))}.
+            The sample includes {listings.length} homes for sale, from {money(Math.min(...listings.map((item) => item.price)))} to{" "}
+            {money(Math.max(...listings.map((item) => item.price)))}.
           </p>
           <button type="button" className="button" onClick={() => setPrefs(EMPTY_PREFS)}>
             Clear filters
@@ -190,7 +190,7 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
                         <a href={`#/home/${home.id}`}>{home.name}</a>
                       </h2>
                       <p className="meta">
-                        {home.unit} · {home.address}
+                        {[home.unit ? `Unit ${home.unit}` : null, home.address].filter(Boolean).join(" · ")}
                       </p>
                     </div>
                     <p className="rent">
@@ -201,6 +201,11 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
                   <p className="meta">
                     {listingFacts(home).join(" · ")}
                   </p>
+                  {home.agentNotes?.[0] ? (
+                    <p className="lead note-line">
+                      <span className="source">Listing</span> {home.agentNotes[0]}
+                    </p>
+                  ) : null}
                   {insideLead ? (
                     <p className="lead">
                       <span className="source">Inside</span> {insideLead.title}

@@ -64,7 +64,8 @@ test("a listing keeps seller statements separate from open questions", () => {
   assert.equal(findings.find((item) => item.requirementId === "step-free").status, "observed");
   assert.equal(findings.find((item) => item.requirementId === "parking").ask !== null, true);
   assert.ok(questionsFor(findings).every((item) => item.ask));
-  assert.equal(home.images.photos.length > 0, true);
+  assert.equal(home.images.photos[0].label, "Front");
+  assert.equal(home.agentNotes[0].includes("wheelchair"), true);
   assert.equal(home.images.modelId, "vwDtYGo2VUz");
 });
 

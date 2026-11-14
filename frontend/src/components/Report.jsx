@@ -1,16 +1,16 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife } from "../life.js";
 import { listingFacts, money, questionsFor, summarize } from "../logic.js";
+import { Gallery } from "./Gallery.jsx";
 import { floorPlanFor } from "../floorplans.js";
 import { FloorPlan } from "./FloorPlan.jsx";
-import { ImageSlot } from "./ImageSlot.jsx";
 import { LifeAround } from "./Life.jsx";
 import { Status } from "./Status.jsx";
 
 const GROUPS = [
   ["barrier", "Issues"],
   ["observed", "What checks out"],
-  ["unknown", "Not checked yet"],
+  ["unknown", "Confirm before you visit"],
 ];
 
 function FindingList({ findings, statuses }) {
@@ -53,8 +53,8 @@ function searchLabel(needIds) {
   return `Searching for ${rest.join(", ")} and ${last}.`;
 }
 
-export function Report({ homeId, prefs, saved, onToggleSaved }) {
-  const listing = LISTINGS.find((item) => item.id === homeId);
+export function Report({ homeId, listings = LISTINGS, prefs, saved, onToggleSaved }) {
+  const listing = listings.find((item) => item.id === homeId);
 
   if (!listing) {
     return (
@@ -71,11 +71,6 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
   const life = focusLife(listing.id, prefs.needs, prefs.nearby);
   const questions = questionsFor(summary.findings);
   const savedOn = saved.includes(listing.id);
-  const scanCaption = listing.images?.hasScan
-    ? listing.images.modelId
-      ? `Matterport model ${listing.images.modelId}. The preview image ties in here.`
-      : "Matterport interior scan. The photo or panorama ties in here."
-    : "No Matterport scan is linked for this home yet. The image will sit here when there is one.";
 
   return (
     <article className="report">
@@ -107,19 +102,21 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
       </header>
 
       <FloorPlan key={listing.id} plan={floorPlanFor(listing.id)} needIds={prefs.needs} />
+      {listing.agentNotes?.length > 0 ? (
+        <section className="agent-notes" aria-labelledby="notes-title">
+          <h2 id="notes-title">From the listing</h2>
+          <ul>
+            {listing.agentNotes.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
+          <p className="fine">The agent wrote this. It is useful, and it is not a measurement.</p>
+        </section>
+      ) : null}
+      <Gallery listing={listing} needIds={prefs.needs} />
 
       <div className="report-layout">
         <div>
-          <ImageSlot source="Matterport" src={listing.images?.matterport} caption={scanCaption} />
-          {listing.images?.photos?.length > 0 ? (
-            <ul className="photo-row">
-              {listing.images.photos.slice(0, 6).map((src) => (
-                <li key={src}>
-                  <img src={src} alt={`${listing.name} listing photo`} />
-                </li>
-              ))}
-            </ul>
-          ) : null}
           {prefs.needs.length === 0 ? (
             <p>
               <a href="#/discover">Set your filters</a>

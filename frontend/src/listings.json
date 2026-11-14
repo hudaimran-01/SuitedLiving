@@ -18,14 +18,54 @@
       "hasScan": true,
       "modelId": "vwDtYGo2VUz",
       "photos": [
-        "https://images.homes.com/listings/102/6605725115-197060632-original.jpg",
-        "https://images.homes.com/listings/102/4415725115-197060632-original.jpg",
-        "https://images.homes.com/listings/102/7915725115-197060632-original.jpg",
-        "https://images.homes.com/listings/102/9225725115-197060632-original.jpg",
-        "https://images.homes.com/listings/102/6335725115-197060632-original.jpg",
-        "https://images.homes.com/listings/102/1545725115-197060632-original.jpg",
-        "https://images.homes.com/listings/102/2117725115-197060632-original.jpg",
-        "https://images.homes.com/listings/102/3027725115-197060632-original.jpg"
+        {
+          "src": "https://images.homes.com/listings/102/6605725115-197060632-original.jpg",
+          "label": "Front",
+          "detail": "Front exterior of light blue home with white garage door, concrete driveway, and landscaped yard.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/4415725115-197060632-original.jpg",
+          "label": "Bedroom 1",
+          "detail": "Bedroom with dark laminate flooring, large picture window, and baseboards.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/7915725115-197060632-original.jpg",
+          "label": "Bedroom 1",
+          "detail": "Bedroom with dark vinyl plank flooring, large picture window, and white baseboards.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/9225725115-197060632-original.jpg",
+          "label": "Living Area",
+          "detail": "Open-concept kitchen and living room with vinyl plank flooring, ceiling fan, and double windows.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/6335725115-197060632-original.jpg",
+          "label": "Living Area",
+          "detail": "Open living area with black kitchen cabinets, gray laminate flooring, and large sliding glass doors.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/1545725115-197060632-original.jpg",
+          "label": "Kitchen",
+          "detail": "Galley kitchen with dark cabinets, marble countertops, white subway tile backsplash.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/2117725115-197060632-original.jpg",
+          "label": "Living Area",
+          "detail": "Living room with vinyl plank flooring, recessed lighting, ceiling fan, and sliding glass doors.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/3027725115-197060632-original.jpg",
+          "label": "Primary Bedroom",
+          "detail": "Bedroom with hardwood flooring, ceiling fan, and large single window.",
+          "note": null
+        }
       ]
     },
     "sketchLabel": "Listing photo",
@@ -36,11 +76,11 @@
       },
       {
         "source": "Vexcel",
-        "text": "Aerial imagery has not been reviewed for this home, so the entrance, parking and walk are not assessed."
+        "text": "Confirm the entrance, the parking, and the walk on a visit. This report does not include an aerial photo."
       },
       {
         "source": "Matterport",
-        "text": "A Matterport scan is on file. Door widths and turning space have not been measured in this prototype."
+        "text": "A Matterport scan is linked. Use the photos to look at the entrance, doors, and bathroom. Widths still need a tape measure."
       }
     ],
     "findings": {
@@ -49,7 +89,7 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing states a step-free way in",
-        "detail": "The MLS data lists \u201cAccessible Approach with Ramp\u201d. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cAccessible Approach with Ramp\u201d. That comes from the listing, not a measurement.",
         "ask": null
       },
       "elevator": {
@@ -64,16 +104,16 @@
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Accessible parking is not listed",
-        "detail": "The MLS data does not mark an accessible space. It has 1 garage space(s), which is not the same as an accessible space.",
+        "title": "Confirm accessible parking",
+        "detail": "Ask whether there is an accessible space, and how far it is from the door. The listing has 1 garage space. A garage is not an accessible space.",
         "ask": "Is there accessible parking, and how far is it from the entrance?"
       },
       "short-walk": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "The route from parking to the door was not reviewed",
-        "detail": "Aerial imagery has not been checked for this home.",
+        "title": "Confirm the walk from the car",
+        "detail": "Ask how far accessible parking is from a step-free door.",
         "ask": "How far is accessible parking from a step-free entrance?"
       },
       "doorways": {
@@ -81,7 +121,7 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing states accessible doors or halls",
-        "detail": "The MLS data lists \u201cAccessible Doors\u201d. It gives no clear width in inches. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cAccessible Doors\u201d. It gives no clear width in inches. That comes from the listing, not a measurement.",
         "ask": null
       },
       "bathroom": {
@@ -89,58 +129,61 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing states an accessible full bathroom",
-        "detail": "The MLS data lists \u201cAccessible Full Bathroom\u201d. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cAccessible Full Bathroom\u201d. That comes from the listing, not a measurement.",
         "ask": null
       },
       "lighting": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Entrance lighting is not on file",
-        "detail": "Lighting is not part of the listing data.",
+        "title": "Confirm the lights at the door",
+        "detail": "Ask if the walk and the entrance stay lit after dark.",
         "ask": "Is the entrance and the walk lit after dark?"
       },
       "contrast": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Contrast at edges and doors is not on file",
-        "detail": "Edge marking is not part of the listing data.",
+        "title": "Confirm contrast on edges",
+        "detail": "Ask if steps and door edges have a high-contrast strip.",
         "ask": "Are step and door edges marked with a high-contrast strip?"
       },
       "signage": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Signs are not on file",
-        "detail": "Unit numbers and signs are not part of the listing data.",
+        "title": "Confirm the unit number is easy to see",
+        "detail": "Ask if the number is large, high-contrast, and beside the door.",
         "ask": "Is the unit number large, high-contrast, and beside the door?"
       },
       "alarms": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Visual alarms are not listed",
-        "detail": "Nothing in the MLS data describes strobe alarms. The listing mentions smoke detectors, not strobe alarms.",
+        "title": "Confirm flashing smoke alarms",
+        "detail": "Ask if the smoke and carbon monoxide alarms flash. The listing mentions smoke detectors, not strobe alarms.",
         "ask": "Are there strobe smoke and carbon monoxide alarms in the unit?"
       },
       "doorbell": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "A doorbell you can see is not listed",
-        "detail": "A doorbell may exist, but the listing does not say it flashes or has video.",
+        "title": "Confirm a doorbell you can see",
+        "detail": "Ask if the doorbell flashes or shows video.",
         "ask": "Is there a flashing doorbell or a video doorbell?"
       },
       "intercom": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "The listing does not describe an intercom",
-        "detail": "Nothing says how a visitor is announced.",
+        "title": "Confirm how a visitor reaches you",
+        "detail": "Ask if the intercom is video or text, not sound only.",
         "ask": "Is the intercom video or text, or sound only?"
       }
-    }
+    },
+    "agentNotes": [
+      "Accessibility features are built into the home, including a wheelchair-friendly floorplan, wider doorways, and ramps for easy entry and movement."
+    ]
   },
   {
     "id": "233992469",
@@ -161,14 +204,54 @@
       "hasScan": true,
       "modelId": "cedgfcpCWny",
       "photos": [
-        "https://images.homes.com/listings/102/9507813905-964299332-original.jpg",
-        "https://images.homes.com/listings/102/8607813905-964299332-original.jpg",
-        "https://images.homes.com/listings/102/9707813905-964299332-original.jpg",
-        "https://images.homes.com/listings/102/1907813905-964299332-original.jpg",
-        "https://images.homes.com/listings/102/7017813905-964299332-original.jpg",
-        "https://images.homes.com/listings/102/4117813905-964299332-original.jpg",
-        "https://images.homes.com/listings/102/4217813905-964299332-original.jpg",
-        "https://images.homes.com/listings/102/6317813905-964299332-original.jpg"
+        {
+          "src": "https://images.homes.com/listings/102/9507813905-964299332-original.jpg",
+          "label": "Luxury building entrance",
+          "detail": "Luxury building entrance with modern canopy, paver drive, and surrounding high-rise towers.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/8607813905-964299332-original.jpg",
+          "label": "Listing photo",
+          "detail": "Listing photo",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/9707813905-964299332-original.jpg",
+          "label": "Hallway",
+          "detail": "Hallway with crown molding, wainscoting, and decorative wall sconce.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/1907813905-964299332-original.jpg",
+          "label": "High-rise balcony",
+          "detail": "High-rise balcony with city skyline and parking structure views.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/7017813905-964299332-original.jpg",
+          "label": "Balcony",
+          "detail": "Balcony with city skyline and parking garage views, metal railing, and composite decking.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/4117813905-964299332-original.jpg",
+          "label": "Balcony",
+          "detail": "Balcony with city and skyline views from high-rise residential building.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/4217813905-964299332-original.jpg",
+          "label": "Hallway",
+          "detail": "Hallway with hardwood flooring, crown molding, and recessed lighting.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/6317813905-964299332-original.jpg",
+          "label": "Bedroom",
+          "detail": "Bedroom with hardwood flooring, crown molding, and plantation shutters.",
+          "note": null
+        }
       ]
     },
     "sketchLabel": "Listing photo",
@@ -179,11 +262,11 @@
       },
       {
         "source": "Vexcel",
-        "text": "Aerial imagery has not been reviewed for this home, so the entrance, parking and walk are not assessed."
+        "text": "Confirm the entrance, the parking, and the walk on a visit. This report does not include an aerial photo."
       },
       {
         "source": "Matterport",
-        "text": "A Matterport scan is on file. Door widths and turning space have not been measured in this prototype."
+        "text": "A Matterport scan is linked. Use the photos to look at the entrance, doors, and bathroom. Widths still need a tape measure."
       }
     ],
     "findings": {
@@ -192,7 +275,7 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing states a step-free way in",
-        "detail": "The MLS data lists \u201cAccessible Entrance\u201d. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cAccessible Entrance\u201d. That comes from the listing, not a measurement.",
         "ask": null
       },
       "elevator": {
@@ -200,23 +283,23 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing includes an elevator",
-        "detail": "The MLS data lists \u201cAccessible Elevator Installed\u201d. The unit is on floor 9. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cAccessible Elevator Installed\u201d. The unit is on floor 9. That comes from the listing, not a measurement.",
         "ask": null
       },
       "parking": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Accessible parking is not listed",
-        "detail": "The MLS data does not mark an accessible space.",
+        "title": "Confirm accessible parking",
+        "detail": "Ask whether there is an accessible space, and how far it is from the door.",
         "ask": "Is there accessible parking, and how far is it from the entrance?"
       },
       "short-walk": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "The route from parking to the door was not reviewed",
-        "detail": "Aerial imagery has not been checked for this home.",
+        "title": "Confirm the walk from the car",
+        "detail": "Ask how far accessible parking is from a step-free door.",
         "ask": "How far is accessible parking from a step-free entrance?"
       },
       "doorways": {
@@ -224,7 +307,7 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing states accessible doors or halls",
-        "detail": "The MLS data lists \u201cAccessible Doors\u201d. It gives no clear width in inches. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cAccessible Doors\u201d. It gives no clear width in inches. That comes from the listing, not a measurement.",
         "ask": null
       },
       "bathroom": {
@@ -239,51 +322,54 @@
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Entrance lighting is not on file",
-        "detail": "Lighting is not part of the listing data.",
+        "title": "Confirm the lights at the door",
+        "detail": "Ask if the walk and the entrance stay lit after dark.",
         "ask": "Is the entrance and the walk lit after dark?"
       },
       "contrast": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Contrast at edges and doors is not on file",
-        "detail": "Edge marking is not part of the listing data.",
+        "title": "Confirm contrast on edges",
+        "detail": "Ask if steps and door edges have a high-contrast strip.",
         "ask": "Are step and door edges marked with a high-contrast strip?"
       },
       "signage": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Signs are not on file",
-        "detail": "Unit numbers and signs are not part of the listing data.",
+        "title": "Confirm the unit number is easy to see",
+        "detail": "Ask if the number is large, high-contrast, and beside the door.",
         "ask": "Is the unit number large, high-contrast, and beside the door?"
       },
       "alarms": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Visual alarms are not listed",
-        "detail": "Nothing in the MLS data describes strobe alarms. The listing mentions smoke detectors, not strobe alarms.",
+        "title": "Confirm flashing smoke alarms",
+        "detail": "Ask if the smoke and carbon monoxide alarms flash. The listing mentions smoke detectors, not strobe alarms.",
         "ask": "Are there strobe smoke and carbon monoxide alarms in the unit?"
       },
       "doorbell": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "A doorbell you can see is not listed",
-        "detail": "A doorbell may exist, but the listing does not say it flashes or has video.",
+        "title": "Confirm a doorbell you can see",
+        "detail": "Ask if the doorbell flashes or shows video.",
         "ask": "Is there a flashing doorbell or a video doorbell?"
       },
       "intercom": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "The listing does not describe an intercom",
-        "detail": "Nothing says how a visitor is announced.",
+        "title": "Confirm how a visitor reaches you",
+        "detail": "Ask if the intercom is video or text, not sound only.",
         "ask": "Is the intercom video or text, or sound only?"
       }
-    }
+    },
+    "agentNotes": [
+      "Building amenities include controlled access, elevators, a fitness center, business center, party room, resort-style pool, outdoor kitchen, and beautifully landscaped common areas."
+    ]
   },
   {
     "id": "238641283",
@@ -304,14 +390,54 @@
       "hasScan": true,
       "modelId": "PTz2GeBccjR",
       "photos": [
-        "https://images.homes.com/listings/102/3683992715-382146832-original.jpg",
-        "https://images.homes.com/listings/102/1783992715-382146832-original.jpg",
-        "https://images.homes.com/listings/102/0883992715-382146832-original.jpg",
-        "https://images.homes.com/listings/102/8883992715-382146832-original.jpg",
-        "https://images.homes.com/listings/102/6983992715-382146832-original.jpg",
-        "https://images.homes.com/listings/102/3093992715-382146832-original.jpg",
-        "https://images.homes.com/listings/102/0193992715-382146832-original.jpg",
-        "https://images.homes.com/listings/102/6193992715-382146832-original.jpg"
+        {
+          "src": "https://images.homes.com/listings/102/3683992715-382146832-original.jpg",
+          "label": "Front exterior",
+          "detail": "Front exterior featuring white stucco, arched windows, brick driveway, and hedged landscaping.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/1783992715-382146832-original.jpg",
+          "label": "Front exterior",
+          "detail": "Front exterior featuring brick and hedge fence with mature landscaping.",
+          "note": "Digitally altered: loose items removed, street sign pole straightened. Unaltered original available from listing agent."
+        },
+        {
+          "src": "https://images.homes.com/listings/102/0883992715-382146832-original.jpg",
+          "label": "Front exterior",
+          "detail": "Front exterior featuring white stucco siding, arched entryway, and metal security bars.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/8883992715-382146832-original.jpg",
+          "label": "Backyard",
+          "detail": "Backyard featuring mature trees, landscaped grounds, and paved walkway.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/6983992715-382146832-original.jpg",
+          "label": "Entry",
+          "detail": "Entry featuring arched doorway, white stucco, and metal gate leading to patio.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/3093992715-382146832-original.jpg",
+          "label": "Foyer",
+          "detail": "Foyer featuring terracotta tile flooring, dark wood front door, and picture window.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/0193992715-382146832-original.jpg",
+          "label": "Family room",
+          "detail": "Family room featuring dark hardwood flooring and multiple doorways.",
+          "note": "Digitally altered: personal items removed. Unaltered original available from listing agent."
+        },
+        {
+          "src": "https://images.homes.com/listings/102/6193992715-382146832-original.jpg",
+          "label": "Bedroom",
+          "detail": "Bedroom featuring hardwood flooring and picture window with curtains.",
+          "note": "Digitally altered: personal items removed. Unaltered original available from listing agent."
+        }
       ]
     },
     "sketchLabel": "Listing photo",
@@ -322,11 +448,11 @@
       },
       {
         "source": "Vexcel",
-        "text": "Aerial imagery has not been reviewed for this home, so the entrance, parking and walk are not assessed."
+        "text": "Confirm the entrance, the parking, and the walk on a visit. This report does not include an aerial photo."
       },
       {
         "source": "Matterport",
-        "text": "A Matterport scan is on file. Door widths and turning space have not been measured in this prototype."
+        "text": "A Matterport scan is linked. Use the photos to look at the entrance, doors, and bathroom. Widths still need a tape measure."
       }
     ],
     "findings": {
@@ -335,7 +461,7 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing states a step-free way in",
-        "detail": "The MLS data lists \u201cRamp on the main level\u201d. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cRamp on the main level\u201d. That comes from the listing, not a measurement.",
         "ask": null
       },
       "elevator": {
@@ -350,83 +476,87 @@
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Accessible parking is not listed",
-        "detail": "The MLS data does not mark an accessible space. It has 2 garage space(s), which is not the same as an accessible space.",
+        "title": "Confirm accessible parking",
+        "detail": "Ask whether there is an accessible space, and how far it is from the door. The listing has 2 garage spaces. A garage is not an accessible space.",
         "ask": "Is there accessible parking, and how far is it from the entrance?"
       },
       "short-walk": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "The route from parking to the door was not reviewed",
-        "detail": "Aerial imagery has not been checked for this home.",
+        "title": "Confirm the walk from the car",
+        "detail": "Ask how far accessible parking is from a step-free door.",
         "ask": "How far is accessible parking from a step-free entrance?"
       },
       "doorways": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Door widths are not listed",
-        "detail": "The listing gives no widths. A Matterport scan exists but has not been measured here.",
+        "title": "Confirm the door widths",
+        "detail": "Look at the entry and bathroom doors in the photos. Ask for the clear width of each.",
         "ask": "What are the clear widths of the entry door and the bathroom door?"
       },
       "bathroom": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "A walk-in shower is listed; turning space is not",
-        "detail": "A walk-in shower is not the same as a roll-in shower, and the room size is not given.",
+        "title": "Confirm the shower and turning room",
+        "detail": "A walk-in shower is listed. Ask if it is curb-free and if a wheelchair can turn.",
         "ask": "Can someone turn a wheelchair in the bathroom, and is the shower curb-free?"
       },
       "lighting": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Entrance lighting is not on file",
-        "detail": "Lighting is not part of the listing data.",
+        "title": "Confirm the lights at the door",
+        "detail": "Ask if the walk and the entrance stay lit after dark.",
         "ask": "Is the entrance and the walk lit after dark?"
       },
       "contrast": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Contrast at edges and doors is not on file",
-        "detail": "Edge marking is not part of the listing data.",
+        "title": "Confirm contrast on edges",
+        "detail": "Ask if steps and door edges have a high-contrast strip.",
         "ask": "Are step and door edges marked with a high-contrast strip?"
       },
       "signage": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Signs are not on file",
-        "detail": "Unit numbers and signs are not part of the listing data.",
+        "title": "Confirm the unit number is easy to see",
+        "detail": "Ask if the number is large, high-contrast, and beside the door.",
         "ask": "Is the unit number large, high-contrast, and beside the door?"
       },
       "alarms": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Visual alarms are not listed",
-        "detail": "Nothing in the MLS data describes strobe alarms.",
+        "title": "Confirm flashing smoke alarms",
+        "detail": "Ask if the smoke and carbon monoxide alarms flash.",
         "ask": "Are there strobe smoke and carbon monoxide alarms in the unit?"
       },
       "doorbell": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "A doorbell you can see is not listed",
-        "detail": "A doorbell may exist, but the listing does not say it flashes or has video.",
+        "title": "Confirm a doorbell you can see",
+        "detail": "Ask if the doorbell flashes or shows video.",
         "ask": "Is there a flashing doorbell or a video doorbell?"
       },
       "intercom": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "The listing does not describe an intercom",
-        "detail": "Nothing says how a visitor is announced.",
+        "title": "Confirm how a visitor reaches you",
+        "detail": "Ask if the intercom is video or text, not sound only.",
         "ask": "Is the intercom video or text, or sound only?"
       }
-    }
+    },
+    "agentNotes": [
+      "This two-story Los Angeles property features four bedrooms and two bathrooms downstairs and three bedrooms and two bathrooms upstairs.",
+      "A front entry ramp and an interior wheelchair lift provide additional access options; per seller, the lift is operational."
+    ]
   },
   {
     "id": "228418897",
@@ -447,14 +577,54 @@
       "hasScan": true,
       "modelId": "bXvDAx5STEk",
       "photos": [
-        "https://images.homes.com/listings/102/3836019894-798814822-original.jpg",
-        "https://images.homes.com/listings/102/1146019894-798814822-original.jpg",
-        "https://images.homes.com/listings/102/3346019894-798814822-original.jpg",
-        "https://images.homes.com/listings/102/1595019894-798814822-original.jpg",
-        "https://images.homes.com/listings/102/1795019894-798814822-original.jpg",
-        "https://images.homes.com/listings/102/3895019894-798814822-original.jpg",
-        "https://images.homes.com/listings/102/0006019894-798814822-original.jpg",
-        "https://images.homes.com/listings/102/2106019894-798814822-original.jpg"
+        {
+          "src": "https://images.homes.com/listings/102/3836019894-798814822-original.jpg",
+          "label": "Kitchen",
+          "detail": "Kitchen with white cabinets, island, stainless steel appliances, and pendant lighting.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/1146019894-798814822-original.jpg",
+          "label": "Modern kitchen",
+          "detail": "Modern kitchen with white cabinets, stainless steel appliances, quartz island, and recessed lighting.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/3346019894-798814822-original.jpg",
+          "label": "Light filled dining room off kitchen.",
+          "detail": "Dining room with pendant lights, large windows, hardwood flooring, and built-in black cabinetry.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/1595019894-798814822-original.jpg",
+          "label": "Modern white stucco townhome",
+          "detail": "Modern white stucco townhome with multiple balconies, recessed lighting, and professional landscaping.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/1795019894-798814822-original.jpg",
+          "label": "Large, paved parking area. Two car garage",
+          "detail": "Front driveway with paver surface, glass garage door, and metal railing.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/3895019894-798814822-original.jpg",
+          "label": "Lush, private entry gate",
+          "detail": "Gated courtyard entry with black steel railing, paved walkway, and tropical landscaping.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/0006019894-798814822-original.jpg",
+          "label": "Looking towards street from entry gate",
+          "detail": "Community park with paver pathways, mature trees, landscaped gardens, and professional plantings.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/2106019894-798814822-original.jpg",
+          "label": "Serene walkway to front door",
+          "detail": "Modern breezeway with white siding, paver walkway, living wall, and landscaping.",
+          "note": null
+        }
       ]
     },
     "sketchLabel": "Listing photo",
@@ -465,11 +635,11 @@
       },
       {
         "source": "Vexcel",
-        "text": "Aerial imagery has not been reviewed for this home, so the entrance, parking and walk are not assessed."
+        "text": "Confirm the entrance, the parking, and the walk on a visit. This report does not include an aerial photo."
       },
       {
         "source": "Matterport",
-        "text": "A Matterport scan is on file. Door widths and turning space have not been measured in this prototype."
+        "text": "A Matterport scan is linked. Use the photos to look at the entrance, doors, and bathroom. Widths still need a tape measure."
       }
     ],
     "findings": {
@@ -477,8 +647,8 @@
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "The listing does not describe the entrance",
-        "detail": "Nothing in the MLS data says whether the front door is reached by steps.",
+        "title": "Confirm the way in",
+        "detail": "Ask if the front door has steps, and whether there is a ramp.",
         "ask": "Is the entrance step-free, and is there a ramp if it is not?"
       },
       "elevator": {
@@ -486,90 +656,94 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing includes an elevator",
-        "detail": "The MLS data lists \u201cElevator\u201d. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cElevator\u201d. That comes from the listing, not a measurement.",
         "ask": null
       },
       "parking": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Accessible parking is not listed",
-        "detail": "The MLS data does not mark an accessible space. It has 2 garage space(s), which is not the same as an accessible space.",
+        "title": "Confirm accessible parking",
+        "detail": "Ask whether there is an accessible space, and how far it is from the door. The listing has 2 garage spaces. A garage is not an accessible space.",
         "ask": "Is there accessible parking, and how far is it from the entrance?"
       },
       "short-walk": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "The route from parking to the door was not reviewed",
-        "detail": "Aerial imagery has not been checked for this home.",
+        "title": "Confirm the walk from the car",
+        "detail": "Ask how far accessible parking is from a step-free door.",
         "ask": "How far is accessible parking from a step-free entrance?"
       },
       "doorways": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Door widths are not listed",
-        "detail": "The listing gives no widths. A Matterport scan exists but has not been measured here.",
+        "title": "Confirm the door widths",
+        "detail": "Look at the entry and bathroom doors in the photos. Ask for the clear width of each.",
         "ask": "What are the clear widths of the entry door and the bathroom door?"
       },
       "bathroom": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "The bathroom is not described for access",
-        "detail": "The listing counts bathrooms but does not describe the entry or turning space.",
+        "title": "Confirm the bathroom layout",
+        "detail": "Ask how you get into the shower or tub, and whether there is room to turn.",
         "ask": "What is the bathroom layout, including the shower or tub entry?"
       },
       "lighting": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Entrance lighting is not on file",
-        "detail": "Lighting is not part of the listing data.",
+        "title": "Confirm the lights at the door",
+        "detail": "Ask if the walk and the entrance stay lit after dark.",
         "ask": "Is the entrance and the walk lit after dark?"
       },
       "contrast": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Contrast at edges and doors is not on file",
-        "detail": "Edge marking is not part of the listing data.",
+        "title": "Confirm contrast on edges",
+        "detail": "Ask if steps and door edges have a high-contrast strip.",
         "ask": "Are step and door edges marked with a high-contrast strip?"
       },
       "signage": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Signs are not on file",
-        "detail": "Unit numbers and signs are not part of the listing data.",
+        "title": "Confirm the unit number is easy to see",
+        "detail": "Ask if the number is large, high-contrast, and beside the door.",
         "ask": "Is the unit number large, high-contrast, and beside the door?"
       },
       "alarms": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Visual alarms are not listed",
-        "detail": "Nothing in the MLS data describes strobe alarms. The listing mentions smoke detectors, not strobe alarms.",
+        "title": "Confirm flashing smoke alarms",
+        "detail": "Ask if the smoke and carbon monoxide alarms flash. The listing mentions smoke detectors, not strobe alarms.",
         "ask": "Are there strobe smoke and carbon monoxide alarms in the unit?"
       },
       "doorbell": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "A doorbell you can see is not listed",
-        "detail": "A doorbell may exist, but the listing does not say it flashes or has video.",
+        "title": "Confirm a doorbell you can see",
+        "detail": "Ask if the doorbell flashes or shows video.",
         "ask": "Is there a flashing doorbell or a video doorbell?"
       },
       "intercom": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "The listing does not describe an intercom",
-        "detail": "Nothing says how a visitor is announced.",
+        "title": "Confirm how a visitor reaches you",
+        "detail": "Ask if the intercom is video or text, not sound only.",
         "ask": "Is the intercom video or text, or sound only?"
       }
-    }
+    },
+    "agentNotes": [
+      "Oversized pneumatic elevator - unparalleled convenience.",
+      "Guest suite or home office on first floor with access to a private back yard oasis."
+    ]
   },
   {
     "id": "235969334",
@@ -590,14 +764,54 @@
       "hasScan": true,
       "modelId": "reiH1mP44qU",
       "photos": [
-        "https://images.homes.com/listings/102/8407053115-433969532-original.jpg",
-        "https://images.homes.com/listings/102/0719053115-433969532-original.jpg",
-        "https://images.homes.com/listings/102/3429053115-433969532-original.jpg",
-        "https://images.homes.com/listings/102/5539053115-433969532-original.jpg",
-        "https://images.homes.com/listings/102/8549053115-433969532-original.jpg",
-        "https://images.homes.com/listings/102/5959053115-433969532-original.jpg",
-        "https://images.homes.com/listings/102/8269053115-433969532-original.jpg",
-        "https://images.homes.com/listings/102/5610153115-433969532-original.jpg"
+        {
+          "src": "https://images.homes.com/listings/102/8407053115-433969532-original.jpg",
+          "label": "Backyard",
+          "detail": "Backyard with in-ground pool, hot tub, brick patio, and mature landscaping.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/0719053115-433969532-original.jpg",
+          "label": "Backyard",
+          "detail": "Backyard with in-ground pool, hot tub, concrete patio, and brick privacy fence.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/3429053115-433969532-original.jpg",
+          "label": "Backyard",
+          "detail": "Backyard with in-ground pool, brick walls, concrete patio, and mature landscaping.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/5539053115-433969532-original.jpg",
+          "label": "Backyard patio",
+          "detail": "Backyard patio with in-ground pool, hot tub, brick walls, and wood fencing.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/8549053115-433969532-original.jpg",
+          "label": "Front view of two-story brick home",
+          "detail": "Front view of two-story brick home with garage, driveway, and mature landscaping.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/5959053115-433969532-original.jpg",
+          "label": "Front exterior of brick home",
+          "detail": "Front exterior of brick home with blue roof, attached garage, and mature tree.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/8269053115-433969532-original.jpg",
+          "label": "Front view of brick home",
+          "detail": "Front view of brick home with white garage doors, columns, and gabled roof.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/5610153115-433969532-original.jpg",
+          "label": "Brick patio",
+          "detail": "Brick patio with mature trees, hedges, and landscape lighting.",
+          "note": null
+        }
       ]
     },
     "sketchLabel": "Listing photo",
@@ -608,11 +822,11 @@
       },
       {
         "source": "Vexcel",
-        "text": "Aerial imagery has not been reviewed for this home, so the entrance, parking and walk are not assessed."
+        "text": "Confirm the entrance, the parking, and the walk on a visit. This report does not include an aerial photo."
       },
       {
         "source": "Matterport",
-        "text": "A Matterport scan is on file. Door widths and turning space have not been measured in this prototype."
+        "text": "A Matterport scan is linked. Use the photos to look at the entrance, doors, and bathroom. Widths still need a tape measure."
       }
     ],
     "findings": {
@@ -621,31 +835,31 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing states a step-free way in",
-        "detail": "The MLS data lists \u201cAccessible Entrance\u201d. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cAccessible Entrance\u201d. That comes from the listing, not a measurement.",
         "ask": null
       },
       "elevator": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "2 stories; whether one level is enough is not stated",
-        "detail": "The listing states accessibility features but does not say which floor they are on.",
+        "title": "Confirm one livable level in this 2-story home",
+        "detail": "The listing names access features. Ask which floor they are on.",
         "ask": "Which floor are the accessible bedroom and bathroom on, and is there a lift or elevator?"
       },
       "parking": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Accessible parking is not listed",
-        "detail": "The MLS data does not mark an accessible space. It has 2 garage space(s), which is not the same as an accessible space.",
+        "title": "Confirm accessible parking",
+        "detail": "Ask whether there is an accessible space, and how far it is from the door. The listing has 2 garage spaces. A garage is not an accessible space.",
         "ask": "Is there accessible parking, and how far is it from the entrance?"
       },
       "short-walk": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "The route from parking to the door was not reviewed",
-        "detail": "Aerial imagery has not been checked for this home.",
+        "title": "Confirm the walk from the car",
+        "detail": "Ask how far accessible parking is from a step-free door.",
         "ask": "How far is accessible parking from a step-free entrance?"
       },
       "doorways": {
@@ -653,7 +867,7 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing states accessible doors or halls",
-        "detail": "The MLS data lists \u201cAccessible Doors\u201d, \u201cAccessible Hallway\u201d. It gives no clear width in inches. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cAccessible Doors\u201d, \u201cAccessible Hallway\u201d. It gives no clear width in inches. That comes from the listing, not a measurement.",
         "ask": null
       },
       "bathroom": {
@@ -661,58 +875,59 @@
         "source": "CoStar",
         "scene": "listing-note",
         "title": "The listing states an accessible full bathroom",
-        "detail": "The MLS data lists \u201cAccessible Full Bathroom\u201d. This is the seller's statement in the MLS data, not an inspection.",
+        "detail": "The MLS data lists \u201cAccessible Full Bathroom\u201d. That comes from the listing, not a measurement.",
         "ask": null
       },
       "lighting": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Entrance lighting is not on file",
-        "detail": "Lighting is not part of the listing data.",
+        "title": "Confirm the lights at the door",
+        "detail": "Ask if the walk and the entrance stay lit after dark.",
         "ask": "Is the entrance and the walk lit after dark?"
       },
       "contrast": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Contrast at edges and doors is not on file",
-        "detail": "Edge marking is not part of the listing data.",
+        "title": "Confirm contrast on edges",
+        "detail": "Ask if steps and door edges have a high-contrast strip.",
         "ask": "Are step and door edges marked with a high-contrast strip?"
       },
       "signage": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Signs are not on file",
-        "detail": "Unit numbers and signs are not part of the listing data.",
+        "title": "Confirm the unit number is easy to see",
+        "detail": "Ask if the number is large, high-contrast, and beside the door.",
         "ask": "Is the unit number large, high-contrast, and beside the door?"
       },
       "alarms": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Visual alarms are not listed",
-        "detail": "Nothing in the MLS data describes strobe alarms. The listing mentions smoke detectors, not strobe alarms.",
+        "title": "Confirm flashing smoke alarms",
+        "detail": "Ask if the smoke and carbon monoxide alarms flash. The listing mentions smoke detectors, not strobe alarms.",
         "ask": "Are there strobe smoke and carbon monoxide alarms in the unit?"
       },
       "doorbell": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "A doorbell you can see is not listed",
-        "detail": "A doorbell may exist, but the listing does not say it flashes or has video.",
+        "title": "Confirm a doorbell you can see",
+        "detail": "Ask if the doorbell flashes or shows video.",
         "ask": "Is there a flashing doorbell or a video doorbell?"
       },
       "intercom": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "The listing does not describe an intercom",
-        "detail": "Nothing says how a visitor is announced.",
+        "title": "Confirm how a visitor reaches you",
+        "detail": "Ask if the intercom is video or text, not sound only.",
         "ask": "Is the intercom video or text, or sound only?"
       }
-    }
+    },
+    "agentNotes": []
   },
   {
     "id": "228897977",
@@ -733,14 +948,54 @@
       "hasScan": true,
       "modelId": "pBwSbS2Zt8u",
       "photos": [
-        "https://images.homes.com/listings/102/7608577994-779798822-original.jpg",
-        "https://images.homes.com/listings/102/4708577994-779798822-original.jpg",
-        "https://images.homes.com/listings/102/5919577994-779798822-original.jpg",
-        "https://images.homes.com/listings/102/7908577994-779798822-original.jpg",
-        "https://images.homes.com/listings/102/4408577994-779798822-original.jpg",
-        "https://images.homes.com/listings/102/1508577994-779798822-original.jpg",
-        "https://images.homes.com/listings/102/5508577994-779798822-original.jpg",
-        "https://images.homes.com/listings/102/9508577994-779798822-original.jpg"
+        {
+          "src": "https://images.homes.com/listings/102/7608577994-779798822-original.jpg",
+          "label": "Bedroom",
+          "detail": "Bedroom with hardwood flooring, tray ceiling, sliding glass door, and ceiling fan.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/4708577994-779798822-original.jpg",
+          "label": "Kitchen",
+          "detail": "Kitchen with dark gray flat-front cabinets, island, stone backsplash, and stainless appliances.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/5919577994-779798822-original.jpg",
+          "label": "Empty bedroom",
+          "detail": "Empty bedroom with tray ceiling, large windows, and wood flooring.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/7908577994-779798822-original.jpg",
+          "label": "Kitchen",
+          "detail": "Kitchen with gray flat-front cabinets, gas range, marble backsplash, and dark hardwood floor.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/4408577994-779798822-original.jpg",
+          "label": "Modern multi-story townhomes",
+          "detail": "Modern multi-story townhomes with gray and navy siding, attached garages, and concrete driveway.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/1508577994-779798822-original.jpg",
+          "label": "Modern three-story townhome",
+          "detail": "Modern three-story townhome with gray siding, attached garage, and balcony.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/5508577994-779798822-original.jpg",
+          "label": "Modern three-story home",
+          "detail": "Modern three-story home with blue siding, attached garage, and balcony.",
+          "note": null
+        },
+        {
+          "src": "https://images.homes.com/listings/102/9508577994-779798822-original.jpg",
+          "label": "Covered entry",
+          "detail": "Covered entry with modern white multi-light front door and sidelight window.",
+          "note": null
+        }
       ]
     },
     "sketchLabel": "Listing photo",
@@ -751,11 +1006,11 @@
       },
       {
         "source": "Vexcel",
-        "text": "Aerial imagery has not been reviewed for this home, so the entrance, parking and walk are not assessed."
+        "text": "Confirm the entrance, the parking, and the walk on a visit. This report does not include an aerial photo."
       },
       {
         "source": "Matterport",
-        "text": "A Matterport scan is on file. Door widths and turning space have not been measured in this prototype."
+        "text": "A Matterport scan is linked. Use the photos to look at the entrance, doors, and bathroom. Widths still need a tape measure."
       }
     ],
     "findings": {
@@ -763,98 +1018,99 @@
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "The listing does not describe the entrance",
-        "detail": "Nothing in the MLS data says whether the front door is reached by steps.",
+        "title": "Confirm the way in",
+        "detail": "Ask if the front door has steps, and whether there is a ramp.",
         "ask": "Is the entrance step-free, and is there a ramp if it is not?"
       },
       "elevator": {
         "status": "barrier",
         "source": "CoStar",
         "scene": "listing-note",
-        "title": "3 stories, and no elevator or main-level bed and bath is listed",
-        "detail": "Living on one level would need a main-level bedroom and bathroom, and the listing mentions neither.",
+        "title": "3 stories, with no elevator or main-level bed and bath",
+        "detail": "A one-level stay needs a bedroom and bathroom on the main floor, or a lift. The listing names neither.",
         "ask": "Is there a bedroom and bathroom on the main level, or an elevator?"
       },
       "parking": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Accessible parking is not listed",
-        "detail": "The MLS data does not mark an accessible space. It has 2 garage space(s), which is not the same as an accessible space.",
+        "title": "Confirm accessible parking",
+        "detail": "Ask whether there is an accessible space, and how far it is from the door. The listing has 2 garage spaces. A garage is not an accessible space.",
         "ask": "Is there accessible parking, and how far is it from the entrance?"
       },
       "short-walk": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "The route from parking to the door was not reviewed",
-        "detail": "Aerial imagery has not been checked for this home.",
+        "title": "Confirm the walk from the car",
+        "detail": "Ask how far accessible parking is from a step-free door.",
         "ask": "How far is accessible parking from a step-free entrance?"
       },
       "doorways": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Door widths are not listed",
-        "detail": "The listing gives no widths. A Matterport scan exists but has not been measured here.",
+        "title": "Confirm the door widths",
+        "detail": "Look at the entry and bathroom doors in the photos. Ask for the clear width of each.",
         "ask": "What are the clear widths of the entry door and the bathroom door?"
       },
       "bathroom": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "The bathroom is not described for access",
-        "detail": "The listing counts bathrooms but does not describe the entry or turning space.",
+        "title": "Confirm the bathroom layout",
+        "detail": "Ask how you get into the shower or tub, and whether there is room to turn.",
         "ask": "What is the bathroom layout, including the shower or tub entry?"
       },
       "lighting": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Entrance lighting is not on file",
-        "detail": "Lighting is not part of the listing data.",
+        "title": "Confirm the lights at the door",
+        "detail": "Ask if the walk and the entrance stay lit after dark.",
         "ask": "Is the entrance and the walk lit after dark?"
       },
       "contrast": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Contrast at edges and doors is not on file",
-        "detail": "Edge marking is not part of the listing data.",
+        "title": "Confirm contrast on edges",
+        "detail": "Ask if steps and door edges have a high-contrast strip.",
         "ask": "Are step and door edges marked with a high-contrast strip?"
       },
       "signage": {
         "status": "unknown",
         "source": "Vexcel",
         "scene": "no-scan",
-        "title": "Signs are not on file",
-        "detail": "Unit numbers and signs are not part of the listing data.",
+        "title": "Confirm the unit number is easy to see",
+        "detail": "Ask if the number is large, high-contrast, and beside the door.",
         "ask": "Is the unit number large, high-contrast, and beside the door?"
       },
       "alarms": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "Visual alarms are not listed",
-        "detail": "Nothing in the MLS data describes strobe alarms.",
+        "title": "Confirm flashing smoke alarms",
+        "detail": "Ask if the smoke and carbon monoxide alarms flash.",
         "ask": "Are there strobe smoke and carbon monoxide alarms in the unit?"
       },
       "doorbell": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "A doorbell you can see is not listed",
-        "detail": "A doorbell may exist, but the listing does not say it flashes or has video.",
+        "title": "Confirm a doorbell you can see",
+        "detail": "Ask if the doorbell flashes or shows video.",
         "ask": "Is there a flashing doorbell or a video doorbell?"
       },
       "intercom": {
         "status": "unknown",
         "source": "CoStar",
         "scene": "no-scan",
-        "title": "The listing does not describe an intercom",
-        "detail": "Nothing says how a visitor is announced.",
+        "title": "Confirm how a visitor reaches you",
+        "detail": "Ask if the intercom is video or text, not sound only.",
         "ask": "Is the intercom video or text, or sound only?"
       }
-    }
+    },
+    "agentNotes": []
   }
 ]
