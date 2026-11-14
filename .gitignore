@@ -1,3 +1,18 @@
+<<<<<<< HEAD
 node_modules
 dist
+=======
+.env
+.env.*
+!.env.example
+costar-hackathon-kit/
+data_kit/
+records/
+*.jsonl
+*.zip
+backend/cache/
+__pycache__/
+.venv/
+node_modules/
+>>>>>>> origin/main
 .DS_Store
