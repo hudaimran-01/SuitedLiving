@@ -1,0 +1,20 @@
+{
+  "address": "205 Portland Street",
+  "city_state": "Houston, TX",
+  "lat": 29.7294657,
+  "lon": -95.3889184,
+  "has_parcel": true,
+  "structures_count": 1,
+  "tree_cover_percent": 0.0,
+  "pool_detected": false,
+  "structures": [
+    {
+      "primary": true,
+      "footprint_sqft": 1302,
+      "roof_material": "membrane",
+      "roof_shape": "flat",
+      "roof_condition": 4.0
+    }
+  ],
+  "collection": "us-tx-houston_rf08-2023"
+}
