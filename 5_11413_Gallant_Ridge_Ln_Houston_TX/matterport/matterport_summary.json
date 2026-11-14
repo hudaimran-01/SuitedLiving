@@ -1,0 +1,29 @@
+{
+  "sid": "reiH1mP44qU",
+  "name": "11413 Gallant Ridge Ln",
+  "description": "4BR, 3.5BA - 3,488SF: Splat captured. Client and homeowner both on site during shoot and asked me to not adjust anything at all inside the house. Client wanted blender in the kitchen island kept out for scan. Two cats and one dog in home, they tried to contain but kept escaping, tried to avoid the animals best I could. Entryway light not working. 2nd floor den lights and lamps not working. Primary ceiling room lights not working. Primary lamps not working. Some doors in 2nd floor lead to unfinished attic. Two bathroom doors on 2nd floor would not stay open fully. Lamps not working in 2nd floor guest rooms. Side yard gate stuck in open position, one side gate stuck closed. One side of home blocked by pool plumbing equipment. Client declined both garages due to being full of moving items.",
+  "created": "2026-11-09T23:18:59Z",
+  "visibility": "public",
+  "address": {
+    "address": "11413 Gallant Ridge Ln, Houston, TX, 77082, US",
+    "locality": "Houston",
+    "administrativeArea": "TX",
+    "postalCode": "77082",
+    "countryCode": "US"
+  },
+  "geolocation": {
+    "lat": "29.7207747",
+    "long": "-95.5773095"
+  },
+  "ai_summary": "Spacious 3-bed, 7-bath two-story home in Houston, TX featuring soaring ceilings, marble-look tile floors, an open layout, gourmet kitchen, and a dedicated office space.",
+  "propertyClassifications": [
+    {
+      "classification": "living_space",
+      "type": "vision"
+    }
+  ],
+  "floor_count": 2,
+  "room_count": 33,
+  "pano_count": 122,
+  "tour_url": "https://my.matterport.com/show/?m=reiH1mP44qU&play=1&qs=1"
+}

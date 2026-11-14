@@ -1,0 +1,20 @@
+{
+  "address": "11413 Gallant Ridge Ln",
+  "city_state": "Houston, TX",
+  "lat": 29.7207747,
+  "lon": -95.5773095,
+  "has_parcel": true,
+  "structures_count": 1,
+  "tree_cover_percent": 12.0,
+  "pool_detected": true,
+  "structures": [
+    {
+      "primary": true,
+      "footprint_sqft": 3678,
+      "roof_material": "shingle",
+      "roof_shape": "hip",
+      "roof_condition": 5.0
+    }
+  ],
+  "collection": "us-tx-houston-2026"
+}
