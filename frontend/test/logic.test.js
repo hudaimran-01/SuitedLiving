@@ -43,6 +43,14 @@ test("low vision and hard of hearing reorder the same homes", () => {
   assert.deepEqual(hearing, ["palmer", "quarry", "witherspoon", "linden"]);
 });
 
+test("an empty filter lists every sample home", () => {
+  const all = visibleListings(LISTINGS, { maxRent: 4000, beds: null, needs: [], nearby: "" });
+  assert.deepEqual(
+    all.map((listing) => listing.id),
+    ["quarry", "witherspoon", "linden", "palmer"],
+  );
+});
+
 test("budget and bedroom filters remove sample homes", () => {
   const cheap = visibleListings(LISTINGS, { ...demo, maxRent: 2100 }).map((listing) => listing.id);
   assert.deepEqual(cheap, ["quarry"]);
@@ -65,7 +73,7 @@ test("observed notes do not become questions", () => {
 test("prefs ignore unknown needs and clamp rent", () => {
   const prefs = sanitizePrefs({ maxRent: 9000, beds: 9, needs: ["wheelchair", "nope"] });
   assert.equal(prefs.maxRent, 4000);
-  assert.equal(prefs.beds, 1);
+  assert.equal(prefs.beds, null);
   assert.deepEqual(prefs.needs, ["wheelchair"]);
   assert.equal(prefs.nearby, "");
   assert.equal(sanitizePrefs({ nearby: "  a clinic  " }).nearby, "a clinic");

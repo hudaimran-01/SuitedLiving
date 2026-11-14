@@ -30,8 +30,8 @@ export function Compare({ prefs, saved, onToggleSaved }) {
         <div className="empty">
           <h2>Your access list is empty</h2>
           <p>Choose an access need and the comparison will use those rows.</p>
-          <a className="button primary" href="#/needs">
-            Edit needs
+          <a className="button primary" href="#/discover">
+            Set filters
           </a>
         </div>
       ) : (

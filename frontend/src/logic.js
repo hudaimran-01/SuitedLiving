@@ -7,8 +7,8 @@ export const STATUS_LABEL = {
   unknown: "Unknown",
 };
 
-const RENT_MIN = 1200;
-const RENT_MAX = 4000;
+export const RENT_MIN = 1200;
+export const RENT_MAX = 4000;
 const BED_OPTIONS = [0, 1, 2, 3];
 
 export function money(amount) {
@@ -20,13 +20,14 @@ export function money(amount) {
 }
 
 export function bedsLabel(beds) {
+  if (beds == null) return "Any size";
   if (beds === 0) return "Studio";
   if (beds === 1) return "1 bedroom";
   return `${beds} bedrooms`;
 }
 
 export function sanitizePrefs(value) {
-  const fallback = { maxRent: 2400, beds: 1, needs: [], nearby: "" };
+  const fallback = { maxRent: RENT_MAX, beds: null, needs: [], nearby: "" };
   if (!value || typeof value !== "object") return fallback;
   const maxRent = Number(value.maxRent);
   const beds = Number(value.beds);
@@ -38,7 +39,7 @@ export function sanitizePrefs(value) {
     maxRent: Number.isFinite(maxRent)
       ? Math.min(RENT_MAX, Math.max(RENT_MIN, maxRent))
       : fallback.maxRent,
-    beds: BED_OPTIONS.includes(beds) ? beds : fallback.beds,
+    beds: BED_OPTIONS.includes(beds) ? beds : null,
     needs,
     nearby: typeof value.nearby === "string" ? value.nearby.replace(/\s+/g, " ").trim().slice(0, 280) : "",
   };
@@ -103,7 +104,8 @@ export function questionsFor(findings) {
 
 export function visibleListings(listings, prefs) {
   const matched = listings.filter((listing) => {
-    const bedroomOk = prefs.beds === 3 ? listing.beds >= 3 : listing.beds === prefs.beds;
+    const bedroomOk =
+      prefs.beds == null || (prefs.beds === 3 ? listing.beds >= 3 : listing.beds === prefs.beds);
     return listing.rent <= prefs.maxRent && bedroomOk;
   });
   if (prefs.needs.length === 0) {

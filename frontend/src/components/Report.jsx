@@ -107,7 +107,7 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
         <div>
           {prefs.needs.length === 0 ? (
             <p>
-              <a href="#/needs">Describe what you need</a>
+              <a href="#/discover">Set your filters</a>
             </p>
           ) : (
             <>

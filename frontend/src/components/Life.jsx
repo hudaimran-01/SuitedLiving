@@ -11,8 +11,8 @@ export function LifeAround({ listingId, profileIds, nearby, vexcelSrc }) {
       <section className="life" aria-labelledby="life-title">
         <h2 id="life-title">Life around here</h2>
         <p>Add what you need nearby, and only that errand will show up here.</p>
-        <a className="button" href="#/needs">
-          Describe what you need nearby
+        <a className="button" href="#/discover">
+          Add it in the homes filter
         </a>
       </section>
     );

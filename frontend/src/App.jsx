@@ -4,7 +4,6 @@ import { sanitizePrefs } from "./logic.js";
 import { useSessionState } from "./storage.js";
 import { Compare } from "./components/Compare.jsx";
 import { Discover } from "./components/Discover.jsx";
-import { Needs } from "./components/Needs.jsx";
 import { Report } from "./components/Report.jsx";
 import { Shell } from "./components/Shell.jsx";
 import { Welcome } from "./components/Welcome.jsx";
@@ -12,8 +11,7 @@ import { Welcome } from "./components/Welcome.jsx";
 function parseHash(hash) {
   const parts = (hash || "#/").replace(/^#/, "").split("/").filter(Boolean);
   if (parts.length === 0) return { name: "welcome" };
-  if (parts[0] === "needs") return { name: "needs" };
-  if (parts[0] === "discover") return { name: "discover" };
+  if (parts[0] === "needs" || parts[0] === "discover") return { name: "discover" };
   if (parts[0] === "compare") return { name: "compare" };
   if (parts[0] === "home" && parts[1]) return { name: "home", id: parts[1] };
   return { name: "welcome" };
@@ -22,8 +20,15 @@ function parseHash(hash) {
 function useRoute() {
   const [route, setRoute] = useState(() => parseHash(window.location.hash));
   useEffect(() => {
-    const onChange = () => setRoute(parseHash(window.location.hash));
+    const onChange = () => {
+      if ((window.location.hash || "").startsWith("#/needs")) {
+        window.location.replace("#/discover");
+        return;
+      }
+      setRoute(parseHash(window.location.hash));
+    };
     window.addEventListener("hashchange", onChange);
+    onChange();
     return () => window.removeEventListener("hashchange", onChange);
   }, []);
   return route;
@@ -33,7 +38,7 @@ export default function App() {
   const route = useRoute();
   const [prefs, setPrefs] = useSessionState(
     "insideout-prefs",
-    { maxRent: 2400, beds: 1, needs: [], nearby: "" },
+    { maxRent: 4000, beds: null, needs: [], nearby: "" },
     sanitizePrefs,
   );
   const [saved, setSaved] = useSessionState("insideout-saved", [], (value) => {
@@ -47,7 +52,6 @@ export default function App() {
     const listing = LISTINGS.find((item) => item.id === route.id);
     const titles = {
       welcome: "InsideOut",
-      needs: "Access needs · InsideOut",
       discover: "Homes · InsideOut",
       compare: "Compare · InsideOut",
       home: listing ? `${listing.name} · InsideOut` : "Home · InsideOut",
@@ -79,9 +83,16 @@ export default function App() {
   }
 
   let page = <Welcome onDemo={applyDemo} />;
-  if (route.name === "needs") page = <Needs prefs={prefs} setPrefs={setPrefs} onDemo={applyDemo} />;
   if (route.name === "discover") {
-    page = <Discover prefs={prefs} setPrefs={setPrefs} saved={saved} onToggleSaved={toggleSaved} />;
+    page = (
+      <Discover
+        prefs={prefs}
+        setPrefs={setPrefs}
+        saved={saved}
+        onToggleSaved={toggleSaved}
+        onDemo={applyDemo}
+      />
+    );
   }
   if (route.name === "home") {
     page = (

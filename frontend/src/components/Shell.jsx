@@ -14,9 +14,6 @@ export function Shell({ route, savedCount, lowVision, children }) {
             <span>InsideOut</span>
           </a>
           <nav className="nav" aria-label="Primary">
-            <a href="#/needs" aria-current={route.name === "needs" ? "page" : undefined}>
-              Your needs
-            </a>
             <a href="#/discover" aria-current={route.name === "discover" ? "page" : undefined}>
               Homes
             </a>

@@ -30,8 +30,8 @@ export function Welcome({ onDemo }) {
             it observed, what might block you, and what it still cannot tell.
           </p>
           <div className="actions">
-            <a className="button primary" href="#/needs">
-              Describe what you need
+            <a className="button primary" href="#/discover">
+              Browse homes
             </a>
             <a className="button" href="#/discover" onClick={onDemo}>
               Try the Princeton example
@@ -70,15 +70,15 @@ export function Welcome({ onDemo }) {
         <li>
           <span>1</span>
           <div>
-            <h2>Say what to look for</h2>
-            <p>Wheelchair, low vision, hard of hearing, stairs and hills, or any mix. Then say what you need nearby, in your own words.</p>
+            <h2>Filter the homes</h2>
+            <p>Wheelchair, low vision, hard of hearing, stairs and hills, or any mix. Add a budget, a bedroom count, and what you need nearby. Leave the filters empty to see every sample home.</p>
           </div>
         </li>
         <li>
           <span>2</span>
           <div>
-            <h2>Browse apartments for that search</h2>
-            <p>Homes are ordered for the building and the errands around it. A different need can change both.</p>
+            <h2>See the list reorder</h2>
+            <p>The same page orders homes for the building and the errand you asked about. A different need can change both.</p>
           </div>
         </li>
         <li>
