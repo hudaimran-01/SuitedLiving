@@ -1397,7 +1397,115 @@ export function requestStep(profileIds, text) {
   const needText = spokenList(who);
   return {
     source: "Your request",
-    text: `You asked about ${asked}. The street sample is checked only for that, using the ${needText} notes. Errands you did not mention stay out of the report. These are not live directions.`,
+    text: `You asked about ${asked}. Vexcel aerial images can show a grocery store or a pharmacy, and steps along that route, for ${needText}. Bus stops are not identified from those images. Other blockages stay unknown.`,
+  };
+}
+
+const ROUTE_STEPS = {
+  linden: { grocery: "none", pharmacy: "unknown" },
+  quarry: { grocery: "none", pharmacy: "seen" },
+  witherspoon: { grocery: "seen", pharmacy: "unknown" },
+  palmer: { grocery: "none", pharmacy: "unknown" },
+};
+
+const NOT_FROM_AERIAL =
+  "Other blockages, such as curb ramps, sidewalk gaps, or slopes, are not identified from this image.";
+
+function refineTrip(listingId, profileId, trip) {
+  if (trip.id === "transit") {
+    return {
+      ...trip,
+      status: "unknown",
+      source: "Vexcel",
+      scene: "street-level",
+      title: "Bus stops are not identified in these aerial images",
+      detail:
+        "Vexcel imagery is a poor fit for finding a bus stop, so this sample does not mark one. The stop stays unknown.",
+      ask: "Which stop would you use, and is the path to it free of steps?",
+    };
+  }
+  if (trip.id === "clinic") {
+    return {
+      ...trip,
+      status: "unknown",
+      source: "Vexcel",
+      scene: "street-level",
+      title: "A clinic is not identified from these aerial images",
+      detail: `The aerial check looks for grocery stores and pharmacies. It does not identify a clinic. ${NOT_FROM_AERIAL}`,
+      ask: null,
+    };
+  }
+  if (trip.id !== "grocery" && trip.id !== "pharmacy") return trip;
+
+  const steps = ROUTE_STEPS[listingId]?.[trip.id] || "unknown";
+  const place = trip.id === "grocery" ? "grocery store" : "pharmacy";
+  const seen = `The Vexcel aerial image shows a ${place}.`;
+
+  if (profileId === "low-vision" || profileId === "hard-of-hearing") {
+    return {
+      ...trip,
+      status: "unknown",
+      source: "Vexcel",
+      scene: "street-level",
+      title: `A ${place} is visible. The route around it is not read from the aerial image`,
+      detail: `${seen} ${NOT_FROM_AERIAL}`,
+      ask: null,
+    };
+  }
+
+  if (steps === "seen") {
+    return {
+      ...trip,
+      status: "barrier",
+      source: "Vexcel",
+      scene: "street-level",
+      title: `Steps show up on the way to ${trip.name}`,
+      detail: `${seen} Vexcel can pick out steps along a route, and steps are visible here. ${NOT_FROM_AERIAL}`,
+      ask: `Is there a way to ${trip.name} that avoids those steps?`,
+    };
+  }
+  if (steps === "none" && profileId === "hills") {
+    return {
+      ...trip,
+      status: "observed",
+      source: "Vexcel",
+      scene: "street-level",
+      title: `No steps showed up on the way to ${trip.name}`,
+      detail: `${seen} Vexcel can pick out steps, and none were identified on this route. ${NOT_FROM_AERIAL}`,
+      ask: null,
+    };
+  }
+  if (steps === "none") {
+    return {
+      ...trip,
+      status: "unknown",
+      source: "Vexcel",
+      scene: "street-level",
+      title: `No steps showed up on the way to ${trip.name}`,
+      detail: `${seen} No steps were identified. That does not confirm a curb ramp or a continuous sidewalk. ${NOT_FROM_AERIAL}`,
+      ask: `Is the route to ${trip.name} step-free beyond the absence of steps?`,
+    };
+  }
+  return {
+    ...trip,
+    status: "unknown",
+    source: "Vexcel",
+    scene: "street-level",
+    title: `A ${place} is visible. Steps on that route were not reviewed`,
+    detail: `${seen} ${NOT_FROM_AERIAL}`,
+    ask: `Are there steps between here and ${trip.name}?`,
+  };
+}
+
+function refineStreet(item) {
+  if (item.status !== "barrier") return item;
+  return {
+    ...item,
+    status: "unknown",
+    source: "Vexcel",
+    title: "This blockage is not identified from the aerial image",
+    detail:
+      "Vexcel is used here for grocery stores, pharmacies, and steps on a route. Curb ramps, slopes, sidewalk gaps, and signals stay unknown.",
   };
 }
 
@@ -1413,8 +1521,8 @@ export function lifeReport(listingId, profileIds = []) {
       id,
       label: profile.label,
       story: block.story,
-      street: block.street,
-      trips: block.trips,
+      street: block.street.map(refineStreet),
+      trips: block.trips.map((trip) => refineTrip(listingId, id, trip)),
     });
   }
   const findings = sections.flatMap((section) => [...section.street, ...section.trips]);

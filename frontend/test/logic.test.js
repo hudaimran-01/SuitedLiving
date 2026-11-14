@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { DEMO_PREFS, LISTINGS } from "../src/data.js";
-import { focusLife, lifeReport } from "../src/life.js";
+import { focusLife } from "../src/life.js";
 import {
   findingFor,
   leadFinding,
@@ -23,20 +23,23 @@ test("a nearby note limits the life report to that errand", () => {
   const wheelchair = focusLife("linden", ["wheelchair"], asked);
   const hills = focusLife("linden", ["hills"], asked);
   assert.deepEqual(wheelchair.trips.map((item) => item.id), ["grocery"]);
-  assert.equal(wheelchair.trips[0].byNeed[0].trip.status, "barrier");
+  assert.equal(wheelchair.trips[0].byNeed[0].trip.status, "unknown");
   assert.equal(hills.trips[0].byNeed[0].trip.status, "observed");
+  assert.match(wheelchair.trips[0].byNeed[0].trip.detail, /not identified from this image/);
   assert.equal(focusLife("linden", ["wheelchair"], "a quiet cafe").focused, false);
   assert.equal(focusLife("linden", ["wheelchair"], "").focused, false);
-  const steep = lifeReport("quarry", ["hills"]).findings.find((item) => item.id === "slope");
-  assert.equal(steep.status, "barrier");
   const pharmacy = focusLife("quarry", ["hills"], "the pharmacy up the hill");
   assert.equal(pharmacy.trips[0].byNeed[0].trip.status, "barrier");
+  assert.match(pharmacy.trips[0].byNeed[0].trip.title, /Steps/);
+  const bus = focusLife("linden", ["wheelchair"], "the bus");
+  assert.equal(bus.trips[0].id, "transit");
+  assert.match(bus.trips[0].byNeed[0].trip.title, /Bus stops are not identified/);
 });
 
 test("low vision and hard of hearing reorder the same homes", () => {
   const lowVision = visibleListings(LISTINGS, { ...demo, needs: ["low-vision"] }).map((listing) => listing.id);
   const hearing = visibleListings(LISTINGS, { ...demo, needs: ["hard-of-hearing"] }).map((listing) => listing.id);
-  assert.deepEqual(lowVision, ["quarry", "witherspoon", "linden", "palmer"]);
+  assert.deepEqual(lowVision, ["quarry", "linden", "witherspoon", "palmer"]);
   assert.deepEqual(hearing, ["palmer", "quarry", "witherspoon", "linden"]);
 });
 

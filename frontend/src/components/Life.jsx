@@ -1,8 +1,8 @@
 import { focusLife } from "../life.js";
-import { EvidenceSketch } from "../sketches.jsx";
+import { ImageSlot } from "./ImageSlot.jsx";
 import { Status } from "./Status.jsx";
 
-export function LifeAround({ listingId, profileIds, nearby }) {
+export function LifeAround({ listingId, profileIds, nearby, vexcelSrc }) {
   const focus = focusLife(listingId, profileIds, nearby);
   if (profileIds.length === 0) return null;
 
@@ -28,17 +28,15 @@ export function LifeAround({ listingId, profileIds, nearby }) {
     );
   }
 
-  const sketch = focus.trips.find((item) => item.sketch && item.sketch.scene !== "street-level")?.sketch;
-
   return (
     <section className="life" aria-labelledby="life-title">
       <h2 id="life-title">Life around here</h2>
       <p className="meta">You asked: “{focus.query.text}”</p>
-      {sketch ? (
-        <div className="plate plate-compact">
-          <EvidenceSketch scene={sketch.scene} label={`Sample sketch. ${sketch.title}`} />
-        </div>
-      ) : null}
+      <ImageSlot
+        source="Vexcel"
+        src={vexcelSrc}
+        caption="Vexcel aerial of this route. Grocery stores, pharmacies, and steps can be read here. Bus stops are not identified from this image."
+      />
       <ul className="check-list">
         {focus.trips.flatMap((item) =>
           item.byNeed.map((entry) => (

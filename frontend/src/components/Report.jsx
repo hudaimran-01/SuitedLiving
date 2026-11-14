@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
-import { focusLife, requestStep } from "../life.js";
+import { focusLife } from "../life.js";
 import { bedsLabel, money, questionsFor, summarize } from "../logic.js";
-import { EvidenceSketch } from "../sketches.jsx";
+import { ImageSlot } from "./ImageSlot.jsx";
 import { LifeAround } from "./Life.jsx";
 import { Status } from "./Status.jsx";
 
@@ -43,11 +42,6 @@ function FindingList({ findings, statuses }) {
   });
 }
 
-function investigationSteps(listing, prefs) {
-  const request = requestStep(prefs.needs, prefs.nearby);
-  return [...listing.investigations, ...(request ? [request] : [])];
-}
-
 function searchLabel(needIds) {
   const labels = ACCESS_NEEDS.filter((item) => needIds.includes(item.id)).map((item) => item.label);
   if (labels.length === 0) return "No access need selected yet.";
@@ -59,29 +53,6 @@ function searchLabel(needIds) {
 
 export function Report({ homeId, prefs, saved, onToggleSaved }) {
   const listing = LISTINGS.find((item) => item.id === homeId);
-  const reduce =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const [replay, setReplay] = useState(0);
-  const [shown, setShown] = useState(reduce ? 99 : 0);
-  const [done, setDone] = useState(reduce);
-
-  useEffect(() => {
-    if (!listing) return undefined;
-    const steps = investigationSteps(listing, prefs);
-    if (reduce) {
-      setShown(steps.length);
-      setDone(true);
-      return undefined;
-    }
-    setShown(0);
-    setDone(false);
-    const timers = steps.map((_, index) =>
-      window.setTimeout(() => setShown(index + 1), 700 * (index + 1)),
-    );
-    timers.push(window.setTimeout(() => setDone(true), 700 * steps.length + 400));
-    return () => timers.forEach((timer) => window.clearTimeout(timer));
-  }, [listing, reduce, replay, prefs.nearby, prefs.needs]);
 
   if (!listing) {
     return (
@@ -94,17 +65,13 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
     );
   }
 
-  const steps = investigationSteps(listing, prefs);
   const summary = summarize(listing, prefs.needs);
   const life = focusLife(listing.id, prefs.needs, prefs.nearby);
   const questions = questionsFor(summary.findings);
   const savedOn = saved.includes(listing.id);
-  const latest = steps[Math.min(shown, steps.length) - 1];
-
-  function skip() {
-    setShown(steps.length);
-    setDone(true);
-  }
+  const scanCaption = listing.images?.hasScan
+    ? "Matterport interior scan. The photo or panorama ties in here."
+    : "No Matterport scan is linked for this home yet. The image will sit here when there is one.";
 
   return (
     <article className="report">
@@ -136,83 +103,53 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
         </div>
       </header>
 
-      {!done ? (
-        <section className="invest" aria-labelledby="invest-title">
-          <div className="plate">
-            <EvidenceSketch scene={listing.scene} label={listing.sketchLabel} />
-          </div>
-          <div>
-            <p className="eyebrow">Investigating</p>
-            <h2 id="invest-title">Looking through {listing.name}</h2>
-            <p>{searchLabel(prefs.needs)}</p>
-            <ol className="timeline">
-              {steps.map((step, index) => (
-                <li key={step.source} className={index < shown ? "is-on" : undefined}>
-                  <span className="source">{step.source}</span>
-                  <p>{index < shown ? step.text : "Not checked yet"}</p>
-                </li>
-              ))}
-            </ol>
-            <p className="sr-only" aria-live="polite">
-              {latest ? `${latest.source}. ${latest.text}` : "Starting the investigation."}
+      <div className="report-layout">
+        <div>
+          {prefs.needs.length === 0 ? (
+            <p>
+              <a href="#/needs">Describe what you need</a>
             </p>
-            <button type="button" className="button" onClick={skip}>
-              Show the report
-            </button>
-            <p className="fine">
-              Sample notes for the pitch. A live version would pull CoStar, Vexcel, and Matterport
-              here.
-            </p>
-          </div>
-        </section>
-      ) : (
-        <div className="report-layout">
-          <div>
-            {prefs.needs.length === 0 ? (
-              <p>
-                <a href="#/needs">Describe what you need</a>
-              </p>
-            ) : (
-              <>
-                <section className="check-group" aria-labelledby="inside-title">
-                  <h2 id="inside-title">Inside this home</h2>
-                  <p className="meta">{searchLabel(prefs.needs)} Open a line for the evidence.</p>
-                  <FindingList findings={summary.findings} statuses={["barrier"]} />
-                </section>
-                <LifeAround listingId={listing.id} profileIds={prefs.needs} nearby={prefs.nearby} />
-                <FindingList findings={summary.findings} statuses={["observed", "unknown"]} />
-                <button type="button" className="text-button" onClick={() => setReplay((n) => n + 1)}>
-                  Replay the investigation
-                </button>
-              </>
-            )}
-          </div>
-          <aside className="rail">
-            <section className="panel">
-              <h2>Ask before you visit</h2>
-              {questions.length === 0 && life.questions.length === 0 ? (
-                <p>No follow-up questions for this search.</p>
-              ) : (
-                <ul className="asks">
-                  {questions.map((item) => (
-                    <li key={item.requirementId}>
-                      <strong>{item.label}.</strong> {item.ask}
-                    </li>
-                  ))}
-                  {life.questions.map((item) => (
-                    <li key={item.ask}>
-                      <strong>{item.label}.</strong> {item.ask}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <p className="fine">
-                Sources: {steps.map((step) => step.source).join(", ")}. Sample notes, not a certification.
-              </p>
-            </section>
-          </aside>
+          ) : (
+            <>
+              <section className="check-group" aria-labelledby="inside-title">
+                <h2 id="inside-title">Inside this home</h2>
+                <p className="meta">{searchLabel(prefs.needs)} Open a line for the evidence.</p>
+                <ImageSlot source="Matterport" src={listing.images?.matterport} caption={scanCaption} />
+                <FindingList findings={summary.findings} statuses={["barrier"]} />
+              </section>
+              <LifeAround
+                listingId={listing.id}
+                profileIds={prefs.needs}
+                nearby={prefs.nearby}
+                vexcelSrc={listing.images?.vexcel}
+              />
+              <FindingList findings={summary.findings} statuses={["observed", "unknown"]} />
+            </>
+          )}
         </div>
-      )}
+        <aside className="rail">
+          <section className="panel">
+            <h2>Ask before you visit</h2>
+            {questions.length === 0 && life.questions.length === 0 ? (
+              <p>No follow-up questions for this search.</p>
+            ) : (
+              <ul className="asks">
+                {questions.map((item) => (
+                  <li key={item.requirementId}>
+                    <strong>{item.label}.</strong> {item.ask}
+                  </li>
+                ))}
+                {life.questions.map((item, index) => (
+                  <li key={`${item.ask}-${index}`}>
+                    <strong>{item.label}.</strong> {item.ask}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p className="fine">Sources: CoStar, Vexcel, Matterport. Sample notes, not a certification.</p>
+          </section>
+        </aside>
+      </div>
     </article>
   );
 }

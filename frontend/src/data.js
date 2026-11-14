@@ -61,6 +61,7 @@ export const LISTINGS = [
     floor: "Ground floor",
     available: "Available now",
     scene: "linden",
+    images: { matterport: null, vexcel: null, hasScan: true },
     sketchLabel:
       "Sample sketch of a ground-floor door level with the walk, and a marked parking stall beside it.",
     investigations: [
@@ -192,6 +193,7 @@ export const LISTINGS = [
     floor: "2nd floor",
     available: "Available September 1",
     scene: "quarry",
+    images: { matterport: null, vexcel: null, hasScan: false },
     sketchLabel:
       "Sample sketch of a short ramp at the door and a curb between the parking lot and the sidewalk, with no curb cut in view.",
     investigations: [
@@ -321,6 +323,7 @@ export const LISTINGS = [
     floor: "2nd floor",
     available: "Available now",
     scene: "witherspoon",
+    images: { matterport: null, vexcel: null, hasScan: false },
     sketchLabel: "Sample sketch of four steps up to a front door, with no ramp in view.",
     investigations: [
       {
@@ -451,6 +454,7 @@ export const LISTINGS = [
     floor: "3rd floor walk-up",
     available: "Available August 15",
     scene: "palmer",
+    images: { matterport: null, vexcel: null, hasScan: false },
     sketchLabel: "Sample sketch of an exterior staircase leading up to the apartment door.",
     investigations: [
       {

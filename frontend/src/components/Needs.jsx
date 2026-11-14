@@ -130,8 +130,8 @@ export function Needs({ prefs, setPrefs, onDemo }) {
         <section className="panel nearby-panel" aria-labelledby="nearby-heading">
           <h2 id="nearby-heading">What do you need nearby?</h2>
           <p>
-            Write it the way you would say it. A grocery you can roll to, a clinic, the bus. The
-            life section of each home will answer this and leave the rest out.
+            Write it the way you would say it. A grocery store, or a pharmacy. The life section
+            answers that and leaves the rest out.
           </p>
           <label className="field" htmlFor="nearby">
             <span className="field-label">In your own words</span>
@@ -139,7 +139,7 @@ export function Needs({ prefs, setPrefs, onDemo }) {
               id="nearby"
               className="nearby-input"
               maxLength={280}
-              value={prefs.nearby}
+              value={prefs.nearby || ""}
               placeholder="A grocery store I can roll to, and a clinic"
               onChange={(event) =>
                 setPrefs((current) => ({ ...current, nearby: event.target.value }))
@@ -153,13 +153,16 @@ export function Needs({ prefs, setPrefs, onDemo }) {
               </button>
             ))}
           </div>
-          {prefs.nearby.trim() && !interpretNearby(prefs.nearby).recognized ? (
+          {(prefs.nearby || "").trim() && !interpretNearby(prefs.nearby).recognized ? (
             <p className="fine">
-              These sample notes can follow a grocery, a pharmacy, a clinic, or transit. This
-              sentence is saved, and the route stays unanswered until it can be checked.
+              Aerial images can show a grocery store, a pharmacy, and steps on the way. This
+              sentence does not match those, so the route stays unanswered.
             </p>
           ) : (
-            <p className="fine">Sample places only. A later version can send this sentence to the investigation.</p>
+            <p className="fine">
+              Vexcel can show a grocery store, a pharmacy, and steps between them. Bus stops are
+              not identified from those images. Other blockages stay unknown.
+            </p>
           )}
         </section>
       ) : null}

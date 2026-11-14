@@ -26,7 +26,7 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved }) {
         <p className="dek">
           {bedsLabel(prefs.beds)} up to {money(prefs.maxRent)}.{" "}
           {prefs.needs.length
-            ? prefs.nearby.trim()
+            ? (prefs.nearby || "").trim()
               ? "Ordered for your access needs and what you asked for nearby. Other errands stay off the cards."
               : "Ordered by the building. Describe what you need nearby and the daily trip will show up here."
             : "Choose an access need and each home will be read for it."}

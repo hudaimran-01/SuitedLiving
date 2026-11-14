@@ -31,7 +31,11 @@ function useRoute() {
 
 export default function App() {
   const route = useRoute();
-  const [prefs, setPrefs] = useSessionState("insideout-prefs", { maxRent: 2400, beds: 1, needs: [] }, sanitizePrefs);
+  const [prefs, setPrefs] = useSessionState(
+    "insideout-prefs",
+    { maxRent: 2400, beds: 1, needs: [], nearby: "" },
+    sanitizePrefs,
+  );
   const [saved, setSaved] = useSessionState("insideout-saved", [], (value) => {
     const ids = new Set(LISTINGS.map((listing) => listing.id));
     return Array.isArray(value) ? value.filter((id) => ids.has(id)) : [];
