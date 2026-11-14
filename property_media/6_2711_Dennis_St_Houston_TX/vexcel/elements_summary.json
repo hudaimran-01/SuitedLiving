@@ -1,0 +1,20 @@
+{
+  "address": "2711 Dennis Street",
+  "city_state": "Houston, TX",
+  "lat": 29.7357344,
+  "lon": -95.3595517,
+  "has_parcel": true,
+  "structures_count": 1,
+  "tree_cover_percent": 22.0,
+  "pool_detected": false,
+  "structures": [
+    {
+      "primary": true,
+      "footprint_sqft": 952,
+      "roof_material": "membrane",
+      "roof_shape": "flat",
+      "roof_condition": 4.0
+    }
+  ],
+  "collection": "us-tx-houston-2025"
+}
