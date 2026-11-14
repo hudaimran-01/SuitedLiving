@@ -1,6 +1,6 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife } from "../life.js";
-import { bedsLabel, money, questionsFor, summarize } from "../logic.js";
+import { listingFacts, money, questionsFor, summarize } from "../logic.js";
 import { floorPlanFor } from "../floorplans.js";
 import { FloorPlan } from "./FloorPlan.jsx";
 import { ImageSlot } from "./ImageSlot.jsx";
@@ -72,7 +72,9 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
   const questions = questionsFor(summary.findings);
   const savedOn = saved.includes(listing.id);
   const scanCaption = listing.images?.hasScan
-    ? "Matterport interior scan. The photo or panorama ties in here."
+    ? listing.images.modelId
+      ? `Matterport model ${listing.images.modelId}. The preview image ties in here.`
+      : "Matterport interior scan. The photo or panorama ties in here."
     : "No Matterport scan is linked for this home yet. The image will sit here when there is one.";
 
   return (
@@ -85,8 +87,7 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
           <p className="eyebrow">{listing.floor}</p>
           <h1 id="page-title">{listing.name}</h1>
           <p className="meta">
-            {listing.kind} · {listing.unit} · {listing.address}, {listing.place} · {bedsLabel(listing.beds)} ·{" "}
-            {listing.baths} bath · {listing.sqft} sqft · {listing.available}
+            {listing.address} · {listingFacts(listing).join(" · ")}
           </p>
         </div>
         <div className="report-side">
@@ -109,6 +110,16 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
 
       <div className="report-layout">
         <div>
+          <ImageSlot source="Matterport" src={listing.images?.matterport} caption={scanCaption} />
+          {listing.images?.photos?.length > 0 ? (
+            <ul className="photo-row">
+              {listing.images.photos.slice(0, 6).map((src) => (
+                <li key={src}>
+                  <img src={src} alt={`${listing.name} listing photo`} />
+                </li>
+              ))}
+            </ul>
+          ) : null}
           {prefs.needs.length === 0 ? (
             <p>
               <a href="#/discover">Set your filters</a>
@@ -118,7 +129,6 @@ export function Report({ homeId, prefs, saved, onToggleSaved }) {
               <section className="check-group" aria-labelledby="inside-title">
                 <h2 id="inside-title">Inside this home</h2>
                 <p className="meta">{searchLabel(prefs.needs)} Open a line for the evidence.</p>
-                <ImageSlot source="Matterport" src={listing.images?.matterport} caption={scanCaption} />
                 <FindingList findings={summary.findings} statuses={["barrier"]} />
               </section>
               <LifeAround

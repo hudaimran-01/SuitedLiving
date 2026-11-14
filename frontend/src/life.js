@@ -1349,7 +1349,15 @@ export function interpretNearby(text) {
 export function focusLife(listingId, profileIds = [], text = "") {
   const query = interpretNearby(text);
   const full = lifeReport(listingId, profileIds);
-  const empty = { query, focused: false, trips: [], counts: { observed: 0, barrier: 0, unknown: 0 }, questions: [] };
+  const hasPlace = Boolean(LIFE[listingId]);
+  const empty = {
+    query,
+    focused: false,
+    hasPlace,
+    trips: [],
+    counts: { observed: 0, barrier: 0, unknown: 0 },
+    questions: [],
+  };
   if (!query.recognized || full.sections.length === 0) return empty;
   const trips = query.intents
     .map((id) => {
@@ -1378,7 +1386,7 @@ export function focusLife(listingId, profileIds = [], text = "") {
     seen.add(finding.ask);
     questions.push(finding);
   }
-  return { query, focused: true, trips, counts, questions };
+  return { query, focused: true, hasPlace, trips, counts, questions };
 }
 
 export function requestStep(profileIds, text) {

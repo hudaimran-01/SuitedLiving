@@ -23,7 +23,11 @@ export function LifeAround({ listingId, profileIds, nearby, vexcelSrc }) {
       <section className="life" aria-labelledby="life-title">
         <h2 id="life-title">Life around here</h2>
         <p>You wrote “{focus.query.text}”.</p>
-        <p>Sample notes can check a grocery, a pharmacy, or a clinic. This request is not covered, so no route is filled in.</p>
+        <p>
+          {focus.hasPlace
+            ? "Sample notes can check a grocery, a pharmacy, or a clinic. This request is not covered, so no route is filled in."
+            : "Nearby routes are not in the notes for this home yet."}
+        </p>
       </section>
     );
   }
@@ -35,7 +39,7 @@ export function LifeAround({ listingId, profileIds, nearby, vexcelSrc }) {
       <ImageSlot
         source="Vexcel"
         src={vexcelSrc}
-        caption="Vexcel aerial of this route. Grocery stores, pharmacies, and steps can be read here. Bus stops are not identified from this image."
+        caption="Vexcel aerial of this route. Grocery stores, pharmacies, and steps can be read here."
       />
       <ul className="check-list">
         {focus.trips.flatMap((item) =>

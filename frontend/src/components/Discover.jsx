@@ -1,7 +1,7 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife, interpretNearby, lifeHeadline } from "../life.js";
-import { bedsLabel, leadFinding, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
-import { EvidenceSketch } from "../sketches.jsx";
+import { leadFinding, listingFacts, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
+import { ListingPhoto } from "./ListingPhoto.jsx";
 import { Counts } from "./Status.jsx";
 
 const PHRASES = [
@@ -157,7 +157,10 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
       {homes.length === 0 ? (
         <div className="empty">
           <h2>No sample home fits that filter</h2>
-          <p>The sample includes four 1-bedroom homes for sale, from $285,000 to $810,000.</p>
+          <p>
+            The sample includes {LISTINGS.length} homes for sale, from {money(Math.min(...LISTINGS.map((item) => item.price)))} to{" "}
+            {money(Math.max(...LISTINGS.map((item) => item.price)))}.
+          </p>
           <button type="button" className="button" onClick={() => setPrefs(EMPTY_PREFS)}>
             Clear filters
           </button>
@@ -173,7 +176,7 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
             return (
               <article key={home.id} className="card">
                 <a className="card-media" href={`#/home/${home.id}`}>
-                  <EvidenceSketch scene={home.scene} label={home.sketchLabel} />
+                  <ListingPhoto listing={home} />
                 </a>
                 <div className="card-body">
                   <div className="card-top">
@@ -196,8 +199,7 @@ export function Discover({ prefs, setPrefs, saved, onToggleSaved, onDemo }) {
                     </p>
                   </div>
                   <p className="meta">
-                    {home.kind} · {home.place} · {home.floor} · {bedsLabel(home.beds)} · {home.baths} bath ·{" "}
-                    {home.sqft} sqft · {home.available}
+                    {listingFacts(home).join(" · ")}
                   </p>
                   {insideLead ? (
                     <p className="lead">

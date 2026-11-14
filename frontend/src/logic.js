@@ -7,8 +7,8 @@ export const STATUS_LABEL = {
   unknown: "Unknown",
 };
 
-export const PRICE_MIN = 200000;
-export const PRICE_MAX = 1200000;
+export const PRICE_MIN = 100000;
+export const PRICE_MAX = 2000000;
 const BED_OPTIONS = [0, 1, 2, 3];
 
 export function money(amount) {
@@ -24,6 +24,20 @@ export function bedsLabel(beds) {
   if (beds === 0) return "Studio";
   if (beds === 1) return "1 bedroom";
   return `${beds} bedrooms`;
+}
+
+export function listingFacts(listing) {
+  const baths = Number.isInteger(listing.baths) ? String(listing.baths) : String(listing.baths);
+  return [
+    listing.kind,
+    listing.unit ? `Unit ${listing.unit}` : null,
+    listing.place,
+    listing.floor,
+    bedsLabel(listing.beds),
+    `${baths} bath`,
+    `${Math.round(listing.sqft)} sqft`,
+    listing.available,
+  ].filter(Boolean);
 }
 
 export function sanitizePrefs(value) {

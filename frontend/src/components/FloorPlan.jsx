@@ -161,9 +161,9 @@ export function FloorPlan({ plan, needIds }) {
         </div>
       ) : (
         <div className="plan-fallback">
-          <p>No floor plan or Matterport scan is linked for this home.</p>
+          <p>No room plan is linked for this home yet.</p>
           <p>
-            Room-by-room color needs one of those. The findings on this page still cover the
+            Room-by-room color needs a floor plan. The findings on this page still cover the
             entrance and the listing notes. Nothing here is estimated from a drawing.
           </p>
         </div>

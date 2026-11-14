@@ -1,7 +1,7 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { lifeReport } from "../life.js";
 import { findingFor, money } from "../logic.js";
-import { EvidenceSketch } from "../sketches.jsx";
+import { ListingPhoto } from "./ListingPhoto.jsx";
 import { Status } from "./Status.jsx";
 
 const PREVIEW = [
@@ -16,7 +16,7 @@ export function Welcome({ onDemo }) {
     profile: ACCESS_NEEDS.find((item) => item.id === profileId).label,
     ...findingFor(home, checkId),
   }));
-  const grocery = lifeReport(home.id, ["wheelchair"]).sections[0].trips.find((item) => item.id === "grocery");
+  const grocery = lifeReport(home.id, ["wheelchair"]).sections[0]?.trips.find((item) => item.id === "grocery");
 
   return (
     <div className="welcome">
@@ -38,9 +38,9 @@ export function Welcome({ onDemo }) {
             </a>
           </div>
         </div>
-        <article className="sheet" aria-label="Sample report for Linden Court">
+        <article className="sheet" aria-label={`Sample report for ${home.name}`}>
           <div className="plate">
-            <EvidenceSketch scene={home.scene} label={home.sketchLabel} />
+            <ListingPhoto listing={home} />
           </div>
           <div className="sheet-body">
             <p className="eyebrow">Sample report</p>
@@ -56,11 +56,13 @@ export function Welcome({ onDemo }) {
                   <span>{finding.title}</span>
                 </li>
               ))}
-              <li>
-                <span className="source">Around</span>
-                <Status status={grocery.status} />
-                <span>{grocery.title}</span>
-              </li>
+              {grocery ? (
+                <li>
+                  <span className="source">Around</span>
+                  <Status status={grocery.status} />
+                  <span>{grocery.title}</span>
+                </li>
+              ) : null}
             </ul>
             <p className="fine">Evidence and open questions. Not a certification.</p>
           </div>

@@ -5,7 +5,6 @@ import { assessRoom, floorPlanFor } from "../src/floorplans.js";
 import { focusLife } from "../src/life.js";
 import {
   findingFor,
-  leadFinding,
   questionsFor,
   sanitizePrefs,
   summarize,
@@ -14,9 +13,9 @@ import {
 
 const demo = { ...DEMO_PREFS, needs: [...DEMO_PREFS.needs] };
 
-test("a wheelchair search puts the ground-floor home first", () => {
+test("a wheelchair search orders the listing file by evidence", () => {
   const ids = visibleListings(LISTINGS, demo).map((listing) => listing.id);
-  assert.deepEqual(ids, ["linden", "quarry", "witherspoon", "palmer"]);
+  assert.deepEqual(ids, ["236060791", "235969334", "238641283", "228418897", "233992469", "228897977"]);
 });
 
 test("a nearby note limits the life report to that errand", () => {
@@ -35,37 +34,43 @@ test("a nearby note limits the life report to that errand", () => {
   assert.equal(focusLife("linden", ["wheelchair"], "the bus").focused, false);
 });
 
-test("low vision and hard of hearing reorder the same homes", () => {
+test("low vision and hard of hearing keep every home when those notes are unknown", () => {
+  const byPrice = ["236060791", "233992469", "228897977", "235969334", "238641283", "228418897"];
   const lowVision = visibleListings(LISTINGS, { ...demo, needs: ["low-vision"] }).map((listing) => listing.id);
   const hearing = visibleListings(LISTINGS, { ...demo, needs: ["hard-of-hearing"] }).map((listing) => listing.id);
-  assert.deepEqual(lowVision, ["quarry", "linden", "witherspoon", "palmer"]);
-  assert.deepEqual(hearing, ["palmer", "quarry", "linden", "witherspoon"]);
+  assert.deepEqual(lowVision, byPrice);
+  assert.deepEqual(hearing, byPrice);
 });
 
-test("an empty filter lists every sample home", () => {
-  const all = visibleListings(LISTINGS, { maxPrice: 1200000, beds: null, needs: [], nearby: "" });
+test("an empty filter lists every home in the listing file", () => {
+  const all = visibleListings(LISTINGS, { maxPrice: 2000000, beds: null, needs: [], nearby: "" });
+  assert.equal(all.length, LISTINGS.length);
   assert.deepEqual(
     all.map((listing) => listing.id),
-    ["quarry", "linden", "witherspoon", "palmer"],
+    ["236060791", "233992469", "228897977", "235969334", "238641283", "228418897"],
   );
 });
 
-test("budget and bedroom filters remove sample homes", () => {
-  const cheap = visibleListings(LISTINGS, { ...demo, maxPrice: 300000 }).map((listing) => listing.id);
-  assert.deepEqual(cheap, ["quarry"]);
-  const larger = visibleListings(LISTINGS, { ...demo, beds: 2 });
-  assert.equal(larger.length, 0);
+test("price and bedroom filters remove homes from the listing file", () => {
+  const cheap = visibleListings(LISTINGS, { ...demo, maxPrice: 200000 }).map((listing) => listing.id);
+  assert.deepEqual(cheap, ["236060791"]);
+  const twoBed = visibleListings(LISTINGS, { ...demo, beds: 2 }).map((listing) => listing.id);
+  assert.deepEqual(twoBed, ["236060791", "233992469"]);
 });
 
-test("linden keeps the bathroom and doorway gaps visible", () => {
-  const { counts, findings } = summarize(LISTINGS[0], ["wheelchair"]);
-  assert.deepEqual(counts, { observed: 4, barrier: 0, unknown: 2 });
-  assert.equal(leadFinding(findings).requirementId, "doorways");
-  assert.equal(questionsFor(findings).length, 2);
+test("a listing keeps seller statements separate from open questions", () => {
+  const home = LISTINGS.find((listing) => listing.id === "236060791");
+  const { findings } = summarize(home, ["wheelchair"]);
+  assert.equal(findings.find((item) => item.requirementId === "step-free").status, "observed");
+  assert.equal(findings.find((item) => item.requirementId === "parking").ask !== null, true);
+  assert.ok(questionsFor(findings).every((item) => item.ask));
+  assert.equal(home.images.photos.length > 0, true);
+  assert.equal(home.images.modelId, "vwDtYGo2VUz");
 });
 
 test("observed notes do not become questions", () => {
-  const findings = ["step-free", "parking"].map((id) => findingFor(LISTINGS[0], id));
+  const home = LISTINGS.find((listing) => listing.id === "236060791");
+  const findings = ["step-free", "elevator"].map((id) => findingFor(home, id));
   assert.equal(questionsFor(findings).length, 0);
 });
 
@@ -87,7 +92,7 @@ test("a room is colored only for the needs that were selected", () => {
 
 test("prefs ignore unknown needs and clamp price", () => {
   const prefs = sanitizePrefs({ maxPrice: 9000000, beds: 9, needs: ["wheelchair", "nope"] });
-  assert.equal(prefs.maxPrice, 1200000);
+  assert.equal(prefs.maxPrice, 2000000);
   assert.equal(prefs.beds, null);
   assert.deepEqual(prefs.needs, ["wheelchair"]);
   assert.equal(prefs.nearby, "");

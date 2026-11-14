@@ -38,7 +38,7 @@ export default function App() {
   const route = useRoute();
   const [prefs, setPrefs] = useSessionState(
     "insideout-prefs",
-    { maxPrice: 1200000, beds: null, needs: [], nearby: "" },
+    { maxPrice: 2000000, beds: null, needs: [], nearby: "" },
     sanitizePrefs,
   );
   const [saved, setSaved] = useSessionState("insideout-saved", [], (value) => {
