@@ -5,6 +5,8 @@ import { Gallery } from "./Gallery.jsx";
 import { floorPlanFor } from "../floorplans.js";
 import { FloorPlan } from "./FloorPlan.jsx";
 import { LifeAround } from "./Life.jsx";
+import { AerialNearby, ScannedPlan } from "./PropertyView.jsx";
+import { propertyMediaFor } from "../propertyMedia.js";
 import { Status } from "./Status.jsx";
 
 const GROUPS = [
@@ -71,6 +73,7 @@ export function Report({ homeId, listings = LISTINGS, prefs, saved, onToggleSave
   const life = focusLife(listing.id, prefs.needs, prefs.nearby);
   const questions = questionsFor(summary.findings);
   const savedOn = saved.includes(listing.id);
+  const media = propertyMediaFor(listing.id);
 
   return (
     <article className="report">
@@ -101,7 +104,11 @@ export function Report({ homeId, listings = LISTINGS, prefs, saved, onToggleSave
         </div>
       </header>
 
-      <FloorPlan key={listing.id} plan={floorPlanFor(listing.id)} needIds={prefs.needs} />
+      {media ? (
+        <ScannedPlan media={media} />
+      ) : (
+        <FloorPlan key={listing.id} plan={floorPlanFor(listing.id)} needIds={prefs.needs} />
+      )}
       {listing.agentNotes?.length > 0 ? (
         <section className="agent-notes" aria-labelledby="notes-title">
           <h2 id="notes-title">From the listing</h2>
@@ -114,6 +121,7 @@ export function Report({ homeId, listings = LISTINGS, prefs, saved, onToggleSave
         </section>
       ) : null}
       <Gallery listing={listing} needIds={prefs.needs} />
+      {media ? <AerialNearby media={media} nearby={prefs.nearby} /> : null}
 
       <div className="report-layout">
         <div>
@@ -128,12 +136,14 @@ export function Report({ homeId, listings = LISTINGS, prefs, saved, onToggleSave
                 <p className="meta">{searchLabel(prefs.needs)} Open a line for the evidence.</p>
                 <FindingList findings={summary.findings} statuses={["barrier"]} />
               </section>
-              <LifeAround
-                listingId={listing.id}
-                profileIds={prefs.needs}
-                nearby={prefs.nearby}
-                vexcelSrc={listing.images?.vexcel}
-              />
+              {media ? null : (
+                <LifeAround
+                  listingId={listing.id}
+                  profileIds={prefs.needs}
+                  nearby={prefs.nearby}
+                  vexcelSrc={listing.images?.vexcel}
+                />
+              )}
               <FindingList findings={summary.findings} statuses={["observed", "unknown"]} />
             </>
           )}
