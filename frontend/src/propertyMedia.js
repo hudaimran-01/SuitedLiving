@@ -107,6 +107,29 @@ function placeText(item) {
   return `${item.category} is about ${minutes} ${walk} (${feet}).`;
 }
 
+const ROW_LABEL = {
+  "Retail Store": "Retail store",
+  "Medical Place": "Medical place",
+  "Accessible Parking": "Accessible parking",
+};
+
+export function compareAround(listingId, nearbyText) {
+  const report = aerialReport(propertyMediaFor(listingId), nearbyText);
+  if (!report.query.recognized) return [];
+  const rows = [];
+  if (report.showGroceryMatch) rows.push("Retail Store");
+  if (report.showClinic) rows.push("Medical Place");
+  return rows.map((category) => {
+    const place = report.places.find((item) => item.category === category);
+    return {
+      id: category,
+      label: ROW_LABEL[category] || category,
+      status: "unknown",
+      title: place ? place.text : "This aerial search is not on file for this home.",
+    };
+  });
+}
+
 export function aerialReport(media, nearbyText) {
   const query = interpretNearby(nearbyText || "");
   const closest = closestAmenities(media?.amenities);

@@ -1,5 +1,5 @@
 import { ACCESS_NEEDS, CHECKS, LISTINGS } from "../data.js";
-import { interpretNearby, lifeReport } from "../life.js";
+import { compareAround } from "../propertyMedia.js";
 import { findingFor, money, STATUS_LABEL } from "../logic.js";
 import { Status } from "./Status.jsx";
 
@@ -14,7 +14,7 @@ export function Compare({ listings = LISTINGS, prefs, saved, onToggleSaved }) {
         <h1 id="page-title">The same list, different homes</h1>
         <p className="dek">
           A home that works for one list can fail another. The rows cover the building and the
-          sample trips around it, only for the access needs you selected.
+          sidewalk walks around it, only for the access needs you selected.
         </p>
       </div>
 
@@ -37,7 +37,7 @@ export function Compare({ listings = LISTINGS, prefs, saved, onToggleSaved }) {
       ) : (
         <div className="table-wrap">
           <table className="compare-table">
-            <caption>Saved sample homes against your access list</caption>
+            <caption>Saved homes against your access list</caption>
             <thead>
               <tr>
                 <th scope="col">Requirement</th>
@@ -80,36 +80,29 @@ export function Compare({ listings = LISTINGS, prefs, saved, onToggleSaved }) {
                 })}
               </tbody>
             ))}
-            {interpretNearby(prefs.nearby).recognized
-              ? profiles.map((profile) => (
-                  <tbody key={`life-${profile.id}`}>
-                    <tr className="group-row">
-                      <th scope="colgroup" colSpan={homes.length + 1}>
-                        Life around here · {profile.label}
-                      </th>
-                    </tr>
-                    {interpretNearby(prefs.nearby).intents.map((tripId) => (
-                      <tr key={tripId}>
-                        <th scope="row">
-                          {lifeReport(homes[0].id, [profile.id]).sections[0].trips.find((item) => item.id === tripId)
-                            .label}
-                        </th>
-                        {homes.map((home) => {
-                          const finding = lifeReport(home.id, [profile.id]).sections[0].trips.find(
-                            (item) => item.id === tripId,
-                          );
-                          return (
-                            <td key={home.id}>
-                              <Status status={finding.status} />
-                              <span className="cell-title">{finding.title}</span>
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    ))}
-                  </tbody>
-                ))
-              : null}
+            {compareAround(homes[0].id, prefs.nearby).length > 0 ? (
+              <tbody>
+                <tr className="group-row">
+                  <th scope="colgroup" colSpan={homes.length + 1}>
+                    Around this home
+                  </th>
+                </tr>
+                {compareAround(homes[0].id, prefs.nearby).map((row) => (
+                  <tr key={row.id}>
+                    <th scope="row">{row.label}</th>
+                    {homes.map((home) => {
+                      const cell = compareAround(home.id, prefs.nearby).find((item) => item.id === row.id);
+                      return (
+                        <td key={home.id}>
+                          <Status status={cell.status} />
+                          <span className="cell-title">{cell.title}</span>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            ) : null}
           </table>
           <p className="sr-only">
             Status words are {Object.values(STATUS_LABEL).join(", ")}.

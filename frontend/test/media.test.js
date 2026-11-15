@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { canTour, floorPlanCaption, heatmapZones, tourUrl } from "../src/heatmap.js";
-import { aerialReport, closestAmenities, notesFromScan, propertyMediaFor } from "../src/propertyMedia.js";
+import { aerialReport, closestAmenities, compareAround, notesFromScan, propertyMediaFor } from "../src/propertyMedia.js";
 import { LISTINGS } from "../src/data.js";
 
 test("scan notes keep one useful line per access topic", () => {
@@ -46,6 +46,17 @@ test("uploaded homes keep the aerial search and the listing carries the floor pl
   const clinic = aerialReport(propertyMediaFor("238641283"), "a clinic");
   assert.equal(clinic.places[0].category, "Medical Place");
   assert.match(clinic.places[0].text, /5 minutes on the sidewalk/);
+});
+
+test("compare uses the sidewalk walk and does not look up a missing sample trip", () => {
+  const grocery = compareAround("236060791", "a grocery store");
+  const clinic = compareAround("238641283", "a clinic");
+  assert.deepEqual(grocery.map((row) => row.id), ["Retail Store"]);
+  assert.match(grocery[0].title, /11 minutes on the sidewalk/);
+  assert.equal(grocery[0].status, "unknown");
+  assert.deepEqual(clinic.map((row) => row.id), ["Medical Place"]);
+  assert.equal(compareAround("236060791", "a quiet cafe").length, 0);
+  assert.equal(compareAround("missing", "a grocery store")[0].title, "This aerial search is not on file for this home.");
 });
 
 test("a 3D tour opens only when the listing has a scan and a model id", () => {
