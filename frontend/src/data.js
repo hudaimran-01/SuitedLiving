@@ -47,6 +47,7 @@ export const DEMO_PREFS = {
   beds: null,
   needs: ["wheelchair"],
   nearby: "A grocery store I can get to from the front door",
+  city: "",
 };
 
 function normalizePhoto(photo) {
