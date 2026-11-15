@@ -99,10 +99,9 @@ test("the access heatmap uses the selected checks and the listing floor plan", (
   assert.equal(zones.find((zone) => zone.id === "step-free").status, "observed");
   assert.equal(zones.find((zone) => zone.id === "parking").status, "unknown");
   assert.equal(heatmapZones(home, []).length, 0);
-  const full = listingHeatmap(home);
-  assert.equal(full.length, 12);
-  assert.equal(full.find((zone) => zone.id === "step-free").status, "observed");
-  assert.equal(listingHeatmap(home, ["wheelchair"]).find((zone) => zone.id === "step-free").inSearch, true);
-  assert.equal(listingHeatmap(home, ["wheelchair"]).find((zone) => zone.id === "lighting").inSearch, false);
+  assert.equal(listingHeatmap(home, []).length, 0);
+  const wheelchair = listingHeatmap(home, ["wheelchair"]);
+  assert.equal(wheelchair.length, 6);
+  assert.equal(wheelchair.some((zone) => zone.id === "lighting"), false);
   assert.equal(zones.some((zone) => zone.id === "lighting"), false);
 });

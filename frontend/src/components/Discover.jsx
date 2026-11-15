@@ -234,7 +234,7 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
                       <span className="source">Around</span> {aroundLead.title}
                     </p>
                   ) : null}
-                  <PlanHeatStrip listing={home} />
+                  <PlanHeatStrip listing={home} needIds={prefs.needs} />
                   {prefs.needs.length > 0 ? <Counts counts={summary.counts} label="Inside" /> : null}
                   {around.focused ? <Counts counts={around.counts} label="Around" /> : null}
                   <div className="card-actions">
