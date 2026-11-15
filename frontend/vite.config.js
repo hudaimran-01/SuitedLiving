@@ -1,4 +1,4 @@
-import { cpSync } from "node:fs";
+import { cpSync, rmSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
@@ -10,7 +10,9 @@ function copyPropertyMedia() {
   return {
     name: "copy-property-media",
     closeBundle() {
-      cpSync(path.resolve(root, "../property_media"), path.resolve(root, "dist/property_media"), {
+      const dest = path.resolve(root, "dist/property_media");
+      rmSync(dest, { recursive: true, force: true });
+      cpSync(path.resolve(root, "../property_media"), dest, {
         recursive: true,
         dereference: true,
       });
