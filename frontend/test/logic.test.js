@@ -51,6 +51,16 @@ test("an empty filter lists every home in the listing file", () => {
   );
 });
 
+test("a location choice keeps only that city", () => {
+  const houston = visibleListings(LISTINGS, { ...demo, city: "houston" }).map((listing) => listing.place);
+  const losAngeles = visibleListings(LISTINGS, { ...demo, city: "los-angeles" }).map((listing) => listing.id);
+  assert.equal(houston.length, 5);
+  assert.ok(houston.every((place) => place.startsWith("Houston")));
+  assert.deepEqual(losAngeles, ["238641283"]);
+  assert.equal(sanitizePrefs({ city: "miami" }).city, "");
+  assert.equal(sanitizePrefs({ city: "los-angeles" }).city, "los-angeles");
+});
+
 test("price and bedroom filters remove homes from the listing file", () => {
   const cheap = visibleListings(LISTINGS, { ...demo, maxPrice: 200000 }).map((listing) => listing.id);
   assert.deepEqual(cheap, ["236060791"]);

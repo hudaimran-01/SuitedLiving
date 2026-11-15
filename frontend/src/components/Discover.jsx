@@ -1,6 +1,6 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife, interpretNearby, lifeHeadline } from "../life.js";
-import { bedsLabel, leadFinding, listingFacts, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
+import { bedsLabel, CITIES, cityLabel, leadFinding, listingFacts, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
 import { InteriorHomes } from "./Interior.jsx";
 import { ListingPhoto } from "./ListingPhoto.jsx";
 import { Counts } from "./Status.jsx";
@@ -19,12 +19,12 @@ const BEDS = [
   { value: 3, label: "3+" },
 ];
 
-const EMPTY_PREFS = { maxPrice: PRICE_MAX, beds: null, needs: [], nearby: "" };
+const EMPTY_PREFS = { maxPrice: PRICE_MAX, beds: null, needs: [], nearby: "", city: "" };
 
 export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggleSaved, onDemo }) {
   const homes = visibleListings(listings, prefs);
   const nearby = prefs.nearby || "";
-  const open = prefs.needs.length === 0 && prefs.beds == null && prefs.maxPrice >= PRICE_MAX && !nearby.trim();
+  const open = prefs.needs.length === 0 && prefs.beds == null && prefs.maxPrice >= PRICE_MAX && !nearby.trim() && !prefs.city;
 
   function toggleNeed(id) {
     setPrefs((current) => {
@@ -44,20 +44,21 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
     });
   }
 
+  const placeLine = `${prefs.city ? `${cityLabel(prefs.city)}. ` : ""}${bedsLabel(prefs.beds)} up to ${money(prefs.maxPrice)}.`;
   const summaryLine = open
     ? "Nothing is selected, so every home is listed."
-    : `${bedsLabel(prefs.beds)} up to ${money(prefs.maxPrice)}. ${
-        prefs.needs.length
-          ? nearby.trim()
+    : prefs.needs.length
+      ? `${placeLine} ${
+          nearby.trim()
             ? "Ordered for your access needs and what you asked for nearby."
             : "Ordered by the building. Add what you need nearby and that trip shows up on each card."
-          : "Choose an access need and the list is ordered for it."
-      }`;
+        }`
+      : placeLine;
 
   return (
     <div className="discover">
       <div className="page-head">
-        <p className="eyebrow">Houston and Los Angeles</p>
+        <p className="eyebrow">{cityLabel(prefs.city)}</p>
         <h1 id="page-title">{homes.length === 1 ? "1 home" : `${homes.length} homes`}</h1>
         <p className="dek">{summaryLine}</p>
       </div>
@@ -90,6 +91,20 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
         </div>
 
         <div className="filter-line">
+          <label className="field location-field" htmlFor="location">
+            <span className="field-label">Location</span>
+            <select
+              id="location"
+              value={prefs.city || ""}
+              onChange={(event) => setPrefs((current) => ({ ...current, city: event.target.value }))}
+            >
+              {CITIES.map((city) => (
+                <option key={city.id || "both"} value={city.id}>
+                  {city.label}
+                </option>
+              ))}
+            </select>
+          </label>
           <fieldset className="field beds-field">
             <legend>Bedrooms</legend>
             <div className="segmented">
@@ -238,7 +253,7 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
           })}
         </div>
       )}
-      <InteriorHomes needIds={prefs.needs} />
+      <InteriorHomes needIds={prefs.needs} city={prefs.city} />
     </div>
   );
 }

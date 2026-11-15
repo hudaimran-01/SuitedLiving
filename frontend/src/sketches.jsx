@@ -285,7 +285,7 @@ const SCENES = {
 export function EvidenceSketch({ scene, label }) {
   const Scene = SCENES[scene] || NoScan;
   return (
-    <svg className="sketch-svg" viewBox="0 0 800 480" role="img" aria-label={label}>
+    <svg className="sketch-svg" viewBox="0 0 800 480" width="800" height="480" role="img" aria-label={label}>
       <Scene />
     </svg>
   );

@@ -10,8 +10,23 @@ import {
   orderLine,
   rankInteriors,
   rentLabel,
+  scoreTone,
 } from "../interior.js";
+import { cityLabel, inCity } from "../logic.js";
 import { Status } from "./Status.jsx";
+
+function ScoreMark({ score, label }) {
+  const width = Math.max(0, Math.min(100, Number(score) || 0));
+  return (
+    <p className={`score-mark ${scoreTone(score)}`}>
+      <span className="score-value">{score}</span>
+      <span className="score-label">{label}</span>
+      <span className="score-meter" aria-hidden="true">
+        <span className="score-fill" style={{ width: `${width}%` }} />
+      </span>
+    </p>
+  );
+}
 
 function InteriorCard({ home, index, ranked, view, lead }) {
   const [photoFailed, setPhotoFailed] = useState(false);
@@ -32,10 +47,7 @@ function InteriorCard({ home, index, ranked, view, lead }) {
         <p className="meta">{home.address}</p>
         <div className="score-row">
           {view.rows.map((row) => (
-            <p key={row.id} className="score-mark">
-              {row.score}
-              <span>{row.label}</span>
-            </p>
+            <ScoreMark key={row.id} score={row.score} label={row.label} />
           ))}
         </div>
         {view.rows.length === 1 ? <p className="fine">{coverageSentence(view.rows[0].confidence)}</p> : null}
@@ -69,15 +81,18 @@ function InteriorPhoto({ photo, onFail }) {
   );
 }
 
-export function InteriorHomes({ needIds = [] }) {
-  const homes = rankInteriors(INTERIOR_PROPERTIES, needIds);
-  const ranked = interiorView(homes[0], needIds).sortScore != null;
+export function InteriorHomes({ needIds = [], city = "" }) {
+  const homes = rankInteriors(INTERIOR_PROPERTIES, needIds).filter((home) => inCity(home.city, city));
+  const ranked = homes.length > 0 && interiorView(homes[0], needIds).sortScore != null;
 
   return (
     <section className="interior-section" aria-labelledby="interior-title">
       <div className="page-head">
         <p className="eyebrow">Interior photo scores</p>
-        <h2 id="interior-title">{homes.length} apartments scored from photos</h2>
+        <h2 id="interior-title">
+          {homes.length === 1 ? "1 apartment scored from photos" : `${homes.length} apartments scored from photos`}
+          {city ? ` in ${cityLabel(city)}` : ""}
+        </h2>
         <p className="dek">{orderLine(needIds)}</p>
         <p className="fine">{INTERIOR_DISCLAIMER}</p>
       </div>
@@ -142,10 +157,7 @@ export function InteriorReport({ homeId, needIds = [] }) {
         <div className="score-row">
           {view.rows.map((row) => (
             <div key={row.id}>
-              <p className="score-mark">
-                {row.score}
-                <span>{row.label}</span>
-              </p>
+              <ScoreMark score={row.score} label={row.label} />
               <p className="fine">{coverageSentence(row.confidence)}</p>
             </div>
           ))}

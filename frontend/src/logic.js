@@ -9,7 +9,13 @@ export const STATUS_LABEL = {
 
 export const PRICE_MIN = 100000;
 export const PRICE_MAX = 2000000;
+export const CITIES = [
+  { id: "", label: "Houston and Los Angeles" },
+  { id: "houston", label: "Houston" },
+  { id: "los-angeles", label: "Los Angeles" },
+];
 const BED_OPTIONS = [0, 1, 2, 3];
+const CITY_IDS = new Set(CITIES.map((city) => city.id).filter(Boolean));
 
 export function money(amount) {
   return new Intl.NumberFormat("en-US", {
@@ -17,6 +23,16 @@ export function money(amount) {
     currency: "USD",
     maximumFractionDigits: 0,
   }).format(amount);
+}
+
+export function cityLabel(city) {
+  return CITIES.find((item) => item.id === (city || ""))?.label || CITIES[0].label;
+}
+
+export function inCity(place, city) {
+  if (city === "houston") return /houston/i.test(place || "");
+  if (city === "los-angeles") return /los angeles/i.test(place || "");
+  return true;
 }
 
 export function bedsLabel(beds) {
@@ -41,7 +57,7 @@ export function listingFacts(listing) {
 }
 
 export function sanitizePrefs(value) {
-  const fallback = { maxPrice: PRICE_MAX, beds: null, needs: [], nearby: "" };
+  const fallback = { maxPrice: PRICE_MAX, beds: null, needs: [], nearby: "", city: "" };
   if (!value || typeof value !== "object") return fallback;
   const maxPrice = Number(value.maxPrice);
   const beds = value.beds == null || value.beds === "" ? null : Number(value.beds);
@@ -56,6 +72,7 @@ export function sanitizePrefs(value) {
     beds: BED_OPTIONS.includes(beds) ? beds : null,
     needs,
     nearby: typeof value.nearby === "string" ? value.nearby.replace(/\s+/g, " ").trim().slice(0, 280) : "",
+    city: CITY_IDS.has(value.city) ? value.city : "",
   };
 }
 
@@ -120,7 +137,7 @@ export function visibleListings(listings, prefs) {
   const matched = listings.filter((listing) => {
     const bedroomOk =
       prefs.beds == null || (prefs.beds === 3 ? listing.beds >= 3 : listing.beds === prefs.beds);
-    return listing.price <= prefs.maxPrice && bedroomOk;
+    return listing.price <= prefs.maxPrice && bedroomOk && inCity(listing.place, prefs.city);
   });
   if (prefs.needs.length === 0) {
     return matched.slice().sort((a, b) => a.price - b.price || a.name.localeCompare(b.name));

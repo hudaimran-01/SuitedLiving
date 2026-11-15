@@ -81,6 +81,13 @@ export function rankInteriors(properties, needIds = []) {
   });
 }
 
+export function scoreTone(score) {
+  const value = Number(score);
+  if (value >= 70) return "strong";
+  if (value >= 40) return "mixed";
+  return "weak";
+}
+
 export function coverageSentence(confidence) {
   const pct = Math.round((confidence || 0) * 100);
   if (pct <= 0) return "None of this score comes from a visible check.";

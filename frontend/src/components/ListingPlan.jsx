@@ -1,9 +1,28 @@
-import { floorPlanCaption, heatmapZones } from "../heatmap.js";
+import { useState } from "react";
+import { floorPlanCaption, heatmapZones, localFloorPlan } from "../heatmap.js";
 import { STATUS_LABEL } from "../logic.js";
+
+function PlanImage({ src, caption }) {
+  const [ratio, setRatio] = useState("");
+  return (
+    <figure>
+      <img
+        src={src}
+        alt={caption}
+        style={ratio ? { aspectRatio: ratio } : undefined}
+        onLoad={(event) => {
+          const { naturalWidth, naturalHeight } = event.currentTarget;
+          if (naturalWidth > 0 && naturalHeight > 0) setRatio(`${naturalWidth} / ${naturalHeight}`);
+        }}
+      />
+      <figcaption>{caption}</figcaption>
+    </figure>
+  );
+}
 
 export function ListingPlan({ listing, needIds }) {
   const address = listing.address || listing.name;
-  const plans = (listing.images?.floorplans || []).map((src) => ({ src }));
+  const plans = (listing.images?.floorplans || []).map((src) => ({ src: localFloorPlan(src) }));
   const zones = heatmapZones(listing, needIds);
 
   return (
@@ -15,10 +34,7 @@ export function ListingPlan({ listing, needIds }) {
             const caption = plan.detail || floorPlanCaption(address, index, plans.length);
             return (
               <li key={plan.src}>
-                <figure>
-                  <img src={plan.src} alt={caption} />
-                  <figcaption>{caption}</figcaption>
-                </figure>
+                <PlanImage src={plan.src} caption={caption} />
               </li>
             );
           })}
@@ -34,15 +50,16 @@ export function ListingPlan({ listing, needIds }) {
           <p className="meta">
             Each color is a listing check for the needs you selected. It is not a measured room on the drawing.
           </p>
-          <ul className="heat-grid">
+          <div className="heat-grid">
             {zones.map((zone) => (
-              <li key={zone.id} className={`heat ${zone.status}`}>
+              <div key={zone.id} className={`heat ${zone.status}`}>
+                <span className="heat-swatch" aria-hidden="true" />
                 <span className="heat-status">{STATUS_LABEL[zone.status] || zone.status}</span>
                 <strong>{zone.label}</strong>
-                <span>{zone.title}</span>
-              </li>
+                <span className="heat-detail">{zone.title}</span>
+              </div>
             ))}
-          </ul>
+          </div>
         </>
       )}
     </section>

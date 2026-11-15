@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { canTour, floorPlanCaption, heatmapZones, tourUrl } from "../src/heatmap.js";
+import { canTour, floorPlanCaption, heatmapZones, localFloorPlan, tourUrl } from "../src/heatmap.js";
 import { aerialReport, closestAmenities, compareAround, notesFromScan, propertyMediaFor } from "../src/propertyMedia.js";
 import { LISTINGS } from "../src/data.js";
 
@@ -15,6 +15,17 @@ test("scan notes keep one useful line per access topic", () => {
     "One side of home blocked by pool plumbing equipment.",
     "Client declined both garages due to being full of moving items.",
   ]);
+});
+
+test("floor-plan drawings are served from this site", () => {
+  assert.equal(
+    localFloorPlan("https://imagescdn.homes.com/i2/O0WbXblYZAJ_QYfE9wy-JG2a_q3YYv4W8v2HSSxkHdg/112/image.svg?p=1"),
+    "/floorplans/O0WbXblYZAJ_QYfE9wy-JG2a_q3YYv4W8v2HSSxkHdg.svg",
+  );
+  assert.equal(localFloorPlan("/floorplans/already.svg"), "/floorplans/already.svg");
+  for (const home of LISTINGS) {
+    for (const src of home.images.floorplans) assert.match(src, /^\/floorplans\/.+\.svg$/);
+  }
 });
 
 test("uploaded homes keep the aerial search and the listing carries the floor plans", () => {

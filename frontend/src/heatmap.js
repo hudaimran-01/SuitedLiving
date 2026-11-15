@@ -10,6 +10,11 @@ export function tourUrl(modelId) {
   return `https://my.matterport.com/show/?m=${encodeURIComponent(modelId)}&play=1`;
 }
 
+export function localFloorPlan(src) {
+  const match = /\/i2\/([^/]+)\//.exec(src || "");
+  return match ? `/floorplans/${match[1]}.svg` : src;
+}
+
 export function floorPlanCaption(address, index, total) {
   const which = total > 1 ? `Level ${index + 1} of ${total}` : "Floor plan";
   return `${which} for ${address}. This is the listing drawing.`;

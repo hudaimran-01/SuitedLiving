@@ -62,7 +62,7 @@ export default function App() {
   const route = useRoute();
   const [prefs, setPrefs] = useSessionState(
     "suitedliving-prefs",
-    { maxPrice: 2000000, beds: null, needs: [], nearby: "" },
+    { maxPrice: 2000000, beds: null, needs: [], nearby: "", city: "" },
     sanitizePrefs,
   );
   const listings = useListings();
