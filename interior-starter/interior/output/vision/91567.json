@@ -1,0 +1,100 @@
+{
+  "features": {
+    "step_free_entry": {
+      "value": null,
+      "confidence": 0.5,
+      "evidence": "Exterior threshold and entryway steps leading to the front entrance are not visible.",
+      "photo": null
+    },
+    "wide_doorways": {
+      "value": null,
+      "confidence": 0.6,
+      "evidence": "Doorway widths cannot be confirmed as meeting accessibility standards without precise measurements.",
+      "photo": null
+    },
+    "roll_in_or_walk_in_shower": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "The bathroom contains a standard bathtub with a high tub wall instead of a roll-in or walk-in shower.",
+      "photo": 6
+    },
+    "bathtub_only": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "The bathtub is equipped with an overhead shower head.",
+      "photo": 6
+    },
+    "grab_bars": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "No grab bars are present around the toilet or inside the bathtub enclosure.",
+      "photo": 6
+    },
+    "hard_flooring_throughout": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "Smooth wood-look plank hard flooring is present throughout all visible areas including kitchen, living room, bedroom, and bathroom.",
+      "photo": 3
+    },
+    "open_turning_space": {
+      "value": true,
+      "confidence": 0.9,
+      "evidence": "The living room and bedroom feature large, clear floor areas suitable for wheelchair turning clearance.",
+      "photo": 3
+    },
+    "kitchen_knee_clearance": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "Kitchen counters and sink are built over enclosed base cabinets with no open knee space underneath.",
+      "photo": 1
+    },
+    "lever_door_handles": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "Doors throughout the home, including the main entry, pantry, and bedroom doors, use standard round knobs.",
+      "photo": 3
+    },
+    "good_lighting_and_contrast": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "The rooms are well-lit with high contrast between dark wood-look flooring and light neutral walls.",
+      "photo": 3
+    }
+  },
+  "cant_confirm": [
+    "step_free_entry",
+    "wide_doorways"
+  ],
+  "photos": [
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/tQ1u0D_jlAWqDO27VKteCRguJS8IF4p6IcC6RKjh4Js/113/image.jpg",
+      "caption": "2BR, 1BA - 882SF - Kitchen",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/KFc4kQV9R-_7fRhMAkGWT6zo-I_M516h9Wn0_FXVTHw/113/image.jpg",
+      "caption": "2BR, 1BA - 882SF - Dining Area",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/3n4qO1CJhLuWOvGDoeaNvL6fJoFbNhNXzmIooiHInpA/113/image.jpg",
+      "caption": "2BR, 1BA - 882SF - Living Room",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/E__rXnRDP2iugQgNnSkPFxRAP_a_etIaPZz-MDc3Qv4/113/image.jpg",
+      "caption": "2BR, 1BA - 882SF - Living Room",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/40c9Wyj3Q3xqzs6j5L79zRkeDrdsBAUmF55V3LtYmr4/113/image.jpg",
+      "caption": "2BR, 1BA - 882SF - Primary Bedroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/CcNywu4zCiQHWC0LTHo7Y-0rBkvWMk-Cs-ttK3pRBrE/113/image.jpg",
+      "caption": "2BR, 1BA - 882SF - Bathroom",
+      "type": 33
+    }
+  ]
+}

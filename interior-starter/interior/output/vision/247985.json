@@ -1,0 +1,103 @@
+{
+  "features": {
+    "step_free_entry": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "Main entrance to the home is not visible in any of the photos.",
+      "photo": null
+    },
+    "wide_doorways": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "Doorway widths cannot be accurately measured from the photos.",
+      "photo": null
+    },
+    "roll_in_or_walk_in_shower": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "No shower enclosure is visible in the provided photos.",
+      "photo": null
+    },
+    "bathtub_only": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "No bathtub is visible in the provided photos.",
+      "photo": null
+    },
+    "grab_bars": {
+      "value": false,
+      "confidence": 0.9,
+      "evidence": "No grab bars are present on the walls surrounding the toilet in photos 5 and 6.",
+      "photo": 5
+    },
+    "hard_flooring_throughout": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "The bedrooms feature carpet flooring, so hard flooring is not throughout.",
+      "photo": 1
+    },
+    "open_turning_space": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "Clear floor space is available in the bedroom and main vanity area.",
+      "photo": 2
+    },
+    "kitchen_knee_clearance": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "Kitchen is not shown in the photos.",
+      "photo": null
+    },
+    "lever_door_handles": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "A traditional round door knob is visible on the door in photo 5 rather than a lever handle.",
+      "photo": 5
+    },
+    "good_lighting_and_contrast": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "The apartment has good illumination from large windows and lamps.",
+      "photo": 2
+    }
+  },
+  "cant_confirm": [
+    "step_free_entry",
+    "wide_doorways",
+    "roll_in_or_walk_in_shower",
+    "bathtub_only",
+    "kitchen_knee_clearance"
+  ],
+  "photos": [
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/p31X_RQOIJXj-evFVpyL_ejpgFWT-lHUkZqsg8GRJD0/113/image.jpg",
+      "caption": "First Bedroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/CVuyn2VSuXUeCRMrkgqVEUN7DR9cAFyoy9GENHIil68/113/image.jpg",
+      "caption": "First Bedroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/4S23ZLYKxPUmE-_AGWMgzxKPPZ8aOSDKDv6ub72KfPg/113/image.jpg",
+      "caption": "Second Bedroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/Qrej3BeXQ11XbmyMIFIav_CHF83mzWGIsWFZztZOJDs/113/image.jpg",
+      "caption": "Second Bedroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/jE44_rNeBeWUYd1zSNvRpqA57WPqc9l_q508kh2MNkg/113/image.jpg",
+      "caption": "First Bathroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/cXiaEC6hCHavFHyHXWviKmxg2nyK0yK-RtT8xpO3jsQ/113/image.jpg",
+      "caption": "Second Bathroom",
+      "type": 33
+    }
+  ]
+}

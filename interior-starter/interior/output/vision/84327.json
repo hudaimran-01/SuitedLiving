@@ -1,0 +1,98 @@
+{
+  "features": {
+    "step_free_entry": {
+      "value": null,
+      "confidence": 0.7,
+      "evidence": "Main entry threshold from the outside or hallway is not clearly visible to determine step-free status.",
+      "photo": null
+    },
+    "wide_doorways": {
+      "value": null,
+      "confidence": 0.7,
+      "evidence": "Interior doorways are visible but exact clearance width cannot be confirmed from photos alone.",
+      "photo": 1
+    },
+    "roll_in_or_walk_in_shower": {
+      "value": null,
+      "confidence": 0.9,
+      "evidence": "No bathroom is shown in any of the photos.",
+      "photo": null
+    },
+    "bathtub_only": {
+      "value": null,
+      "confidence": 0.9,
+      "evidence": "No bathroom is shown in any of the photos.",
+      "photo": null
+    },
+    "grab_bars": {
+      "value": null,
+      "confidence": 0.9,
+      "evidence": "No bathroom is shown in any of the photos.",
+      "photo": null
+    },
+    "hard_flooring_throughout": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "Wood-look hard surface flooring is present across all visible living areas, kitchen, and fitness room.",
+      "photo": 1
+    },
+    "open_turning_space": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "The main living space has large open, unobstructed areas suitable for wheelchair turning radius.",
+      "photo": 1
+    },
+    "kitchen_knee_clearance": {
+      "value": false,
+      "confidence": 0.9,
+      "evidence": "Kitchen sink and counter areas are fitted with solid base cabinets beneath, providing no open knee clearance.",
+      "photo": 2
+    },
+    "lever_door_handles": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "Visible interior doors feature horizontal lever-style handles.",
+      "photo": 1
+    },
+    "good_lighting_and_contrast": {
+      "value": true,
+      "confidence": 0.9,
+      "evidence": "Abundant natural daylight through large sliding glass doors and recessed lighting provide bright illumination and clear visual contrast between white walls and wood-toned floors.",
+      "photo": 1
+    }
+  },
+  "cant_confirm": [
+    "step_free_entry",
+    "wide_doorways",
+    "roll_in_or_walk_in_shower",
+    "bathtub_only",
+    "grab_bars"
+  ],
+  "photos": [
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/ROVZkcNiMDWOekV0InRCPMe4coTVq7SYzY8SNDW2XK8/113/image.jpg",
+      "caption": "Studio 1",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/scOgpmN5xwSPZRw_PEseWFG9HK2ZZkDg3LkKmWtrnFE/113/image.jpg",
+      "caption": "Studio 3",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/7MisaV4M1wzcF-O33vTcSLyfDOONKplr74Qc--KfFps/113/image.jpg",
+      "caption": "Studio 4",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/x_BgHwNNbjukppqitG44U_ybSpH1GpfL4zQgCGex1OM/113/image.jpg",
+      "caption": "",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/ARO5nObkfU4ps_jSvTw9K7nyijjiG3VayXTggQeIGio/113/image.jpg",
+      "caption": "",
+      "type": 33
+    }
+  ]
+}

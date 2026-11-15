@@ -1,0 +1,8 @@
+# Replace this with a query that works in the Model Playground.
+# $modelId is filled in by 02_matterport_test.py
+query ($modelId: ID!) {
+  model(id: $modelId) {
+    id
+    name
+  }
+}

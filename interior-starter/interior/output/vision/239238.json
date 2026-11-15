@@ -1,0 +1,102 @@
+{
+  "features": {
+    "step_free_entry": {
+      "value": null,
+      "confidence": 0.5,
+      "evidence": "The exterior entryway threshold is not visible in the photos.",
+      "photo": null
+    },
+    "wide_doorways": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "Interior doorways and hallway openings appear spacious and unobstructed.",
+      "photo": 3
+    },
+    "roll_in_or_walk_in_shower": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "No bathroom photos are provided.",
+      "photo": null
+    },
+    "bathtub_only": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "No bathroom photos are provided.",
+      "photo": null
+    },
+    "grab_bars": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "No bathroom photos are provided.",
+      "photo": null
+    },
+    "hard_flooring_throughout": {
+      "value": false,
+      "confidence": 0.9,
+      "evidence": "Carpet is visible in the adjacent bedroom through the open doorway.",
+      "photo": 3
+    },
+    "open_turning_space": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "The empty main living areas provide ample open turning space.",
+      "photo": 3
+    },
+    "kitchen_knee_clearance": {
+      "value": false,
+      "confidence": 0.9,
+      "evidence": "The kitchen pass-through counter has a solid base wall with no open knee clearance.",
+      "photo": 4
+    },
+    "lever_door_handles": {
+      "value": true,
+      "confidence": 0.9,
+      "evidence": "Interior doors visible in the hallway are equipped with lever-style handles.",
+      "photo": 3
+    },
+    "good_lighting_and_contrast": {
+      "value": true,
+      "confidence": 0.9,
+      "evidence": "Rooms feature bright ambient lighting and strong visual contrast between dark floors and light walls.",
+      "photo": 3
+    }
+  },
+  "cant_confirm": [
+    "step_free_entry",
+    "roll_in_or_walk_in_shower",
+    "bathtub_only",
+    "grab_bars"
+  ],
+  "photos": [
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/TeaoYJLIyc8WHUvMiLYpI0bPrPk56tcILrGYaNGHs2c/113/image.jpg",
+      "caption": "2BR, 2BA - 1019SF",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/WhIHCeyyw-NK7L-Q_EFlYqol-gth5H6k4vWs0_wokmU/113/image.jpg",
+      "caption": "2BR, 2BA - 1019SF",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/hT-vl5644wch6plPRcpqj9wuRo5Pi2buMui3zBIC5vI/113/image.jpg",
+      "caption": "2BR, 2BA - 1296SF",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/oZBMW_GvAMQ6LbTjjnu-ZhVpCmBTLq_HkYjbHL5VHR4/113/image.jpg",
+      "caption": "2BR, 2BA - 1296SF",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/60thvZpfcj1Y2YZ8jDTV0o1UuetC5QD6RsQu7Lt-wLA/113/image.jpg",
+      "caption": "Lobby",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/cWU27zhrCrgFqudgo6nhQ0-FpOzBtizcucj2VnZ0RSg/113/image.jpg",
+      "caption": "Billiard Room",
+      "type": 33
+    }
+  ]
+}

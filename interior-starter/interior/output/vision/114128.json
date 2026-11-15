@@ -1,0 +1,100 @@
+{
+  "features": {
+    "step_free_entry": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "Exterior entry and doorway thresholds are not visible in the provided photos.",
+      "photo": null
+    },
+    "wide_doorways": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "Doorway widths cannot be accurately verified or measured from photos.",
+      "photo": null
+    },
+    "roll_in_or_walk_in_shower": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "Photo 6 shows a standard bathtub with shower combo, not a roll-in or walk-in shower.",
+      "photo": 6
+    },
+    "bathtub_only": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "The tub in Photo 6 has a shower head mounted above it.",
+      "photo": 6
+    },
+    "grab_bars": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "No grab bars are installed around the bathtub/shower in Photo 6.",
+      "photo": 6
+    },
+    "hard_flooring_throughout": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "Wood-look hard plank flooring is installed throughout the living area, kitchen, and bedroom.",
+      "photo": 1
+    },
+    "open_turning_space": {
+      "value": true,
+      "confidence": 0.9,
+      "evidence": "The open layout in the kitchen, living room, and bedroom provides ample floor turning space.",
+      "photo": 1
+    },
+    "kitchen_knee_clearance": {
+      "value": false,
+      "confidence": 0.9,
+      "evidence": "The kitchen sink and main countertops feature solid base cabinets underneath without roll-under clearance.",
+      "photo": 2
+    },
+    "lever_door_handles": {
+      "value": false,
+      "confidence": 0.85,
+      "evidence": "The door in Photo 6 features a standard round doorknob.",
+      "photo": 6
+    },
+    "good_lighting_and_contrast": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "Bright overhead recessed lighting, window daylight, and vanity lights create good illumination and strong visual contrast.",
+      "photo": 1
+    }
+  },
+  "cant_confirm": [
+    "step_free_entry",
+    "wide_doorways"
+  ],
+  "photos": [
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/tqNFjqPmR0bAMC6h4G35AuXEaARa6JXXCU96MkkPj4c/113/image.jpg",
+      "caption": "2BR, 2BA - 960SF - Kitchen",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/tkSLLrG7Q4zBIuvim7mUpt5KVBMUW5qh5C53iB-WtSw/113/image.jpg",
+      "caption": "2BR, 2BA - 960SF - Kitchen",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/K28MJkoksGkWjnmdTCqTDNkLnXnOLOwInBuv-8YLxas/113/image.jpg",
+      "caption": "2BR, 2BA - 960SF - Living Room",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/m3gO_EOPPzhvMAIl0V6DbSb4qzvMyu7vSOOEXxr4tbM/113/image.jpg",
+      "caption": "2BR, 2BA - 960SF - Primary Bedroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/Wdw_3nrlzf3No6Ah7JMpW-KZ4et-l16ei1_KayCnltQ/113/image.jpg",
+      "caption": "2BR, 2BA - 960SF - Primary Bathroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/EyiL9jI3i85bfSrDokPRsKd0Vmauinw4H9qgNCXMl3A/113/image.jpg",
+      "caption": "2BR, 2BA - 960SF - Primary Bathroom",
+      "type": 33
+    }
+  ]
+}

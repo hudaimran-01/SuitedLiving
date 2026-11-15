@@ -1,0 +1,100 @@
+{
+  "features": {
+    "step_free_entry": {
+      "value": null,
+      "confidence": 0.5,
+      "evidence": "Exterior threshold of the primary entrance is not fully visible to confirm step-free access.",
+      "photo": null
+    },
+    "wide_doorways": {
+      "value": null,
+      "confidence": 0.5,
+      "evidence": "Doorways appear standard width and cannot be confirmed as wide without measurements.",
+      "photo": 4
+    },
+    "roll_in_or_walk_in_shower": {
+      "value": false,
+      "confidence": 0.9,
+      "evidence": "Bathroom reflection shows a standard bathtub rather than a roll-in or walk-in shower.",
+      "photo": 5
+    },
+    "bathtub_only": {
+      "value": true,
+      "confidence": 0.9,
+      "evidence": "Bathroom contains a standard bathtub visible in the mirror reflection.",
+      "photo": 5
+    },
+    "grab_bars": {
+      "value": false,
+      "confidence": 0.9,
+      "evidence": "No grab bars are installed near the toilet or bathtub area in the bathroom.",
+      "photo": 5
+    },
+    "hard_flooring_throughout": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "Tile flooring is installed across all visible living spaces, bedroom, and kitchen.",
+      "photo": 1
+    },
+    "open_turning_space": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "Empty rooms offer ample open floor space for wheelchair maneuvering.",
+      "photo": 4
+    },
+    "kitchen_knee_clearance": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "Kitchen sink and countertops feature solid base cabinets with no open knee clearance.",
+      "photo": 3
+    },
+    "lever_door_handles": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "Doors are fitted with traditional round doorknobs instead of lever handles.",
+      "photo": 1
+    },
+    "good_lighting_and_contrast": {
+      "value": true,
+      "confidence": 0.9,
+      "evidence": "Bright lighting fixtures and light-colored walls provide high visual clarity throughout.",
+      "photo": 4
+    }
+  },
+  "cant_confirm": [
+    "step_free_entry",
+    "wide_doorways"
+  ],
+  "photos": [
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/zYRDe9LSf1F3pangkYASX1rOG-OHcunFANEuuOS-Xgk/113/image.jpg",
+      "caption": "1BR, 1BA - 710SF - Living Room",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/3xHI-XK64uaAZMuXvsUpkhKhZ7F9b8bVdFXSG_ISDZk/113/image.jpg",
+      "caption": "1BR, 1BA - 710SF - Dining Room",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/Ck1nfZAzKuyxHHGrg57rQWMcabI7sVpbZVrpO_tI7qI/113/image.jpg",
+      "caption": "1BR, 1BA - 710SF - Kitchen",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/2yGhdTMGf6fjYnbAIiHnIFJE_elnxurolFSyAKkOdCM/113/image.jpg",
+      "caption": "1BR, 1BA - 710SF - Bedroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/3LEaaX7EyiNsG6v3Uc4ZSQfboVTsq2XmSwE1fnj0FzI/113/image.jpg",
+      "caption": "1BR, 1BA - 710SF - Bathroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/joot24gMOXDGJDW-yH96VBSJ1OIgs0h1TKB21dEhEMo/113/image.jpg",
+      "caption": "1BR, 1BA - 710SF - View",
+      "type": 33
+    }
+  ]
+}

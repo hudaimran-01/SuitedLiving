@@ -1,0 +1,100 @@
+{
+  "features": {
+    "step_free_entry": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "Exterior entrance and entry door threshold are not visible.",
+      "photo": null
+    },
+    "wide_doorways": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "Doorway dimensions cannot be confirmed without exact measurements.",
+      "photo": null
+    },
+    "roll_in_or_walk_in_shower": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "Photo 6 shows a bathtub with a step-over rim rather than a roll-in or walk-in shower.",
+      "photo": 6
+    },
+    "bathtub_only": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "Photo 6 shows a shower head mounted above the bathtub.",
+      "photo": 6
+    },
+    "grab_bars": {
+      "value": false,
+      "confidence": 0.9,
+      "evidence": "No grab bars are installed next to the toilet or inside the tub/shower area in Photo 6.",
+      "photo": 6
+    },
+    "hard_flooring_throughout": {
+      "value": false,
+      "confidence": 0.85,
+      "evidence": "Area rugs cover portions of the hard flooring in the main living space.",
+      "photo": 2
+    },
+    "open_turning_space": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "Photos 1 and 2 show a spacious, open floor plan in the living room and kitchen area.",
+      "photo": 1
+    },
+    "kitchen_knee_clearance": {
+      "value": true,
+      "confidence": 0.9,
+      "evidence": "Photo 1 shows an open breakfast bar counter with knee clearance underneath.",
+      "photo": 1
+    },
+    "lever_door_handles": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "Photos 3 and 6 show lever-style door handles on interior doors.",
+      "photo": 6
+    },
+    "good_lighting_and_contrast": {
+      "value": true,
+      "confidence": 0.9,
+      "evidence": "Rooms feature strong ambient and fixture lighting with clear contrast between surfaces.",
+      "photo": 1
+    }
+  },
+  "cant_confirm": [
+    "step_free_entry",
+    "wide_doorways"
+  ],
+  "photos": [
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/KeV5HaQg8DZG7MDSGtsXTjuOaMcZ3OQ3rVmbBjrKMFE/113/image.jpg",
+      "caption": "1BR, 1BA-Living Room",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/b-pty95FonslmXk40vTWuEmxG17Kgjda0m4YGgZNN3o/113/image.jpg",
+      "caption": "1BR, 1BA-Living Room",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/JjgnaxFB1aqjnNA7RF5HUB4NbWxnKP9Yll-bfVIGM-4/113/image.jpg",
+      "caption": "1BR, 1BA-Patio",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/qhdEk0xzxySTn_gHkbdccx7okn7-GfUMBDNUn638Skg/113/image.jpg",
+      "caption": "1BR, 1BA-Dining Room",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/uwhzut8PGhTM-qHphhrWMss3lSF-UE9yCyo3q1e7syw/113/image.jpg",
+      "caption": "1BR, 1BA-Closets",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/dc7jhgR94GDyrzKky4rrlTtNP77Pv7wx-wDeGJwqcq8/113/image.jpg",
+      "caption": "1BR, 1BA-Bathroom",
+      "type": 33
+    }
+  ]
+}

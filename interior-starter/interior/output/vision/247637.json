@@ -1,0 +1,100 @@
+{
+  "features": {
+    "step_free_entry": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "No building entrance or exterior threshold is shown in the photos.",
+      "photo": null
+    },
+    "wide_doorways": {
+      "value": null,
+      "confidence": 0.0,
+      "evidence": "Doorway widths cannot be precisely verified from photos alone.",
+      "photo": null
+    },
+    "roll_in_or_walk_in_shower": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "The bathroom contains a standard bathtub with high sidewalls rather than a walk-in or roll-in shower.",
+      "photo": 4
+    },
+    "bathtub_only": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "The bathroom features a standard bathtub with overhead shower, requiring a step over the tub rim.",
+      "photo": 4
+    },
+    "grab_bars": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "No grab bars are installed on the walls around the tub or toilet.",
+      "photo": 4
+    },
+    "hard_flooring_throughout": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "All visible rooms have hard flooring (wood in living/bedroom areas, tile in kitchen and bathroom).",
+      "photo": 1
+    },
+    "open_turning_space": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "The unfurnished layout offers ample open floor area for maneuvering.",
+      "photo": 2
+    },
+    "kitchen_knee_clearance": {
+      "value": false,
+      "confidence": 0.95,
+      "evidence": "Kitchen countertops and sink are built over standard closed base cabinets with no open knee space underneath.",
+      "photo": 6
+    },
+    "lever_door_handles": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "Visible interior doors are equipped with lever handles.",
+      "photo": 4
+    },
+    "good_lighting_and_contrast": {
+      "value": true,
+      "confidence": 0.9,
+      "evidence": "Rooms feature bright lighting from ceiling lights and skylights, with good contrast between white walls, wood floors, and dark countertops.",
+      "photo": 1
+    }
+  },
+  "cant_confirm": [
+    "step_free_entry",
+    "wide_doorways"
+  ],
+  "photos": [
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/FtC1boZUg0XG579VveS6DcRqWJVgre6bfhUnHpj63E8/113/image.jpg",
+      "caption": "2BR, 2BA - 1,079SF - KITCHEN",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/jPR5WQB81nWhkLsLvMy-uQO295BbDdEzo_pBOwy7O68/113/image.jpg",
+      "caption": "2BR, 2BA - 1,079SF - LIVING ROOM",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/vVqjDoimTP1tskiUXjfTMAXgaZlB6-q3iXTN60uGJZ8/113/image.jpg",
+      "caption": "2BR, 2BA - 1,079SF - Primary Bedroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/XK-a6lSqjEJbYYElE2D74wNhG81Ep2KaIwC3mUZZUiA/113/image.jpg",
+      "caption": "2BR, 2BA - 1,079SF - BATHROOM",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/6sMNCjoRTO2sQ1NIdnBpPMLlO2Ur79N2mEKR5AbzyuA/113/image.jpg",
+      "caption": "2BR, 2BA - 1,079SF - BEDROOM",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/OvsbFtjKBJSXh6QEOrz28bR0LQp92OQdjwUV3D2uwDk/113/image.jpg",
+      "caption": "2BR, 2BA - 1,233SF - KITCHEN",
+      "type": 33
+    }
+  ]
+}

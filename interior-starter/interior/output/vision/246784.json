@@ -1,0 +1,102 @@
+{
+  "features": {
+    "step_free_entry": {
+      "value": null,
+      "confidence": 0.5,
+      "evidence": "The exterior entrance path and doorway threshold are not visible in the photos.",
+      "photo": null
+    },
+    "wide_doorways": {
+      "value": null,
+      "confidence": 0.5,
+      "evidence": "Doorways are visible but exact clearance width cannot be confirmed without measurement.",
+      "photo": 2
+    },
+    "roll_in_or_walk_in_shower": {
+      "value": null,
+      "confidence": 0.5,
+      "evidence": "Only a partial reflection of the upper shower area is visible in the bathroom mirror.",
+      "photo": 6
+    },
+    "bathtub_only": {
+      "value": null,
+      "confidence": 0.5,
+      "evidence": "The base of the shower or bathtub area is not visible in the photos.",
+      "photo": 6
+    },
+    "grab_bars": {
+      "value": false,
+      "confidence": 0.9,
+      "evidence": "No grab bars are installed on the walls surrounding the toilet.",
+      "photo": 6
+    },
+    "hard_flooring_throughout": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "Light wood flooring spans all main living areas, and tile flooring is present in the bathroom, with no carpeting.",
+      "photo": 4
+    },
+    "open_turning_space": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "The open studio layout provides ample floor clearance for turning throughout the living, dining, and bedroom areas.",
+      "photo": 4
+    },
+    "kitchen_knee_clearance": {
+      "value": false,
+      "confidence": 0.9,
+      "evidence": "The kitchen counters, island, and sink are built over solid cabinets with no open knee space underneath.",
+      "photo": 2
+    },
+    "lever_door_handles": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "The interior door is fitted with a lever-style handle.",
+      "photo": 1
+    },
+    "good_lighting_and_contrast": {
+      "value": true,
+      "confidence": 0.95,
+      "evidence": "The apartment has bright ceiling lighting, large floor-to-ceiling windows, and strong contrast between dark furniture/doors and light walls/floors.",
+      "photo": 3
+    }
+  },
+  "cant_confirm": [
+    "step_free_entry",
+    "wide_doorways",
+    "roll_in_or_walk_in_shower",
+    "bathtub_only"
+  ],
+  "photos": [
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/Hhf0zNqBfgLUf68jCbPjrG2_ve58MGzfeKE1rwYElGg/113/image.jpg",
+      "caption": "Kitchen",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/rCo_4r5Hbxu1gQMuPrVAG8ugJ4XkmD-xeRT2NhydbB8/113/image.jpg",
+      "caption": "Kitchen",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/0bR5WXDvwezzW1xRWZSR-N9XKYLgd3V3PWhdVPM6r3o/113/image.jpg",
+      "caption": "Living Room and Bedroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/9tL7v3SAkFBQOjt2UlI49J9LkP6PLmWKhKejZ2JQsVU/113/image.jpg",
+      "caption": "Living Room and Bedroom",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/KRE9vclWMJf_7NGFvZ-zdCTrgZp3hskc58rf-kFK48E/113/image.jpg",
+      "caption": "Living Room",
+      "type": 33
+    },
+    {
+      "url": "https://ahprd1cdn.csgpimgs.com/i2/dlnl4d6j-FUCGDo1xXjNeugSH2kw_05-ggPVt3VJ30k/113/image.jpg",
+      "caption": "Bathroom",
+      "type": 33
+    }
+  ]
+}
