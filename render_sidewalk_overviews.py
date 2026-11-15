@@ -232,8 +232,6 @@ def render_property(prop_cfg, root_dir: Path):
         (-radius_m + 15, radius_m - 150, -radius_m + 150, radius_m - 15),
         # Bottom-Left Scale Bar
         (-radius_m + 15, -radius_m + 15, -radius_m + 320, -radius_m + 110),
-        # Bottom-Right Legend
-        (radius_m - 480, -radius_m + 15, radius_m - 15, -radius_m + 200),
         # Central Apartment Location Clearance
         (-90, -90, 90, 90),
     ]
@@ -347,18 +345,6 @@ def render_property(prop_cfg, root_dir: Path):
         ha="right", va="top", zorder=25,
         bbox=dict(boxstyle="round,pad=0.45", facecolor="#F3EEE4", edgecolor=zone_color, lw=2.0, alpha=0.98)
     )
-
-    # Condensed Legend (Bottom Right)
-    legend_handles = [
-        plt.Line2D([0], [0], color=COLOR_HIGH, lw=3.6, ls="-", label="Sidewalk Score ≥ 75%: High (ADA Curb Ramps, Step-Free)"),
-        plt.Line2D([0], [0], color=COLOR_MODERATE, lw=3.6, ls="-", label="Sidewalk Score 50-74%: Moderate (Minor Slope / Seams)"),
-        plt.Line2D([0], [0], color=COLOR_BARRIER, lw=3.6, ls="-", label="Sidewalk Score < 50%: Barrier Warning (Missing Ramp)"),
-        plt.Line2D([0], [0], marker="o", color="#0077B6", markeredgecolor="#FFFFFF", markersize=8, ls="", label="Verified Destinations (Retail, Medical, Parking)"),
-    ]
-
-    leg = ax.legend(handles=legend_handles, loc="lower right", framealpha=0.96, fontsize=8.2,
-                    title="Sidewalk Access Scores", title_fontsize=8.8, edgecolor="#D9D0C0")
-    leg.get_title().set_fontweight("bold")
 
     # Scale bar in lower left
     scale_len = 200
