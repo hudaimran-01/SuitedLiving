@@ -91,7 +91,7 @@ export function findingFor(listing, checkId) {
     source: "None",
     scene: listing.scene,
     title: "No evidence is recorded for this requirement",
-    detail: "This sample file does not have a note for that requirement.",
+    detail: "This listing does not have a note for that requirement.",
     ask: "Can you confirm this in person or with a measured plan?",
   };
 }

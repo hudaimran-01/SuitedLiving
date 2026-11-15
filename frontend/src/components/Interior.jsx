@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  INTERIOR_BUILDING_COUNT,
   INTERIOR_DISCLAIMER,
   INTERIOR_PROPERTIES,
   coverageSentence,
@@ -73,7 +72,6 @@ function InteriorPhoto({ photo, onFail }) {
 export function InteriorHomes({ needIds = [] }) {
   const homes = rankInteriors(INTERIOR_PROPERTIES, needIds);
   const ranked = interiorView(homes[0], needIds).sortScore != null;
-  const omitted = INTERIOR_BUILDING_COUNT - homes.length;
 
   return (
     <section className="interior-section" aria-labelledby="interior-title">
@@ -81,10 +79,7 @@ export function InteriorHomes({ needIds = [] }) {
         <p className="eyebrow">Interior photo scores</p>
         <h2 id="interior-title">{homes.length} apartments scored from photos</h2>
         <p className="dek">{orderLine(needIds)}</p>
-        <p className="fine">
-          {INTERIOR_DISCLAIMER} {omitted.toLocaleString("en-US")} other buildings in the score file have no photo
-          analysis, so they stay off this list.
-        </p>
+        <p className="fine">{INTERIOR_DISCLAIMER}</p>
       </div>
       <div className="cards">
         {homes.map((home, index) => {

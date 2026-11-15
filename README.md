@@ -4,7 +4,7 @@ Shared repo for the HackPrinceton project.
 
 ## Layout
 
-- `frontend/` holds the InsideOut web app. Run instructions are in `frontend/README.md`.
+- `frontend/` holds the SuitedLiving web app. Run instructions are in `frontend/README.md`.
 - `backend/` holds the API and scripts.
 - `.env.example` lists environment variable names. Copy it to `.env` locally. Do not commit secrets.
 

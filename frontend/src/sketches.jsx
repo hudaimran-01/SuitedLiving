@@ -4,7 +4,7 @@ function Frame({ children }) {
       <rect width="800" height="480" fill="#efe6d4" />
       <rect y="332" width="800" height="148" fill="#ddd4c3" />
       <text x="28" y="36" fill="#6d655b" fontSize="16" fontFamily="Outfit, system-ui, sans-serif" letterSpacing="1.5">
-        SAMPLE SKETCH
+        LISTING SKETCH
       </text>
       {children}
     </g>
@@ -231,7 +231,7 @@ function StreetGap() {
         No curb ramp
       </text>
       <text x="230" y="220" fill="#5e584e" fontSize="18" fontFamily="Outfit, system-ui, sans-serif">
-        Sample corner, not a city map
+        Corner, not a city map
       </text>
     </Frame>
   );
@@ -243,7 +243,7 @@ function StreetHill() {
       <polygon points="40,360 760,180 760,430 40,430" fill="#d9d2c3" />
       <polygon points="40,310 760,140 760,190 40,360" fill="#c4b8a4" />
       <text x="250" y="250" fill="#1a1714" fontSize="26" fontFamily="Fraunces, Georgia, serif">
-        Steep sample block
+        Steep block
       </text>
     </Frame>
   );

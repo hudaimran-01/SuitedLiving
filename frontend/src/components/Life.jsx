@@ -25,7 +25,7 @@ export function LifeAround({ listingId, profileIds, nearby, vexcelSrc }) {
         <p>You wrote “{focus.query.text}”.</p>
         <p>
           {focus.hasPlace
-            ? "Sample notes can check a grocery, a pharmacy, or a clinic. This request is not covered, so no route is filled in."
+            ? "A grocery, a pharmacy, or a clinic can be checked from here. This request does not match those, so no route is filled in."
             : "Nearby routes are not in the notes for this home yet."}
         </p>
       </section>

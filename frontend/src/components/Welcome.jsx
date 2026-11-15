@@ -1,6 +1,6 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
-import { lifeReport } from "../life.js";
 import { findingFor, money } from "../logic.js";
+import { aerialReport, propertyMediaFor } from "../propertyMedia.js";
 import { ListingPhoto } from "./ListingPhoto.jsx";
 import { Status } from "./Status.jsx";
 
@@ -16,7 +16,9 @@ export function Welcome({ listings = LISTINGS, onDemo }) {
     profile: ACCESS_NEEDS.find((item) => item.id === profileId).label,
     ...findingFor(home, checkId),
   }));
-  const grocery = lifeReport(home.id, ["wheelchair"]).sections[0]?.trips.find((item) => item.id === "grocery");
+  const grocery = aerialReport(propertyMediaFor(home.id), "a grocery store").places.find(
+    (item) => item.category === "Retail Store",
+  );
 
   return (
     <div className="welcome">
@@ -26,24 +28,24 @@ export function Welcome({ listings = LISTINGS, onDemo }) {
           <h1 id="page-title">Know before you visit.</h1>
           <p className="dek">
             Home search that starts from how you move, see, and hear. Say what you need
-            nearby in your own words. InsideOut reads the home, then that trip, and separates what
-            it observed, what might block you, and what it still cannot tell.
+            nearby. SuitedLiving reads the home, then that trip, and separates what it
+            observed, what might block you, and what to confirm.
           </p>
           <div className="actions">
             <a className="button primary" href="#/discover">
               Browse homes
             </a>
             <a className="button" href="#/discover" onClick={onDemo}>
-              Try the sample search
+              Wheelchair search
             </a>
           </div>
         </div>
-        <article className="sheet" aria-label={`Sample report for ${home.name}`}>
+        <article className="sheet" aria-label={`Preview for ${home.name}`}>
           <div className="plate">
             <ListingPhoto listing={home} />
           </div>
           <div className="sheet-body">
-            <p className="eyebrow">Sample report</p>
+            <p className="eyebrow">On the list</p>
             <h2>{home.name}</h2>
             <p className="sheet-meta">
               {home.place} · {money(home.price)} for sale
@@ -59,8 +61,8 @@ export function Welcome({ listings = LISTINGS, onDemo }) {
               {grocery ? (
                 <li>
                   <span className="source">Around</span>
-                  <Status status={grocery.status} />
-                  <span>{grocery.title}</span>
+                  <Status status="unknown" />
+                  <span>{grocery.text}</span>
                 </li>
               ) : null}
             </ul>
@@ -73,7 +75,7 @@ export function Welcome({ listings = LISTINGS, onDemo }) {
           <span>1</span>
           <div>
             <h2>Filter the homes</h2>
-            <p>Wheelchair, low vision, hard of hearing, stairs and hills, or any mix. Add a budget, a bedroom count, and what you need nearby. Leave the filters empty to see every sample home.</p>
+            <p>Wheelchair, low vision, hard of hearing, stairs and hills, or any mix. Add a budget, a bedroom count, and what you need nearby. Leave the filters empty to see every home.</p>
           </div>
         </li>
         <li>

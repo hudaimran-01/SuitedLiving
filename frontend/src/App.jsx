@@ -61,12 +61,12 @@ function useListings() {
 export default function App() {
   const route = useRoute();
   const [prefs, setPrefs] = useSessionState(
-    "insideout-prefs",
+    "suitedliving-prefs",
     { maxPrice: 2000000, beds: null, needs: [], nearby: "" },
     sanitizePrefs,
   );
   const listings = useListings();
-  const [saved, setSaved] = useSessionState("insideout-saved", [], (value) => {
+  const [saved, setSaved] = useSessionState("suitedliving-saved", [], (value) => {
     const ids = new Set(LISTINGS.map((listing) => listing.id));
     return Array.isArray(value) ? value.filter((id) => ids.has(id)) : [];
   });
@@ -77,13 +77,13 @@ export default function App() {
     const listing = listings.find((item) => item.id === route.id);
     const scored = interiorProperty(route.id);
     const titles = {
-      welcome: "InsideOut",
-      discover: "Homes · InsideOut",
-      compare: "Compare · InsideOut",
-      home: listing ? `${listing.name} · InsideOut` : "Home · InsideOut",
-      interior: scored ? `${scored.name} · InsideOut` : "Interior score · InsideOut",
+      welcome: "SuitedLiving",
+      discover: "Homes · SuitedLiving",
+      compare: "Compare · SuitedLiving",
+      home: listing ? `${listing.name} · SuitedLiving` : "Home · SuitedLiving",
+      interior: scored ? `${scored.name} · SuitedLiving` : "Interior score · SuitedLiving",
     };
-    document.title = titles[route.name] || "InsideOut";
+    document.title = titles[route.name] || "SuitedLiving";
     window.scrollTo(0, 0);
     const heading = document.getElementById("page-title");
     if (!heading) return;
