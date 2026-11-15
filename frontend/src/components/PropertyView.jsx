@@ -110,28 +110,24 @@ export function AerialNearby({ media, nearby }) {
           {ps.audit_breakdown ? (
             <div className="sidewalk-audit-grid">
               <div className="sidewalk-audit-item">
-                <span className="sidewalk-audit-icon">♿</span>
                 <div>
                   <strong>Sidewalk Continuity:</strong>
                   <p>{ps.audit_breakdown.continuous_sidewalks || `${ps.curb_ramp_percentage}% continuous`}</p>
                 </div>
               </div>
               <div className="sidewalk-audit-item">
-                <span className="sidewalk-audit-icon">🏁</span>
                 <div>
                   <strong>Curb Ramps & Cuts:</strong>
                   <p>{ps.audit_breakdown.curb_ramps_status || "Standard ADA curb ramps"}</p>
                 </div>
               </div>
               <div className="sidewalk-audit-item">
-                <span className="sidewalk-audit-icon">📐</span>
                 <div>
                   <strong>Surface & Cross-Slope:</strong>
                   <p>{ps.audit_breakdown.surface_condition || "Level concrete with standard slope"}</p>
                 </div>
               </div>
               <div className="sidewalk-audit-item">
-                <span className="sidewalk-audit-icon">↔️</span>
                 <div>
                   <strong>Pathway Clearance:</strong>
                   <p>{ps.audit_breakdown.path_clearance || "Meets 36-inch wheelchair clearance"}</p>
@@ -162,7 +158,7 @@ export function AerialNearby({ media, nearby }) {
                 className="sidewalk-pill"
                 style={{ backgroundColor: place.accessColor || (place.accessScorePct >= 75 ? "#10B981" : "#F59E0B") }}
               >
-                ♿ Sidewalk Access: {place.accessScorePct}%
+                Sidewalk Access: {place.accessScorePct}%
               </span>
             ) : null}
           </li>

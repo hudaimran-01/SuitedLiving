@@ -388,18 +388,12 @@ def generate_overview_for_listing(prop_info, output_dir=None):
     fig, ax = plt.subplots(figsize=(14, 14), dpi=160)
     ax.imshow(ortho_img, extent=[-radius_m, radius_m, -radius_m, radius_m])
 
-    # Distance rings
+    # Distance rings (clean dashed circles without floating text boxes)
     ring_dists = [250, 500, 750] if radius_m <= 900 else [250, 500, 750, 1000]
     for r_dist in ring_dists:
         if r_dist < radius_m:
-            ring = Circle((0, 0), r_dist, fill=False, edgecolor="#FFFFFF", linestyle="--", linewidth=1.2, alpha=0.6)
+            ring = Circle((0, 0), r_dist, fill=False, edgecolor="#FFFFFF", linestyle="--", linewidth=1.2, alpha=0.55)
             ax.add_patch(ring)
-            ax.text(
-                r_dist * 0.707, r_dist * 0.707, f"{r_dist}m ({round(r_dist * 3.28084)}ft)",
-                color="#FFFFFF", fontsize=8.5, fontweight="bold",
-                ha="center", va="center",
-                bbox=dict(boxstyle="round,pad=0.25", facecolor="#111111", alpha=0.7, edgecolor="none")
-            )
 
     # 2. Draw 500m Pedestrian Accessibility Radius Band
     prop_id = str(prop_info.get("id", ""))
@@ -416,37 +410,15 @@ def generate_overview_for_listing(prop_info, output_dir=None):
     ped_outline = Circle((0, 0), 500, fill=False, edgecolor=zone_color, linewidth=2.0, linestyle="--", alpha=0.85, zorder=5)
     ax.add_patch(ped_outline)
 
-    # 500m pedestrian zone label
-    ax.text(
-        0, -475,
-        f"500m Pedestrian Zone · Access Score: {neighborhood_pct}% ({neighborhood_grade})",
-        color="#FFFFFF", fontsize=8.4, fontweight="bold", ha="center", va="center", zorder=6,
-        bbox=dict(boxstyle="round,pad=0.35", facecolor="#0F172A", edgecolor=zone_color, lw=1.5, alpha=0.92)
-    )
-
-    # (Note: Initial apartment marker is already baked into base orthophoto, no duplicate added)
-
-    # Draw Sidewalk Routes & Amenities
-    used_angles = []
+    # 3. Draw Sidewalk Routes
     for poi in all_pois:
-        dx, dy = poi["dx"], poi["dy"]
-        dist_m = poi["distance_m"]
-        dist_ft = poi["distance_ft"]
-        walk_min = poi["walk_time_min"]
-        cat = poi["category"]
-        col = poi["color"]
-        edge_col = poi["edge_color"]
-        fill_col = poi["fill_color"]
         coords = poi["coordinates"]
-
-        # Score route with Project Sidewalk
         scored = score_pedestrian_route(coords, base_score=ps_baseline["neighborhood_score"], listing_id=prop_id)
         poi["project_sidewalk"] = scored
         poi["access_score"] = scored["overall_score"]
         poi["access_score_pct"] = scored["score_pct"]
         poi["access_grade"] = scored["grade"]
 
-        # Draw each street segment colored by Project Sidewalk Access Score
         segments = scored.get("segments", [])
         if not segments:
             segments = [{"coordinates": coords, "color": scored.get("color", COLOR_HIGH)}]
@@ -462,37 +434,106 @@ def generate_overview_for_listing(prop_info, output_dir=None):
             # Project Sidewalk colored segment line
             ax.plot(s_xs, s_ys, color=seg["color"], linewidth=3.6, alpha=0.98, solid_capstyle="round", zorder=9)
 
-        # Destination POI circle & dot
+    # 4. Cluster Co-located / Nearby Destinations to Eliminate Overlaps
+    clusters = []
+    for poi in all_pois:
+        dx, dy = poi["dx"], poi["dy"]
+        matched = False
+        for cl in clusters:
+            if math.hypot(dx - cl["dx"], dy - cl["dy"]) < 50:
+                cl["pois"].append(poi)
+                matched = True
+                break
+        if not matched:
+            clusters.append({
+                "dx": dx,
+                "dy": dy,
+                "pois": [poi]
+            })
+
+    # Collision-Free Placement Engine
+    placed_rects = [
+        (radius_m - 380, radius_m - 170, radius_m - 15, radius_m - 15),
+        (-radius_m + 15, radius_m - 150, -radius_m + 150, radius_m - 15),
+        (-radius_m + 15, -radius_m + 15, -radius_m + 320, -radius_m + 110),
+        (radius_m - 480, -radius_m + 15, radius_m - 15, -radius_m + 200),
+        (-90, -90, 90, 90),
+    ]
+
+    for cl in clusters:
+        placed_rects.append((cl["dx"] - 45, cl["dy"] - 45, cl["dx"] + 45, cl["dy"] + 45))
+
+    for cl in clusters:
+        dx, dy = cl["dx"], cl["dy"]
+        p_list = cl["pois"]
+
+        distinct_cats = list(dict.fromkeys(p["category"] for p in p_list))
+        if len(distinct_cats) == 1:
+            cat_label = distinct_cats[0]
+        elif len(distinct_cats) == 2:
+            clean_names = [c.replace(" Place", "").replace(" Store", "") for c in distinct_cats]
+            cat_label = f"{clean_names[0]} & {clean_names[1]}"
+        else:
+            cat_label = f"{distinct_cats[0]} & More"
+
+        min_walk = min(p["walk_time_min"] for p in p_list)
+        avg_score = round(sum(p["access_score_pct"] for p in p_list) / len(p_list))
+        primary_col = p_list[0]["color"]
+        fill_col = p_list[0]["fill_color"]
+        edge_col = p_list[0]["edge_color"]
+
         circle_radius = max(24, radius_m * 0.028)
         poi_circle = Circle((dx, dy), circle_radius, fill=True, facecolor=fill_col, edgecolor=edge_col, linewidth=2.0, alpha=0.45, zorder=10)
         ax.add_patch(poi_circle)
-        ax.scatter([dx], [dy], s=120, marker="o", color=col, edgecolors="#FFFFFF", linewidths=1.8, zorder=12)
+        ax.scatter([dx], [dy], s=120, marker="o", color=primary_col, edgecolors="#FFFFFF", linewidths=1.8, zorder=12)
 
-        # Clean, condensed 2-line callout label (non-overlapping)
-        rad_angle = math.atan2(dy, dx)
-        for prev_a in used_angles:
-            if abs(rad_angle - prev_a) < 0.25:
-                rad_angle += 0.35
-        used_angles.append(rad_angle)
+        label_text = f"{cat_label} ({min_walk} min)\nSidewalk Access: {avg_score}%"
 
-        offset_dist = 75
-        text_dx = offset_dist * math.cos(rad_angle)
-        text_dy = offset_dist * math.sin(rad_angle)
-        ha = "left" if text_dx >= 0 else "right"
-        va = "bottom" if text_dy >= 0 else "top"
-        label_text = f"{cat} · ~{walk_min}m\n♿ {scored['score_pct']}% Access"
+        ew = 195
+        eh = 68
+        base_angle = math.atan2(dy, dx)
+        placed_pos = None
+
+        for dist in [95, 125, 160, 200, 245, 290]:
+            if placed_pos:
+                break
+            angle_offsets = [0, 0.35, -0.35, 0.7, -0.7, 1.05, -1.05, 1.4, -1.4, 1.75, -1.75, 2.1, -2.1, 2.5, -2.5, math.pi]
+            for aoff in angle_offsets:
+                ang = base_angle + aoff
+                cand_x = dx + dist * math.cos(ang)
+                cand_y = dy + dist * math.sin(ang)
+                rx0 = cand_x - ew / 2
+                rx1 = cand_x + ew / 2
+                ry0 = cand_y - eh / 2
+                ry1 = cand_y + eh / 2
+
+                if rx0 < -radius_m + 30 or rx1 > radius_m - 30 or ry0 < -radius_m + 30 or ry1 > radius_m - 30:
+                    continue
+
+                collision = False
+                for px0, py0, px1, py1 in placed_rects:
+                    if not (rx1 < px0 or rx0 > px1 or ry1 < py0 or ry0 > py1):
+                        collision = True
+                        break
+                if not collision:
+                    placed_pos = (cand_x, cand_y)
+                    placed_rects.append((rx0, ry0, rx1, ry1))
+                    break
+
+        if not placed_pos:
+            placed_pos = (dx + 110 * math.cos(base_angle), dy + 110 * math.sin(base_angle))
 
         ax.annotate(
             label_text,
             xy=(dx, dy),
-            xytext=(text_dx, text_dy),
-            textcoords="offset points",
-            fontsize=8.6,
+            xytext=placed_pos,
+            textcoords="data",
+            fontsize=8.5,
             fontweight="bold",
             color="#0F172A",
-            ha=ha, va=va, zorder=17,
-            bbox=dict(boxstyle="round,pad=0.35", facecolor="#FFFFFF", edgecolor=scored["color"], lw=1.8, alpha=0.96),
-            arrowprops=dict(arrowstyle="->", color=scored["color"], lw=1.6, shrinkA=0, shrinkB=3)
+            ha="center", va="center", zorder=17,
+            bbox=dict(boxstyle="round,pad=0.38", facecolor="#F3EEE4", edgecolor=p_list[0]["project_sidewalk"]["color"], lw=1.9, alpha=0.98),
+            arrowprops=dict(arrowstyle="->", color=p_list[0]["project_sidewalk"]["color"], lw=1.6, shrinkA=4, shrinkB=6)
         )
 
     # Frame & Title
@@ -517,7 +558,7 @@ def generate_overview_for_listing(prop_info, output_dir=None):
         radius_m - 25, radius_m - 25, scorecard_text,
         color="#0F172A", fontsize=8.6, fontweight="bold",
         ha="right", va="top", zorder=25,
-        bbox=dict(boxstyle="round,pad=0.45", facecolor="#FFFDF8", edgecolor=zone_color, lw=2.0, alpha=0.96)
+        bbox=dict(boxstyle="round,pad=0.45", facecolor="#F3EEE4", edgecolor=zone_color, lw=2.0, alpha=0.98)
     )
 
     # Condensed Legend in lower right corner
