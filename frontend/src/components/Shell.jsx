@@ -21,6 +21,13 @@ export function Shell({ route, savedCount, lowVision, children }) {
               Compare
               {savedCount > 0 ? <span className="nav-count">{savedCount}</span> : null}
             </a>
+            <a
+              className="nav-desk"
+              href="#/admin"
+              aria-current={route.name === "admin" ? "page" : undefined}
+            >
+              Listing desk
+            </a>
           </nav>
         </div>
       </header>
@@ -38,7 +45,10 @@ export function Shell({ route, savedCount, lowVision, children }) {
             SuitedLiving reads the home and the block, and leaves gaps visible. It does not certify
             that either is accessible.
           </p>
-          <p>Homes for sale in Houston and Los Angeles.</p>
+          <p>
+            Homes for sale in Houston and Los Angeles.{" "}
+            <a href="#/admin">Listing desk</a>
+          </p>
         </div>
       </footer>
     </div>
