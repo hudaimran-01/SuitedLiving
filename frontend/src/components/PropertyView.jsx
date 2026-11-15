@@ -120,9 +120,9 @@ export function AerialNearby({ media, nearby }) {
       <Photo shot={neighborhood} onOpen={setZoom} />
       <SidewalkScore score={report.projectSidewalk} />
       {report.places.length > 0 ? (
-        <div className="panel sidewalk-places">
+        <div className="panel">
           <h3>Nearby walks</h3>
-          <ul className="sidewalk-places">
+          <ul className="sidewalk-place-list">
             {report.places.map((place) => (
               <li key={place.category}>
                 <span>{place.text}</span>

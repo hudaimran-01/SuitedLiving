@@ -1141,26 +1141,24 @@ input[type="range"] { width: 100%; accent-color: var(--pine); margin-top: 0.7rem
 .sidewalk-audit dt { font-weight: 600; }
 .sidewalk-audit dd { margin: 0.15rem 0 0; color: var(--ink-soft); }
 
-.sidewalk-legend, .sidewalk-places {
+.sidewalk-legend, .sidewalk-place-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0.15rem 0 0;
   display: grid;
-  gap: 0.45rem;
+  gap: 0.7rem;
 }
 
-.sidewalk-legend li, .sidewalk-places li {
+.sidewalk-legend li, .sidewalk-place-list li {
   display: flex;
-  gap: 0.55rem;
-  align-items: baseline;
+  gap: 0.7rem 1rem;
+  align-items: center;
   flex-wrap: wrap;
 }
 
 .sidewalk-legend li { justify-content: flex-start; }
 
-.sidewalk-places li { justify-content: space-between; }
-
-.sidewalk-places { margin-top: 0.7rem; }
+.sidewalk-place-list li { justify-content: space-between; }
 
 .contact-card { width: min(32rem, 100%); padding: 1.2rem 1.25rem 1.3rem; }
 
