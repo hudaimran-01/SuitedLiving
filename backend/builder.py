@@ -99,6 +99,35 @@ def _agent_notes(l, limit=3, max_len=180):
             break
     return out
 
+def _phone(raw):
+    digits = re.sub(r"\D", "", raw or "")
+    if len(digits) == 11 and digits.startswith("1"):
+        digits = digits[1:]
+    if len(digits) == 10:
+        return f"({digits[:3]}) {digits[3:6]}-{digits[6:]}"
+    text = (raw or "").strip()
+    return text or None
+
+
+def _manager(listing):
+    agents = listing.get("agents") or []
+    if not agents:
+        return None
+    agent = agents[0]
+    name = " ".join(part for part in (agent.get("firstName"), agent.get("lastName")) if part).strip()
+    phone = _phone(agent.get("phoneNumber")) or _phone(agent.get("officePhoneNumber"))
+    email = (agent.get("email") or "").strip()
+    if not name and not phone and not email:
+        return None
+    return {
+        "name": name,
+        "company": (agent.get("companyName") or "").strip(),
+        "phone": phone or "",
+        "email": email,
+        "officePhone": _phone(agent.get("officePhoneNumber")) or "",
+    }
+
+
 def build_listing(l, rec, model_id):
     """One kit listing + its features record -> the frontend's Listing shape (a plain dict)."""
     p = l.get("property") or {}
@@ -116,6 +145,7 @@ def build_listing(l, rec, model_id):
         "sqft": p.get("sqftMin"),
         "floor": _floor(l, rec),
         "agentNotes": _agent_notes(l),
+        "manager": _manager(l),
         "available": _listed(l),
         "scene": LISTED,
         "images": _images(l, model_id),

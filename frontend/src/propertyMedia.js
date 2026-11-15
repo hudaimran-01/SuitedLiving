@@ -56,6 +56,7 @@ function folderMedia(id, folder, nearby, options = {}) {
     id,
     neighborhood: `/property_media/vexcel/${encodeURI(folder)}/overview_map.jpg`,
     amenities: nearby.amenities,
+    projectSidewalk: nearby.project_sidewalk || null,
     scanNotes: options.scanNotes || [],
   };
 }
@@ -130,6 +131,14 @@ export function compareAround(listingId, nearbyText) {
   });
 }
 
+export function accessTone(score) {
+  const value = Number(score);
+  if (!Number.isFinite(value)) return null;
+  if (value >= 75) return "observed";
+  if (value >= 50) return "unknown";
+  return "barrier";
+}
+
 export function aerialReport(media, nearbyText) {
   const query = interpretNearby(nearbyText || "");
   const closest = closestAmenities(media?.amenities);
@@ -143,7 +152,12 @@ export function aerialReport(media, nearbyText) {
   ];
   return {
     query,
-    places: ordered.map((item) => ({ category: item.category, text: placeText(item) })),
+    places: ordered.map((item) => ({
+      category: item.category,
+      text: placeText(item),
+      accessScorePct: item.access_score_pct ?? item.project_sidewalk?.score_pct ?? null,
+    })),
+    projectSidewalk: media?.projectSidewalk || null,
     showGroceryMatch: query.intents.includes("grocery") || query.intents.includes("pharmacy"),
     showClinic: query.intents.includes("clinic"),
   };

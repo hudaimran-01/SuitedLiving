@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { aerialReport } from "../propertyMedia.js";
+import { accessTone, aerialReport } from "../propertyMedia.js";
 
 function Zoom({ shot, onClose }) {
   useEffect(() => {
@@ -49,6 +49,51 @@ export function ScanNotes({ media }) {
   );
 }
 
+function SidewalkScore({ score }) {
+  if (!score || score.score_pct == null) return null;
+  const tone = accessTone(score.score_pct);
+  const audit = score.audit_breakdown || {};
+  const rows = [
+    ["Sidewalk continuity", audit.continuous_sidewalks],
+    ["Curb ramps", audit.curb_ramps_status],
+    ["Surface", audit.surface_condition],
+    ["Clearance", audit.path_clearance],
+  ].filter(([, text]) => text);
+  return (
+    <section className="panel sidewalk-card" aria-labelledby="sidewalk-title">
+      <div className="sidewalk-top">
+        <p className={`sidewalk-number ${tone || ""}`}>
+          {score.score_pct}%
+          <span>Sidewalk access</span>
+        </p>
+        <div>
+          <h3 id="sidewalk-title">{score.grade} on this block</h3>
+          {score.description ? <p className="meta">{score.description}</p> : null}
+        </div>
+      </div>
+      {score.why_rating ? <p>{score.why_rating}</p> : null}
+      {rows.length > 0 ? (
+        <dl className="sidewalk-audit">
+          {rows.map(([label, text]) => (
+            <div key={label}>
+              <dt>{label}</dt>
+              <dd>{text}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : null}
+      <ul className="sidewalk-legend">
+        <li><span className="status observed">75% and up</span> Continuous ramps and a step-free walk</li>
+        <li><span className="status unknown">50 to 74%</span> Minor slope or surface wear</li>
+        <li><span className="status barrier">Under 50%</span> A missing ramp or an obstacle</li>
+      </ul>
+      <p className="fine">
+        Project Sidewalk, University of Washington Makeability Lab. This scores the block, not the doorway.
+      </p>
+    </section>
+  );
+}
+
 export function AerialNearby({ media, nearby }) {
   const report = aerialReport(media, nearby);
   const [zoom, setZoom] = useState(null);
@@ -73,11 +118,24 @@ export function AerialNearby({ media, nearby }) {
       <h2 id="aerial-title">Around this home</h2>
       <p className="meta">{lead}</p>
       <Photo shot={neighborhood} onOpen={setZoom} />
-      <ul className="check-list plain">
-        {report.places.map((place) => (
-          <li key={place.category}>{place.text}</li>
-        ))}
-      </ul>
+      <SidewalkScore score={report.projectSidewalk} />
+      {report.places.length > 0 ? (
+        <div className="panel sidewalk-places">
+          <h3>Nearby walks</h3>
+          <ul className="sidewalk-places">
+            {report.places.map((place) => (
+              <li key={place.category}>
+                <span>{place.text}</span>
+                {place.accessScorePct != null ? (
+                  <span className={`status ${accessTone(place.accessScorePct)}`}>
+                    Sidewalk {place.accessScorePct}%
+                  </span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
       <Zoom shot={zoom} onClose={() => setZoom(null)} />
     </section>
   );

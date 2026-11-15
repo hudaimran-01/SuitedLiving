@@ -50,6 +50,20 @@ export const DEMO_PREFS = {
   city: "",
 };
 
+function normalizeManager(manager) {
+  if (!manager || typeof manager !== "object") return null;
+  const text = (value) => (typeof value === "string" ? value.trim() : "");
+  const next = {
+    name: text(manager.name),
+    company: text(manager.company),
+    phone: text(manager.phone),
+    email: text(manager.email),
+    officePhone: text(manager.officePhone),
+  };
+  if (!next.name && !next.phone && !next.email) return null;
+  return next;
+}
+
 function normalizePhoto(photo) {
   if (!photo) return null;
   if (typeof photo === "string") return { src: photo, label: "Listing photo", detail: "Listing photo", note: null };
@@ -69,6 +83,7 @@ export function normalizeListing(listing) {
     ...listing,
     unit: unit || null,
     agentNotes: Array.isArray(listing.agentNotes) ? listing.agentNotes.filter(Boolean) : [],
+    manager: normalizeManager(listing.manager),
     price: Number(listing.price),
     beds: Number(listing.beds),
     baths: Number(listing.baths),

@@ -7,6 +7,7 @@ import { AerialNearby, ScanNotes } from "./PropertyView.jsx";
 import { ListingPlan } from "./ListingPlan.jsx";
 import { Tour } from "./Tour.jsx";
 import { propertyMediaFor } from "../propertyMedia.js";
+import { ContactManager } from "./Contact.jsx";
 import { Status } from "./Status.jsx";
 
 const GROUPS = [
@@ -101,6 +102,7 @@ export function Report({ homeId, listings = LISTINGS, prefs, saved, onToggleSave
           >
             {savedOn ? "Saved" : "Save to compare"}
           </button>
+          <ContactManager manager={listing.manager} />
         </div>
       </header>
 

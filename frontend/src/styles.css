@@ -1062,7 +1062,8 @@ input[type="range"] { width: 100%; accent-color: var(--pine); margin-top: 0.7rem
 .check-list.plain li { display: list-item; padding: 0.2rem 0; border: 0; }
 
 @media (max-width: 720px) {
-  .aerial-pair { grid-template-columns: 1fr; }
+  .aerial-pair, .sidewalk-audit { grid-template-columns: 1fr; }
+  .sidewalk-top { align-items: flex-start; }
 }
 
 .image-slot { margin: 0.2rem 0 0.4rem; }
@@ -1098,6 +1099,74 @@ input[type="range"] { width: 100%; accent-color: var(--pine); margin-top: 0.7rem
 }
 
 .life { margin-top: 1.6rem; display: grid; gap: 0.7rem; }
+
+.sidewalk-card { display: grid; gap: 0.85rem; }
+
+.sidewalk-top { display: flex; gap: 1rem; align-items: center; }
+
+.sidewalk-number {
+  margin: 0;
+  min-width: 6.2rem;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.sidewalk-number span {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sidewalk-number.observed { color: var(--pine-deep); }
+.sidewalk-number.unknown { color: #6d5420; }
+.sidewalk-number.barrier { color: var(--clay-deep); }
+
+.sidewalk-audit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.2rem;
+  margin: 0;
+}
+
+.sidewalk-audit div { margin: 0; }
+.sidewalk-audit dt { font-weight: 600; }
+.sidewalk-audit dd { margin: 0.15rem 0 0; color: var(--ink-soft); }
+
+.sidewalk-legend, .sidewalk-places {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.sidewalk-legend li, .sidewalk-places li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.sidewalk-legend li { justify-content: flex-start; }
+
+.sidewalk-places li { justify-content: space-between; }
+
+.sidewalk-places { margin-top: 0.7rem; }
+
+.contact-card { width: min(32rem, 100%); padding: 1.2rem 1.25rem 1.3rem; }
+
+.contact-head { display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; }
+
+.contact-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
 
 .life-section { display: grid; gap: 0.7rem; }
 

@@ -2,6 +2,7 @@ import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife, interpretNearby, lifeHeadline } from "../life.js";
 import { bedsLabel, CITIES, cityLabel, leadFinding, listingFacts, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
 import { InteriorHomes } from "./Interior.jsx";
+import { ContactManager } from "./Contact.jsx";
 import { ListingPhoto } from "./ListingPhoto.jsx";
 import { Counts } from "./Status.jsx";
 
@@ -246,6 +247,7 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
                     >
                       {savedOn ? "Saved" : "Save"}
                     </button>
+                    <ContactManager manager={home.manager} />
                   </div>
                 </div>
               </article>
