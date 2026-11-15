@@ -183,30 +183,29 @@ def render_property(prop_cfg, root_dir: Path):
 
     # Shaded 500m Project Sidewalk Accessibility Radius Zone
     zone_color = COLOR_HIGH if neighborhood_score >= 0.75 else COLOR_MODERATE
-    zone_circle = Circle((0, 0), 500, fill=True, facecolor=zone_color, edgecolor=zone_color, linewidth=2.5, alpha=0.15, zorder=5)
+    zone_circle = Circle((0, 0), 500, fill=True, facecolor=zone_color, edgecolor=zone_color, linewidth=2.0, alpha=0.12, zorder=5)
     ax.add_patch(zone_circle)
-    zone_border = Circle((0, 0), 500, fill=False, edgecolor=zone_color, linewidth=2.2, linestyle="--", alpha=0.9, zorder=6)
+    zone_border = Circle((0, 0), 500, fill=False, edgecolor=zone_color, linewidth=2.0, linestyle="--", alpha=0.85, zorder=6)
     ax.add_patch(zone_border)
 
-    # 500m Radius callout text tag
-    rad_banner = f"★ {ps_baseline.get('radius_assessment', 'Accessibility Segment · Cited by Project Sidewalk')} (Radius: 500m / 1,640ft)"
+    # 500m Radius perimeter label (clean, no star marker)
+    rad_banner = f"500m Pedestrian Accessibility Radius · Cited by Project Sidewalk"
     ax.text(
-        0, 500, rad_banner,
-        color="#FFFFFF", fontsize=9.2, fontweight="bold",
-        ha="center", va="center", zorder=16,
-        bbox=dict(boxstyle="round,pad=0.35", facecolor=zone_color, edgecolor="#FFFFFF", lw=1.5, alpha=0.96)
+        0, 510, rad_banner,
+        color="#FFFFFF", fontsize=8.8, fontweight="bold",
+        ha="center", va="bottom", zorder=16,
+        bbox=dict(boxstyle="round,pad=0.3", facecolor=zone_color, edgecolor="#FFFFFF", lw=1.2, alpha=0.95)
     )
 
-    # Center Apartment Marker
-    ax.scatter([0], [0], s=440, marker="*", color="#FFCC00", edgecolors="#000000", linewidths=2.0, zorder=20)
-    apt_ring = Circle((0, 0), 28, fill=True, facecolor="#FFCC00", edgecolor="#FFFFFF", linewidth=1.5, alpha=0.35, zorder=19)
-    ax.add_patch(apt_ring)
+    # (Note: Initial apartment marker is already baked into base orthophoto, no duplicate added)
 
     # 3. Draw Project Sidewalk Color-Coded Street Segments
-    for poi, scored in scored_pois:
+    # Use angle-based placement to avoid callout collisions
+    used_angles = []
+
+    for idx, (poi, scored) in enumerate(scored_pois):
         dx, dy = poi.get("dx", 0), poi.get("dy", 0)
         dist_m = poi.get("distance_m", 0)
-        dist_ft = poi.get("distance_ft", round(dist_m * 3.28084))
         walk_min = poi.get("walk_time_min", 1)
         cat = poi.get("category", "Amenity")
         category_col = poi.get("color", "#0077B6")
@@ -232,68 +231,43 @@ def render_property(prop_cfg, root_dir: Path):
             s_ys = [(c[1] - lat) * M_PER_DEG for c in seg_coords]
 
             # Crisp dark road underlay for contrast on 7.5cm aerial orthophoto
-            ax.plot(s_xs, s_ys, color="#0F172A", linewidth=5.6, alpha=0.92, solid_capstyle="round", zorder=8)
+            ax.plot(s_xs, s_ys, color="#0F172A", linewidth=5.2, alpha=0.92, solid_capstyle="round", zorder=8)
             # Project Sidewalk score-colored street line
-            ax.plot(s_xs, s_ys, color=seg["color"], linewidth=3.8, alpha=0.98, solid_capstyle="round", zorder=9)
-
-        # Midpoint access score pill on the route
-        all_coords = poi.get("coordinates", [])
-        if all_coords:
-            mid_c = all_coords[len(all_coords) // 2]
-            mid_x = (mid_c[0] - lon) * M_PER_DEG * math.cos(math.radians(lat))
-            mid_y = (mid_c[1] - lat) * M_PER_DEG
-            ax.text(
-                mid_x, mid_y, f"{dist_m}m · Score: {scored['score_pct']}%",
-                color="#FFFFFF", fontsize=7.8, fontweight="bold",
-                ha="center", va="center", zorder=14,
-                bbox=dict(boxstyle="round,pad=0.25", facecolor=scored["color"], edgecolor="#FFFFFF", lw=1.2, alpha=0.96)
-            )
+            ax.plot(s_xs, s_ys, color=seg["color"], linewidth=3.6, alpha=0.98, solid_capstyle="round", zorder=9)
 
         # Destination POI circle & dot
-        circle_radius = max(26, radius_m * 0.032)
-        poi_circle = Circle((dx, dy), circle_radius, fill=True, facecolor=fill_col, edgecolor=edge_col, linewidth=2.4, alpha=0.45, zorder=10)
+        circle_radius = max(24, radius_m * 0.028)
+        poi_circle = Circle((dx, dy), circle_radius, fill=True, facecolor=fill_col, edgecolor=edge_col, linewidth=2.0, alpha=0.45, zorder=10)
         ax.add_patch(poi_circle)
-        ax.scatter([dx], [dy], s=140, marker="o", color=category_col, edgecolors="#FFFFFF", linewidths=2.0, zorder=12)
+        ax.scatter([dx], [dy], s=120, marker="o", color=category_col, edgecolors="#FFFFFF", linewidths=1.8, zorder=12)
 
-        # Callout label with Category, Distance, and Project Sidewalk Access Score
+        # Clean, condensed 2-line callout label (non-overlapping)
         rad_angle = math.atan2(dy, dx)
-        offset_dist = 95
+        # Nudge angle if too close to an already placed callout
+        for prev_a in used_angles:
+            if abs(rad_angle - prev_a) < 0.25:
+                rad_angle += 0.35
+        used_angles.append(rad_angle)
+
+        offset_dist = 75
         text_dx = offset_dist * math.cos(rad_angle)
         text_dy = offset_dist * math.sin(rad_angle)
         ha = "left" if text_dx >= 0 else "right"
         va = "bottom" if text_dy >= 0 else "top"
-        label_text = (
-            f"{cat}\n"
-            f"Walk: {dist_m}m ({dist_ft}ft) · ~{walk_min} min\n"
-            f"♿ Sidewalk Access: {scored['score_pct']}/100 ({scored['grade']})"
-        )
+        label_text = f"{cat} · ~{walk_min}m\n♿ {scored['score_pct']}% Access"
 
         ax.annotate(
             label_text,
             xy=(dx, dy),
             xytext=(text_dx, text_dy),
             textcoords="offset points",
-            fontsize=9.2,
+            fontsize=8.6,
             fontweight="bold",
-            color="#111111",
+            color="#0F172A",
             ha=ha, va=va, zorder=17,
-            bbox=dict(boxstyle="round,pad=0.45", facecolor="#FFFFFF", edgecolor=scored["color"], lw=2.2, alpha=0.96),
-            arrowprops=dict(arrowstyle="->", color=scored["color"], lw=2.0, shrinkA=0, shrinkB=4)
+            bbox=dict(boxstyle="round,pad=0.35", facecolor="#FFFFFF", edgecolor=scored["color"], lw=1.8, alpha=0.96),
+            arrowprops=dict(arrowstyle="->", color=scored["color"], lw=1.6, shrinkA=0, shrinkB=3)
         )
-
-    # Center Apartment Callout
-    ax.annotate(
-        f"★ APARTMENT\n{address}",
-        xy=(0, 0),
-        xytext=(0, -60),
-        textcoords="offset points",
-        fontsize=10.5,
-        fontweight="bold",
-        color="#000000",
-        ha="center", va="top", zorder=22,
-        bbox=dict(boxstyle="round,pad=0.5", facecolor="#FFCC00", edgecolor="#000000", lw=2.0, alpha=0.98),
-        arrowprops=dict(arrowstyle="->", color="#000000", lw=2.0)
-    )
 
     # Frame & Title
     ax.set_xlim(-radius_m, radius_m)
@@ -302,40 +276,34 @@ def render_property(prop_cfg, root_dir: Path):
     ax.set_yticks([])
 
     title_text = (
-        f"PROJECT SIDEWALK ACCESS SCORE & VEXCEL AERIAL OVERVIEW\n"
-        f"{display_name} · {city_state} (Pedestrian Radius: {radius_m}m)"
+        f"PROJECT SIDEWALK ACCESS SCORE · VEXCEL AERIAL OVERVIEW\n"
+        f"{display_name} · {city_state} (Radius: {radius_m}m)"
     )
-    ax.set_title(title_text, fontsize=12.0, fontweight="bold", pad=16, color="#0F172A")
+    ax.set_title(title_text, fontsize=11.5, fontweight="bold", pad=14, color="#0F172A")
 
-    # Project Sidewalk Scorecard Box (Top Right)
+    # Condensed Project Sidewalk Scorecard (Top Right)
     scorecard_text = (
-        f"PROJECT SIDEWALK · ACCESS SCORE API\n"
-        f"Neighborhood Access Score: {neighborhood_pct}/100 ({neighborhood_grade})\n"
-        f"• Continuous Sidewalks: {ps_baseline['curb_ramp_pct']}%\n"
-        f"• Verified Curb Ramps: {all_curb_ramps} along routes\n"
-        f"• Obstacle / Barrier Count: {all_obstacles}\n"
-        f"• Surface Irregularities: {all_surface_issues}"
+        f"PROJECT SIDEWALK ACCESS SCORE\n"
+        f"500m Pedestrian Zone: {neighborhood_pct}% ({neighborhood_grade})\n"
+        f"Continuous Sidewalks: {ps_baseline['curb_ramp_pct']}% · Curb Ramps: {all_curb_ramps}"
     )
     ax.text(
-        radius_m - 30, radius_m - 30, scorecard_text,
-        color="#0F172A", fontsize=9.0, fontweight="bold",
+        radius_m - 25, radius_m - 25, scorecard_text,
+        color="#0F172A", fontsize=8.6, fontweight="bold",
         ha="right", va="top", zorder=25,
-        bbox=dict(boxstyle="round,pad=0.55", facecolor="#FFFFFF", edgecolor=COLOR_HIGH if neighborhood_score >= 0.75 else COLOR_MODERATE, lw=2.2, alpha=0.96)
+        bbox=dict(boxstyle="round,pad=0.45", facecolor="#FFFDF8", edgecolor=zone_color, lw=2.0, alpha=0.96)
     )
 
-    # Bottom Legend (Sidewalk Scores + Amenities)
+    # Condensed Legend (Bottom Right)
     legend_handles = [
-        plt.Line2D([0], [0], marker="*", color="#FFCC00", markeredgecolor="#000000", markersize=14, ls="", label=f"Apartment: {address}"),
-        plt.Line2D([0], [0], color=COLOR_HIGH, lw=3.8, ls="-", label="Sidewalk Score >= 75%: High Accessibility (Curb Ramps, Step-Free)"),
-        plt.Line2D([0], [0], color=COLOR_MODERATE, lw=3.8, ls="-", label="Sidewalk Score 50-74%: Moderate (Minor Slope / Joint Cracks)"),
-        plt.Line2D([0], [0], color=COLOR_BARRIER, lw=3.8, ls="-", label="Sidewalk Score < 50%: Barrier Warning (Missing Ramp / Obstacle)"),
-        plt.Line2D([0], [0], marker="o", color="#D90429", markeredgecolor="#FFFFFF", markersize=9, ls="", label="Medical Facilities"),
-        plt.Line2D([0], [0], marker="o", color="#0077B6", markeredgecolor="#FFFFFF", markersize=9, ls="", label="Retail / Grocery Stores"),
-        plt.Line2D([0], [0], marker="o", color="#D97706", markeredgecolor="#FFFFFF", markersize=9, ls="", label="Accessible Parking Locations"),
+        plt.Line2D([0], [0], color=COLOR_HIGH, lw=3.6, ls="-", label="Sidewalk Score ≥ 75%: High (ADA Curb Ramps, Step-Free)"),
+        plt.Line2D([0], [0], color=COLOR_MODERATE, lw=3.6, ls="-", label="Sidewalk Score 50-74%: Moderate (Minor Slope / Seams)"),
+        plt.Line2D([0], [0], color=COLOR_BARRIER, lw=3.6, ls="-", label="Sidewalk Score < 50%: Barrier Warning (Missing Ramp)"),
+        plt.Line2D([0], [0], marker="o", color="#0077B6", markeredgecolor="#FFFFFF", markersize=8, ls="", label="Verified Destinations (Retail, Medical, Parking)"),
     ]
 
-    leg = ax.legend(handles=legend_handles, loc="lower right", framealpha=0.95, fontsize=8.6,
-                    title="Project Sidewalk Street Scores & Destinations", title_fontsize=9.2, edgecolor="#94A3B8")
+    leg = ax.legend(handles=legend_handles, loc="lower right", framealpha=0.95, fontsize=8.2,
+                    title="Sidewalk Access Scores", title_fontsize=8.8, edgecolor="#D9D0C0")
     leg.get_title().set_fontweight("bold")
 
     # Scale bar in lower left
