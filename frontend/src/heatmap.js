@@ -20,7 +20,7 @@ export function floorPlanCaption(address, index, total) {
   return `${which} for ${address}. This is the listing drawing.`;
 }
 
-function zoneFor(listing, id, inSearch) {
+function zoneFor(listing, id) {
   const finding = listing?.findings?.[id];
   const meta = CHECKS.find((check) => check.id === id);
   return {
@@ -28,7 +28,6 @@ function zoneFor(listing, id, inSearch) {
     label: meta?.label || id,
     status: finding?.status || "unknown",
     title: finding?.title || "Not in the listing",
-    inSearch,
   };
 }
 
@@ -39,11 +38,9 @@ function byHeat(a, b) {
 export function heatmapZones(listing, needIds) {
   const selected = new Set(needIds || []);
   const checkIds = ACCESS_NEEDS.filter((need) => selected.has(need.id)).flatMap((need) => need.checks);
-  return [...new Set(checkIds)].map((id) => zoneFor(listing, id, true)).sort(byHeat);
+  return [...new Set(checkIds)].map((id) => zoneFor(listing, id)).sort(byHeat);
 }
 
 export function listingHeatmap(listing, needIds = []) {
-  const selected = new Set(heatmapZones(listing, needIds).map((zone) => zone.id));
-  const searching = selected.size > 0;
-  return CHECKS.map((check) => zoneFor(listing, check.id, searching && selected.has(check.id))).sort(byHeat);
+  return heatmapZones(listing, needIds);
 }
