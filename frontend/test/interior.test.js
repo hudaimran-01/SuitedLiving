@@ -6,6 +6,7 @@ import {
   findingView,
   interiorView,
   rankInteriors,
+  scoreTone,
 } from "../src/interior.js";
 
 test("a wheelchair search puts the highest interior photo score first", () => {
@@ -33,6 +34,14 @@ test("hard of hearing leaves the photo scores in name order", () => {
   const byName = INTERIOR_PROPERTIES.map((item) => item.name).sort((a, b) => a.localeCompare(b));
   assert.deepEqual(ranked, byName);
   assert.equal(interiorView(INTERIOR_PROPERTIES[0], ["hard-of-hearing"]).hearingOnly, true);
+});
+
+test("a photo score uses the same tone for the same number", () => {
+  assert.equal(scoreTone(92), "strong");
+  assert.equal(scoreTone(70), "strong");
+  assert.equal(scoreTone(64), "mixed");
+  assert.equal(scoreTone(40), "mixed");
+  assert.equal(scoreTone(39), "weak");
 });
 
 test("a photo finding stays unknown until the picture shows it", () => {

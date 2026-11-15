@@ -7,7 +7,7 @@ export function Shell({ route, savedCount, lowVision, children }) {
       <header className="header">
         <div className="wrap header-inner">
           <a className="brand" href="#/">
-            <svg className="mark" viewBox="0 0 32 32" aria-hidden="true">
+            <svg className="mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
               <circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" strokeWidth="2" />
               <circle cx="16" cy="16" r="3" fill="currentColor" />
             </svg>

@@ -10,9 +10,23 @@ import {
   orderLine,
   rankInteriors,
   rentLabel,
+  scoreTone,
 } from "../interior.js";
 import { cityLabel, inCity } from "../logic.js";
 import { Status } from "./Status.jsx";
+
+function ScoreMark({ score, label }) {
+  const width = Math.max(0, Math.min(100, Number(score) || 0));
+  return (
+    <p className={`score-mark ${scoreTone(score)}`}>
+      <span className="score-value">{score}</span>
+      <span className="score-label">{label}</span>
+      <span className="score-meter" aria-hidden="true">
+        <span className="score-fill" style={{ width: `${width}%` }} />
+      </span>
+    </p>
+  );
+}
 
 function InteriorCard({ home, index, ranked, view, lead }) {
   const [photoFailed, setPhotoFailed] = useState(false);
@@ -33,10 +47,7 @@ function InteriorCard({ home, index, ranked, view, lead }) {
         <p className="meta">{home.address}</p>
         <div className="score-row">
           {view.rows.map((row) => (
-            <p key={row.id} className="score-mark">
-              {row.score}
-              <span>{row.label}</span>
-            </p>
+            <ScoreMark key={row.id} score={row.score} label={row.label} />
           ))}
         </div>
         {view.rows.length === 1 ? <p className="fine">{coverageSentence(view.rows[0].confidence)}</p> : null}
@@ -146,10 +157,7 @@ export function InteriorReport({ homeId, needIds = [] }) {
         <div className="score-row">
           {view.rows.map((row) => (
             <div key={row.id}>
-              <p className="score-mark">
-                {row.score}
-                <span>{row.label}</span>
-              </p>
+              <ScoreMark score={row.score} label={row.label} />
               <p className="fine">{coverageSentence(row.confidence)}</p>
             </div>
           ))}

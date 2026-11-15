@@ -4,6 +4,12 @@ import { assessRoom, ROOM_STATUS } from "../floorplans.js";
 
 const ORDER = ["barrier", "verify", "supported", "unset"];
 const SHORT = { supported: "Supported", verify: "Verify", barrier: "Barrier", unset: "Not assessed" };
+const ROOM_FILL = {
+  supported: "#d7ebe0",
+  verify: "#f4e4b4",
+  barrier: "#f4d0c8",
+  unset: "#efe8da",
+};
 
 function StatusMark({ status }) {
   return (
@@ -115,12 +121,15 @@ export function FloorPlan({ plan, needIds }) {
               className="plan"
               onMouseLeave={() => setHover(null)}
             >
-              <svg viewBox="0 0 640 440" role="group" aria-label="Floor plan">
+              <svg viewBox="0 0 640 440" width="640" height="440" role="group" aria-label="Floor plan">
                 <rect x="48" y="36" width="544" height="368" className="plan-paper" />
                 {rooms.map((room) => (
                   <g key={room.id}>
                     <polygon
                       points={room.points}
+                      fill={ROOM_FILL[room.assessment.status]}
+                      stroke={room.id === active?.id ? "#1a1714" : "rgba(0, 0, 0, 0)"}
+                      strokeWidth="4"
                       className={
                         room.id === active?.id
                           ? `room-shape ${room.assessment.status} is-on`
