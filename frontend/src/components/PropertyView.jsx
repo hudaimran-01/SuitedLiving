@@ -68,14 +68,48 @@ export function AerialNearby({ media, nearby }) {
     lead = `You wrote “${report.query.text}”. The places below are what this aerial search can show. Steps along the way are not marked.`;
   }
 
+  const ps = report.projectSidewalk;
+
   return (
     <section className="life" aria-labelledby="aerial-title">
       <h2 id="aerial-title">Around this home</h2>
       <p className="meta">{lead}</p>
       <Photo shot={neighborhood} onOpen={setZoom} />
+      {ps ? (
+        <div className="sidewalk-score-card">
+          <div className="sidewalk-score-header">
+            <span
+              className="sidewalk-score-badge"
+              style={{ backgroundColor: ps.neighborhood_access_score >= 0.75 ? "#10B981" : "#F59E0B" }}
+            >
+              Access Score: {ps.score_pct}/100
+            </span>
+            <strong>Project Sidewalk Audit · {ps.grade}</strong>
+          </div>
+          <p className="sidewalk-score-desc">
+            {ps.description}
+            {ps.curb_ramp_percentage ? ` ${ps.curb_ramp_percentage}% audited sidewalks are continuous with ADA curb ramps.` : ""}
+          </p>
+          <div className="sidewalk-legend-row">
+            <span className="sidewalk-legend-item"><span className="sidewalk-dot green" /> Score ≥ 75%: High</span>
+            <span className="sidewalk-legend-item"><span className="sidewalk-dot yellow" /> 50–74%: Moderate</span>
+            <span className="sidewalk-legend-item"><span className="sidewalk-dot red" /> &lt; 50%: Barrier</span>
+          </div>
+        </div>
+      ) : null}
       <ul className="check-list plain">
         {report.places.map((place) => (
-          <li key={place.category}>{place.text}</li>
+          <li key={place.category} className="place-item">
+            <span>{place.text}</span>
+            {place.accessScorePct ? (
+              <span
+                className="sidewalk-pill"
+                style={{ backgroundColor: place.accessColor || (place.accessScorePct >= 75 ? "#10B981" : "#F59E0B") }}
+              >
+                ♿ Sidewalk Access: {place.accessScorePct}%
+              </span>
+            ) : null}
+          </li>
         ))}
       </ul>
       <Zoom shot={zoom} onClose={() => setZoom(null)} />

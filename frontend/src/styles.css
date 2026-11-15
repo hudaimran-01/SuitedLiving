@@ -1218,3 +1218,88 @@ html[data-vision="true"] body {
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
 }
+
+/* Project Sidewalk Access Scorecard & Pills */
+.sidewalk-score-card {
+  margin: 1rem 0 1.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.sidewalk-score-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.sidewalk-score-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.sidewalk-score-desc {
+  margin: 0.35rem 0 0.75rem;
+  font-size: 0.92rem;
+  color: var(--muted, #475569);
+  line-height: 1.45;
+}
+
+.sidewalk-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-light, #f1f5f9);
+  font-size: 0.82rem;
+  color: var(--muted, #64748b);
+}
+
+.sidewalk-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sidewalk-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.sidewalk-dot.green { background: #10b981; }
+.sidewalk-dot.yellow { background: #f59e0b; }
+.sidewalk-dot.red { background: #ef4444; }
+
+.place-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+}
+
+.sidewalk-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}

@@ -272,7 +272,565 @@
           -95.461236,
           29.724158
         ]
-      ]
+      ],
+      "project_sidewalk": {
+        "overall_score": 0.81,
+        "score_pct": 81,
+        "grade": "Accessible",
+        "color": "#10B981",
+        "segments": [
+          {
+            "segment_index": 0,
+            "coordinates": [
+              [
+                -95.466006,
+                29.729503
+              ],
+              [
+                -95.466248,
+                29.729495
+              ],
+              [
+                -95.466266,
+                29.72952
+              ],
+              [
+                -95.466313,
+                29.729547
+              ],
+              [
+                -95.466356,
+                29.729554
+              ]
+            ],
+            "distance_m": 34.3,
+            "score": 0.74,
+            "score_pct": 74,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 1,
+            "coordinates": [
+              [
+                -95.466356,
+                29.729554
+              ],
+              [
+                -95.466384,
+                29.729549
+              ],
+              [
+                -95.466416,
+                29.729529
+              ],
+              [
+                -95.466434,
+                29.729496
+              ],
+              [
+                -95.466514,
+                29.729503
+              ]
+            ],
+            "distance_m": 16.3,
+            "score": 0.7,
+            "score_pct": 70,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 2,
+            "coordinates": [
+              [
+                -95.466514,
+                29.729503
+              ],
+              [
+                -95.466567,
+                29.729507
+              ],
+              [
+                -95.466689,
+                29.729518
+              ],
+              [
+                -95.466704,
+                29.729385
+              ],
+              [
+                -95.466753,
+                29.729197
+              ]
+            ],
+            "distance_m": 41.2,
+            "score": 0.8,
+            "score_pct": 80,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 3,
+            "coordinates": [
+              [
+                -95.466753,
+                29.729197
+              ],
+              [
+                -95.466776,
+                29.729131
+              ],
+              [
+                -95.466811,
+                29.729031
+              ],
+              [
+                -95.466887,
+                29.728863
+              ],
+              [
+                -95.466956,
+                29.728738
+              ]
+            ],
+            "distance_m": 54.7,
+            "score": 0.91,
+            "score_pct": 90,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 4,
+            "coordinates": [
+              [
+                -95.466956,
+                29.728738
+              ],
+              [
+                -95.467061,
+                29.728587
+              ],
+              [
+                -95.467192,
+                29.728414
+              ],
+              [
+                -95.46731,
+                29.728291
+              ],
+              [
+                -95.467522,
+                29.728095
+              ]
+            ],
+            "distance_m": 90.1,
+            "score": 0.79,
+            "score_pct": 79,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 5,
+            "coordinates": [
+              [
+                -95.467522,
+                29.728095
+              ],
+              [
+                -95.467646,
+                29.72796
+              ],
+              [
+                -95.467714,
+                29.727884
+              ],
+              [
+                -95.467756,
+                29.727837
+              ],
+              [
+                -95.467927,
+                29.727625
+              ]
+            ],
+            "distance_m": 65.3,
+            "score": 0.71,
+            "score_pct": 71,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 6,
+            "coordinates": [
+              [
+                -95.467927,
+                29.727625
+              ],
+              [
+                -95.468009,
+                29.727508
+              ],
+              [
+                -95.468116,
+                29.727346
+              ],
+              [
+                -95.468205,
+                29.727135
+              ],
+              [
+                -95.468268,
+                29.726996
+              ]
+            ],
+            "distance_m": 77.4,
+            "score": 0.82,
+            "score_pct": 82,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 7,
+            "coordinates": [
+              [
+                -95.468268,
+                29.726996
+              ],
+              [
+                -95.468315,
+                29.726864
+              ],
+              [
+                -95.468327,
+                29.726832
+              ],
+              [
+                -95.468334,
+                29.72681
+              ],
+              [
+                -95.468372,
+                29.726688
+              ]
+            ],
+            "distance_m": 35.7,
+            "score": 0.83,
+            "score_pct": 83,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 8,
+            "coordinates": [
+              [
+                -95.468372,
+                29.726688
+              ],
+              [
+                -95.468386,
+                29.72649
+              ],
+              [
+                -95.468338,
+                29.72578
+              ],
+              [
+                -95.468315,
+                29.725583
+              ],
+              [
+                -95.468135,
+                29.725599
+              ]
+            ],
+            "distance_m": 123.4,
+            "score": 0.96,
+            "score_pct": 96,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 9,
+            "coordinates": [
+              [
+                -95.468135,
+                29.725599
+              ],
+              [
+                -95.468054,
+                29.725606
+              ],
+              [
+                -95.467985,
+                29.725612
+              ],
+              [
+                -95.467642,
+                29.725641
+              ],
+              [
+                -95.467369,
+                29.725665
+              ]
+            ],
+            "distance_m": 74.4,
+            "score": 0.78,
+            "score_pct": 78,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 10,
+            "coordinates": [
+              [
+                -95.467369,
+                29.725665
+              ],
+              [
+                -95.466738,
+                29.725719
+              ],
+              [
+                -95.466357,
+                29.725752
+              ],
+              [
+                -95.463886,
+                29.725946
+              ],
+              [
+                -95.462846,
+                29.726027
+              ]
+            ],
+            "distance_m": 439.1,
+            "score": 0.77,
+            "score_pct": 77,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 5,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 11,
+            "coordinates": [
+              [
+                -95.462846,
+                29.726027
+              ],
+              [
+                -95.462408,
+                29.726061
+              ],
+              [
+                -95.462085,
+                29.726061
+              ],
+              [
+                -95.461474,
+                29.726103
+              ],
+              [
+                -95.461271,
+                29.726053
+              ]
+            ],
+            "distance_m": 152.3,
+            "score": 0.84,
+            "score_pct": 84,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 3,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 12,
+            "coordinates": [
+              [
+                -95.461271,
+                29.726053
+              ],
+              [
+                -95.461163,
+                29.726008
+              ],
+              [
+                -95.461155,
+                29.726005
+              ],
+              [
+                -95.461091,
+                29.72596
+              ],
+              [
+                -95.461011,
+                29.725899
+              ]
+            ],
+            "distance_m": 30.4,
+            "score": 0.8,
+            "score_pct": 80,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 13,
+            "coordinates": [
+              [
+                -95.461011,
+                29.725899
+              ],
+              [
+                -95.460999,
+                29.725848
+              ],
+              [
+                -95.460925,
+                29.725546
+              ],
+              [
+                -95.460879,
+                29.725294
+              ],
+              [
+                -95.460789,
+                29.724809
+              ]
+            ],
+            "distance_m": 123.2,
+            "score": 0.82,
+            "score_pct": 82,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 14,
+            "coordinates": [
+              [
+                -95.460789,
+                29.724809
+              ],
+              [
+                -95.460734,
+                29.724483
+              ],
+              [
+                -95.46073,
+                29.724168
+              ],
+              [
+                -95.460808,
+                29.724166
+              ],
+              [
+                -95.461236,
+                29.724158
+              ]
+            ],
+            "distance_m": 84.4,
+            "score": 0.77,
+            "score_pct": 77,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          }
+        ],
+        "audit_summary": {
+          "curb_ramps": 23,
+          "missing_curb_ramps": 3,
+          "surface_problems": 5,
+          "obstacles": 0
+        }
+      },
+      "access_score": 0.81,
+      "access_score_pct": 81,
+      "access_grade": "Accessible",
+      "access_color": "#10B981"
     },
     {
       "category": "Medical Place",
@@ -579,7 +1137,669 @@
           -95.461234,
           29.723501
         ]
-      ]
+      ],
+      "project_sidewalk": {
+        "overall_score": 0.82,
+        "score_pct": 82,
+        "grade": "Accessible",
+        "color": "#10B981",
+        "segments": [
+          {
+            "segment_index": 0,
+            "coordinates": [
+              [
+                -95.466006,
+                29.729503
+              ],
+              [
+                -95.466248,
+                29.729495
+              ],
+              [
+                -95.466266,
+                29.72952
+              ],
+              [
+                -95.466313,
+                29.729547
+              ],
+              [
+                -95.466356,
+                29.729554
+              ]
+            ],
+            "distance_m": 34.3,
+            "score": 0.74,
+            "score_pct": 74,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 1,
+            "coordinates": [
+              [
+                -95.466356,
+                29.729554
+              ],
+              [
+                -95.466384,
+                29.729549
+              ],
+              [
+                -95.466416,
+                29.729529
+              ],
+              [
+                -95.466434,
+                29.729496
+              ],
+              [
+                -95.466514,
+                29.729503
+              ]
+            ],
+            "distance_m": 16.3,
+            "score": 0.7,
+            "score_pct": 70,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 2,
+            "coordinates": [
+              [
+                -95.466514,
+                29.729503
+              ],
+              [
+                -95.466567,
+                29.729507
+              ],
+              [
+                -95.466689,
+                29.729518
+              ],
+              [
+                -95.466704,
+                29.729385
+              ],
+              [
+                -95.466753,
+                29.729197
+              ]
+            ],
+            "distance_m": 41.2,
+            "score": 0.8,
+            "score_pct": 80,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 3,
+            "coordinates": [
+              [
+                -95.466753,
+                29.729197
+              ],
+              [
+                -95.466776,
+                29.729131
+              ],
+              [
+                -95.466811,
+                29.729031
+              ],
+              [
+                -95.466887,
+                29.728863
+              ],
+              [
+                -95.466956,
+                29.728738
+              ]
+            ],
+            "distance_m": 54.7,
+            "score": 0.91,
+            "score_pct": 90,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 4,
+            "coordinates": [
+              [
+                -95.466956,
+                29.728738
+              ],
+              [
+                -95.467061,
+                29.728587
+              ],
+              [
+                -95.467192,
+                29.728414
+              ],
+              [
+                -95.46731,
+                29.728291
+              ],
+              [
+                -95.467522,
+                29.728095
+              ]
+            ],
+            "distance_m": 90.1,
+            "score": 0.79,
+            "score_pct": 79,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 5,
+            "coordinates": [
+              [
+                -95.467522,
+                29.728095
+              ],
+              [
+                -95.467646,
+                29.72796
+              ],
+              [
+                -95.467714,
+                29.727884
+              ],
+              [
+                -95.467756,
+                29.727837
+              ],
+              [
+                -95.467927,
+                29.727625
+              ]
+            ],
+            "distance_m": 65.3,
+            "score": 0.71,
+            "score_pct": 71,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 6,
+            "coordinates": [
+              [
+                -95.467927,
+                29.727625
+              ],
+              [
+                -95.468009,
+                29.727508
+              ],
+              [
+                -95.468116,
+                29.727346
+              ],
+              [
+                -95.468205,
+                29.727135
+              ],
+              [
+                -95.468268,
+                29.726996
+              ]
+            ],
+            "distance_m": 77.4,
+            "score": 0.82,
+            "score_pct": 82,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 7,
+            "coordinates": [
+              [
+                -95.468268,
+                29.726996
+              ],
+              [
+                -95.468315,
+                29.726864
+              ],
+              [
+                -95.468327,
+                29.726832
+              ],
+              [
+                -95.468334,
+                29.72681
+              ],
+              [
+                -95.468372,
+                29.726688
+              ]
+            ],
+            "distance_m": 35.7,
+            "score": 0.83,
+            "score_pct": 83,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 8,
+            "coordinates": [
+              [
+                -95.468372,
+                29.726688
+              ],
+              [
+                -95.468386,
+                29.72649
+              ],
+              [
+                -95.468338,
+                29.72578
+              ],
+              [
+                -95.468315,
+                29.725583
+              ],
+              [
+                -95.468135,
+                29.725599
+              ]
+            ],
+            "distance_m": 123.4,
+            "score": 0.96,
+            "score_pct": 96,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 9,
+            "coordinates": [
+              [
+                -95.468135,
+                29.725599
+              ],
+              [
+                -95.468054,
+                29.725606
+              ],
+              [
+                -95.467985,
+                29.725612
+              ],
+              [
+                -95.467642,
+                29.725641
+              ],
+              [
+                -95.467369,
+                29.725665
+              ]
+            ],
+            "distance_m": 74.4,
+            "score": 0.78,
+            "score_pct": 78,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 10,
+            "coordinates": [
+              [
+                -95.467369,
+                29.725665
+              ],
+              [
+                -95.466738,
+                29.725719
+              ],
+              [
+                -95.466357,
+                29.725752
+              ],
+              [
+                -95.463886,
+                29.725946
+              ],
+              [
+                -95.462846,
+                29.726027
+              ]
+            ],
+            "distance_m": 439.1,
+            "score": 0.77,
+            "score_pct": 77,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 5,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 11,
+            "coordinates": [
+              [
+                -95.462846,
+                29.726027
+              ],
+              [
+                -95.462408,
+                29.726061
+              ],
+              [
+                -95.462085,
+                29.726061
+              ],
+              [
+                -95.461474,
+                29.726103
+              ],
+              [
+                -95.461271,
+                29.726053
+              ]
+            ],
+            "distance_m": 152.3,
+            "score": 0.84,
+            "score_pct": 84,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 3,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 12,
+            "coordinates": [
+              [
+                -95.461271,
+                29.726053
+              ],
+              [
+                -95.461163,
+                29.726008
+              ],
+              [
+                -95.461155,
+                29.726005
+              ],
+              [
+                -95.461091,
+                29.72596
+              ],
+              [
+                -95.461011,
+                29.725899
+              ]
+            ],
+            "distance_m": 30.4,
+            "score": 0.8,
+            "score_pct": 80,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 13,
+            "coordinates": [
+              [
+                -95.461011,
+                29.725899
+              ],
+              [
+                -95.460999,
+                29.725848
+              ],
+              [
+                -95.460925,
+                29.725546
+              ],
+              [
+                -95.460879,
+                29.725294
+              ],
+              [
+                -95.460789,
+                29.724809
+              ]
+            ],
+            "distance_m": 123.2,
+            "score": 0.82,
+            "score_pct": 82,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 14,
+            "coordinates": [
+              [
+                -95.460789,
+                29.724809
+              ],
+              [
+                -95.460869,
+                29.724809
+              ],
+              [
+                -95.460892,
+                29.724809
+              ],
+              [
+                -95.46096,
+                29.724808
+              ],
+              [
+                -95.46139,
+                29.724804
+              ]
+            ],
+            "distance_m": 58.1,
+            "score": 0.95,
+            "score_pct": 95,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 15,
+            "coordinates": [
+              [
+                -95.46139,
+                29.724804
+              ],
+              [
+                -95.461542,
+                29.724803
+              ],
+              [
+                -95.461538,
+                29.724627
+              ],
+              [
+                -95.461532,
+                29.724382
+              ],
+              [
+                -95.461531,
+                29.72432
+              ]
+            ],
+            "distance_m": 55.6,
+            "score": 0.92,
+            "score_pct": 92,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 16,
+            "coordinates": [
+              [
+                -95.461531,
+                29.72432
+              ],
+              [
+                -95.461527,
+                29.724152
+              ],
+              [
+                -95.461524,
+                29.72403
+              ],
+              [
+                -95.461513,
+                29.723549
+              ],
+              [
+                -95.461512,
+                29.72351
+              ]
+            ],
+            "distance_m": 90.2,
+            "score": 0.86,
+            "score_pct": 86,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 17,
+            "coordinates": [
+              [
+                -95.461512,
+                29.72351
+              ],
+              [
+                -95.461512,
+                29.723497
+              ],
+              [
+                -95.461463,
+                29.723497
+              ],
+              [
+                -95.461234,
+                29.723501
+              ]
+            ],
+            "distance_m": 26.9,
+            "score": 0.86,
+            "score_pct": 86,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          }
+        ],
+        "audit_summary": {
+          "curb_ramps": 27,
+          "missing_curb_ramps": 3,
+          "surface_problems": 4,
+          "obstacles": 0
+        }
+      },
+      "access_score": 0.82,
+      "access_score_pct": 82,
+      "access_grade": "Accessible",
+      "access_color": "#10B981"
     },
     {
       "category": "Retail Store",
@@ -746,7 +1966,349 @@
           -95.463982,
           29.732492
         ]
-      ]
+      ],
+      "project_sidewalk": {
+        "overall_score": 0.87,
+        "score_pct": 87,
+        "grade": "Highly Accessible",
+        "color": "#10B981",
+        "segments": [
+          {
+            "segment_index": 0,
+            "coordinates": [
+              [
+                -95.466006,
+                29.729503
+              ],
+              [
+                -95.466248,
+                29.729495
+              ],
+              [
+                -95.466266,
+                29.72952
+              ],
+              [
+                -95.466313,
+                29.729547
+              ],
+              [
+                -95.466356,
+                29.729554
+              ]
+            ],
+            "distance_m": 34.3,
+            "score": 0.74,
+            "score_pct": 74,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 1,
+            "coordinates": [
+              [
+                -95.466356,
+                29.729554
+              ],
+              [
+                -95.466384,
+                29.729549
+              ],
+              [
+                -95.466416,
+                29.729529
+              ],
+              [
+                -95.466434,
+                29.729496
+              ],
+              [
+                -95.466514,
+                29.729503
+              ]
+            ],
+            "distance_m": 16.3,
+            "score": 0.7,
+            "score_pct": 70,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 2,
+            "coordinates": [
+              [
+                -95.466514,
+                29.729503
+              ],
+              [
+                -95.466567,
+                29.729507
+              ],
+              [
+                -95.466541,
+                29.729745
+              ],
+              [
+                -95.466545,
+                29.729902
+              ],
+              [
+                -95.466553,
+                29.730226
+              ]
+            ],
+            "distance_m": 80.6,
+            "score": 0.98,
+            "score_pct": 98,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 3,
+            "coordinates": [
+              [
+                -95.466553,
+                29.730226
+              ],
+              [
+                -95.466558,
+                29.730408
+              ],
+              [
+                -95.466562,
+                29.730558
+              ],
+              [
+                -95.466576,
+                29.73095
+              ],
+              [
+                -95.466572,
+                29.731419
+              ]
+            ],
+            "distance_m": 132.8,
+            "score": 0.95,
+            "score_pct": 95,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 4,
+            "coordinates": [
+              [
+                -95.466572,
+                29.731419
+              ],
+              [
+                -95.466572,
+                29.731448
+              ],
+              [
+                -95.466574,
+                29.731516
+              ],
+              [
+                -95.466501,
+                29.731519
+              ],
+              [
+                -95.465605,
+                29.731543
+              ]
+            ],
+            "distance_m": 94.5,
+            "score": 0.77,
+            "score_pct": 77,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 5,
+            "coordinates": [
+              [
+                -95.465605,
+                29.731543
+              ],
+              [
+                -95.465514,
+                29.731552
+              ],
+              [
+                -95.465415,
+                29.731562
+              ],
+              [
+                -95.464988,
+                29.731605
+              ],
+              [
+                -95.464698,
+                29.731634
+              ]
+            ],
+            "distance_m": 88.3,
+            "score": 0.89,
+            "score_pct": 89,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 6,
+            "coordinates": [
+              [
+                -95.464698,
+                29.731634
+              ],
+              [
+                -95.464426,
+                29.731661
+              ],
+              [
+                -95.464358,
+                29.731668
+              ],
+              [
+                -95.464331,
+                29.73167
+              ],
+              [
+                -95.464233,
+                29.73168
+              ]
+            ],
+            "distance_m": 45.2,
+            "score": 0.91,
+            "score_pct": 91,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 7,
+            "coordinates": [
+              [
+                -95.464233,
+                29.73168
+              ],
+              [
+                -95.464246,
+                29.731837
+              ],
+              [
+                -95.464202,
+                29.731917
+              ],
+              [
+                -95.46421,
+                29.732035
+              ],
+              [
+                -95.464215,
+                29.732112
+              ]
+            ],
+            "distance_m": 48.1,
+            "score": 0.77,
+            "score_pct": 77,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 8,
+            "coordinates": [
+              [
+                -95.464215,
+                29.732112
+              ],
+              [
+                -95.464258,
+                29.732188
+              ],
+              [
+                -95.464254,
+                29.732491
+              ],
+              [
+                -95.464053,
+                29.732492
+              ],
+              [
+                -95.463982,
+                29.732492
+              ]
+            ],
+            "distance_m": 47.9,
+            "score": 0.79,
+            "score_pct": 79,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          }
+        ],
+        "audit_summary": {
+          "curb_ramps": 10,
+          "missing_curb_ramps": 1,
+          "surface_problems": 3,
+          "obstacles": 0
+        }
+      },
+      "access_score": 0.87,
+      "access_score_pct": 87,
+      "access_grade": "Highly Accessible",
+      "access_color": "#10B981"
     },
     {
       "category": "Retail Store",
@@ -893,7 +2455,309 @@
           -95.465355,
           29.73248
         ]
-      ]
+      ],
+      "project_sidewalk": {
+        "overall_score": 0.86,
+        "score_pct": 86,
+        "grade": "Highly Accessible",
+        "color": "#10B981",
+        "segments": [
+          {
+            "segment_index": 0,
+            "coordinates": [
+              [
+                -95.466006,
+                29.729503
+              ],
+              [
+                -95.466248,
+                29.729495
+              ],
+              [
+                -95.466266,
+                29.72952
+              ],
+              [
+                -95.466313,
+                29.729547
+              ],
+              [
+                -95.466356,
+                29.729554
+              ]
+            ],
+            "distance_m": 34.3,
+            "score": 0.74,
+            "score_pct": 74,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 1,
+            "coordinates": [
+              [
+                -95.466356,
+                29.729554
+              ],
+              [
+                -95.466384,
+                29.729549
+              ],
+              [
+                -95.466416,
+                29.729529
+              ],
+              [
+                -95.466434,
+                29.729496
+              ],
+              [
+                -95.466514,
+                29.729503
+              ]
+            ],
+            "distance_m": 16.3,
+            "score": 0.7,
+            "score_pct": 70,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 2,
+            "coordinates": [
+              [
+                -95.466514,
+                29.729503
+              ],
+              [
+                -95.466567,
+                29.729507
+              ],
+              [
+                -95.466541,
+                29.729745
+              ],
+              [
+                -95.466545,
+                29.729902
+              ],
+              [
+                -95.466553,
+                29.730226
+              ]
+            ],
+            "distance_m": 80.6,
+            "score": 0.98,
+            "score_pct": 98,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 3,
+            "coordinates": [
+              [
+                -95.466553,
+                29.730226
+              ],
+              [
+                -95.466558,
+                29.730408
+              ],
+              [
+                -95.466562,
+                29.730558
+              ],
+              [
+                -95.466576,
+                29.73095
+              ],
+              [
+                -95.466572,
+                29.731419
+              ]
+            ],
+            "distance_m": 132.8,
+            "score": 0.95,
+            "score_pct": 95,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 4,
+            "coordinates": [
+              [
+                -95.466572,
+                29.731419
+              ],
+              [
+                -95.466572,
+                29.731448
+              ],
+              [
+                -95.466574,
+                29.731516
+              ],
+              [
+                -95.466577,
+                29.731651
+              ],
+              [
+                -95.466578,
+                29.731733
+              ]
+            ],
+            "distance_m": 35.0,
+            "score": 0.85,
+            "score_pct": 85,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 5,
+            "coordinates": [
+              [
+                -95.466578,
+                29.731733
+              ],
+              [
+                -95.466599,
+                29.732016
+              ],
+              [
+                -95.466634,
+                29.732452
+              ],
+              [
+                -95.466552,
+                29.732455
+              ],
+              [
+                -95.466468,
+                29.732458
+              ]
+            ],
+            "distance_m": 81.4,
+            "score": 0.71,
+            "score_pct": 71,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 6,
+            "coordinates": [
+              [
+                -95.466468,
+                29.732458
+              ],
+              [
+                -95.466248,
+                29.732467
+              ],
+              [
+                -95.466188,
+                29.732469
+              ],
+              [
+                -95.466064,
+                29.732474
+              ],
+              [
+                -95.465855,
+                29.732476
+              ]
+            ],
+            "distance_m": 59.3,
+            "score": 0.83,
+            "score_pct": 83,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 7,
+            "coordinates": [
+              [
+                -95.465855,
+                29.732476
+              ],
+              [
+                -95.465663,
+                29.732477
+              ],
+              [
+                -95.465445,
+                29.732479
+              ],
+              [
+                -95.465355,
+                29.73248
+              ]
+            ],
+            "distance_m": 48.3,
+            "score": 0.87,
+            "score_pct": 87,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          }
+        ],
+        "audit_summary": {
+          "curb_ramps": 9,
+          "missing_curb_ramps": 1,
+          "surface_problems": 1,
+          "obstacles": 0
+        }
+      },
+      "access_score": 0.86,
+      "access_score_pct": 86,
+      "access_grade": "Highly Accessible",
+      "access_color": "#10B981"
     },
     {
       "category": "Accessible Parking",
@@ -1088,7 +2952,417 @@
           -95.466551,
           29.737071
         ]
-      ]
+      ],
+      "project_sidewalk": {
+        "overall_score": 0.87,
+        "score_pct": 87,
+        "grade": "Highly Accessible",
+        "color": "#10B981",
+        "segments": [
+          {
+            "segment_index": 0,
+            "coordinates": [
+              [
+                -95.466006,
+                29.729503
+              ],
+              [
+                -95.466248,
+                29.729495
+              ],
+              [
+                -95.466266,
+                29.72952
+              ],
+              [
+                -95.466313,
+                29.729547
+              ],
+              [
+                -95.466356,
+                29.729554
+              ]
+            ],
+            "distance_m": 34.3,
+            "score": 0.74,
+            "score_pct": 74,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 1,
+            "coordinates": [
+              [
+                -95.466356,
+                29.729554
+              ],
+              [
+                -95.466384,
+                29.729549
+              ],
+              [
+                -95.466416,
+                29.729529
+              ],
+              [
+                -95.466434,
+                29.729496
+              ],
+              [
+                -95.466514,
+                29.729503
+              ]
+            ],
+            "distance_m": 16.3,
+            "score": 0.7,
+            "score_pct": 70,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 2,
+            "coordinates": [
+              [
+                -95.466514,
+                29.729503
+              ],
+              [
+                -95.466567,
+                29.729507
+              ],
+              [
+                -95.466541,
+                29.729745
+              ],
+              [
+                -95.466545,
+                29.729902
+              ],
+              [
+                -95.466553,
+                29.730226
+              ]
+            ],
+            "distance_m": 80.6,
+            "score": 0.98,
+            "score_pct": 98,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 3,
+            "coordinates": [
+              [
+                -95.466553,
+                29.730226
+              ],
+              [
+                -95.466558,
+                29.730408
+              ],
+              [
+                -95.466562,
+                29.730558
+              ],
+              [
+                -95.466576,
+                29.73095
+              ],
+              [
+                -95.466572,
+                29.731419
+              ]
+            ],
+            "distance_m": 132.8,
+            "score": 0.95,
+            "score_pct": 95,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 4,
+            "coordinates": [
+              [
+                -95.466572,
+                29.731419
+              ],
+              [
+                -95.466572,
+                29.731448
+              ],
+              [
+                -95.466574,
+                29.731516
+              ],
+              [
+                -95.466577,
+                29.731651
+              ],
+              [
+                -95.466578,
+                29.731733
+              ]
+            ],
+            "distance_m": 35.0,
+            "score": 0.85,
+            "score_pct": 85,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 5,
+            "coordinates": [
+              [
+                -95.466578,
+                29.731733
+              ],
+              [
+                -95.466599,
+                29.732016
+              ],
+              [
+                -95.466634,
+                29.732452
+              ],
+              [
+                -95.466639,
+                29.732504
+              ],
+              [
+                -95.466662,
+                29.733043
+              ]
+            ],
+            "distance_m": 146.1,
+            "score": 0.87,
+            "score_pct": 87,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 6,
+            "coordinates": [
+              [
+                -95.466662,
+                29.733043
+              ],
+              [
+                -95.46667,
+                29.733333
+              ],
+              [
+                -95.466681,
+                29.733783
+              ],
+              [
+                -95.466689,
+                29.734028
+              ],
+              [
+                -95.466699,
+                29.734397
+              ]
+            ],
+            "distance_m": 150.8,
+            "score": 0.72,
+            "score_pct": 72,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 7,
+            "coordinates": [
+              [
+                -95.466699,
+                29.734397
+              ],
+              [
+                -95.466704,
+                29.734594
+              ],
+              [
+                -95.466719,
+                29.735126
+              ],
+              [
+                -95.466722,
+                29.735239
+              ],
+              [
+                -95.466724,
+                29.735316
+              ]
+            ],
+            "distance_m": 102.3,
+            "score": 0.8,
+            "score_pct": 80,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 8,
+            "coordinates": [
+              [
+                -95.466724,
+                29.735316
+              ],
+              [
+                -95.466726,
+                29.735416
+              ],
+              [
+                -95.466732,
+                29.735528
+              ],
+              [
+                -95.466758,
+                29.735913
+              ],
+              [
+                -95.466771,
+                29.736114
+              ]
+            ],
+            "distance_m": 88.9,
+            "score": 0.94,
+            "score_pct": 94,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 9,
+            "coordinates": [
+              [
+                -95.466771,
+                29.736114
+              ],
+              [
+                -95.466785,
+                29.736732
+              ],
+              [
+                -95.46679,
+                29.736906
+              ],
+              [
+                -95.466797,
+                29.737099
+              ],
+              [
+                -95.466673,
+                29.737069
+              ]
+            ],
+            "distance_m": 106.7,
+            "score": 0.94,
+            "score_pct": 94,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 10,
+            "coordinates": [
+              [
+                -95.466673,
+                29.737069
+              ],
+              [
+                -95.466629,
+                29.73707
+              ],
+              [
+                -95.466551,
+                29.737071
+              ],
+              [
+                -95.466551,
+                29.737071
+              ]
+            ],
+            "distance_m": 11.8,
+            "score": 0.88,
+            "score_pct": 88,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          }
+        ],
+        "audit_summary": {
+          "curb_ramps": 15,
+          "missing_curb_ramps": 2,
+          "surface_problems": 2,
+          "obstacles": 0
+        }
+      },
+      "access_score": 0.87,
+      "access_score_pct": 87,
+      "access_grade": "Highly Accessible",
+      "access_color": "#10B981"
     },
     {
       "category": "Accessible Parking",
@@ -1283,7 +3557,429 @@
           -95.465151,
           29.736784
         ]
-      ]
+      ],
+      "project_sidewalk": {
+        "overall_score": 0.86,
+        "score_pct": 86,
+        "grade": "Highly Accessible",
+        "color": "#10B981",
+        "segments": [
+          {
+            "segment_index": 0,
+            "coordinates": [
+              [
+                -95.466006,
+                29.729503
+              ],
+              [
+                -95.466248,
+                29.729495
+              ],
+              [
+                -95.466266,
+                29.72952
+              ],
+              [
+                -95.466313,
+                29.729547
+              ],
+              [
+                -95.466356,
+                29.729554
+              ]
+            ],
+            "distance_m": 34.3,
+            "score": 0.74,
+            "score_pct": 74,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 1,
+            "coordinates": [
+              [
+                -95.466356,
+                29.729554
+              ],
+              [
+                -95.466384,
+                29.729549
+              ],
+              [
+                -95.466416,
+                29.729529
+              ],
+              [
+                -95.466434,
+                29.729496
+              ],
+              [
+                -95.466514,
+                29.729503
+              ]
+            ],
+            "distance_m": 16.3,
+            "score": 0.7,
+            "score_pct": 70,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 2,
+            "coordinates": [
+              [
+                -95.466514,
+                29.729503
+              ],
+              [
+                -95.466567,
+                29.729507
+              ],
+              [
+                -95.466541,
+                29.729745
+              ],
+              [
+                -95.466545,
+                29.729902
+              ],
+              [
+                -95.466553,
+                29.730226
+              ]
+            ],
+            "distance_m": 80.6,
+            "score": 0.98,
+            "score_pct": 98,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 3,
+            "coordinates": [
+              [
+                -95.466553,
+                29.730226
+              ],
+              [
+                -95.466558,
+                29.730408
+              ],
+              [
+                -95.466562,
+                29.730558
+              ],
+              [
+                -95.466576,
+                29.73095
+              ],
+              [
+                -95.466572,
+                29.731419
+              ]
+            ],
+            "distance_m": 132.8,
+            "score": 0.95,
+            "score_pct": 95,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 4,
+            "coordinates": [
+              [
+                -95.466572,
+                29.731419
+              ],
+              [
+                -95.466572,
+                29.731448
+              ],
+              [
+                -95.466574,
+                29.731516
+              ],
+              [
+                -95.466577,
+                29.731651
+              ],
+              [
+                -95.466578,
+                29.731733
+              ]
+            ],
+            "distance_m": 35.0,
+            "score": 0.85,
+            "score_pct": 85,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 5,
+            "coordinates": [
+              [
+                -95.466578,
+                29.731733
+              ],
+              [
+                -95.466599,
+                29.732016
+              ],
+              [
+                -95.466634,
+                29.732452
+              ],
+              [
+                -95.466639,
+                29.732504
+              ],
+              [
+                -95.466662,
+                29.733043
+              ]
+            ],
+            "distance_m": 146.1,
+            "score": 0.87,
+            "score_pct": 87,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 6,
+            "coordinates": [
+              [
+                -95.466662,
+                29.733043
+              ],
+              [
+                -95.46667,
+                29.733333
+              ],
+              [
+                -95.466681,
+                29.733783
+              ],
+              [
+                -95.466689,
+                29.734028
+              ],
+              [
+                -95.466699,
+                29.734397
+              ]
+            ],
+            "distance_m": 150.8,
+            "score": 0.72,
+            "score_pct": 72,
+            "grade": "Moderate",
+            "color": "#F59E0B",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 1,
+              "SurfaceProblem": 1,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 7,
+            "coordinates": [
+              [
+                -95.466699,
+                29.734397
+              ],
+              [
+                -95.466704,
+                29.734594
+              ],
+              [
+                -95.466719,
+                29.735126
+              ],
+              [
+                -95.466722,
+                29.735239
+              ],
+              [
+                -95.466724,
+                29.735316
+              ]
+            ],
+            "distance_m": 102.3,
+            "score": 0.8,
+            "score_pct": 80,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 8,
+            "coordinates": [
+              [
+                -95.466724,
+                29.735316
+              ],
+              [
+                -95.466726,
+                29.735416
+              ],
+              [
+                -95.466732,
+                29.735528
+              ],
+              [
+                -95.466758,
+                29.735913
+              ],
+              [
+                -95.466771,
+                29.736114
+              ]
+            ],
+            "distance_m": 88.9,
+            "score": 0.94,
+            "score_pct": 94,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 9,
+            "coordinates": [
+              [
+                -95.466771,
+                29.736114
+              ],
+              [
+                -95.466785,
+                29.736732
+              ],
+              [
+                -95.466543,
+                29.736735
+              ],
+              [
+                -95.465833,
+                29.736744
+              ],
+              [
+                -95.465688,
+                29.736746
+              ]
+            ],
+            "distance_m": 126.1,
+            "score": 0.84,
+            "score_pct": 84,
+            "grade": "Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 2,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          },
+          {
+            "segment_index": 10,
+            "coordinates": [
+              [
+                -95.465688,
+                29.736746
+              ],
+              [
+                -95.465261,
+                29.736751
+              ],
+              [
+                -95.465217,
+                29.736756
+              ],
+              [
+                -95.465151,
+                29.736784
+              ]
+            ],
+            "distance_m": 52.1,
+            "score": 0.91,
+            "score_pct": 91,
+            "grade": "Highly Accessible",
+            "color": "#10B981",
+            "cluster_counts": {
+              "CurbRamp": 1,
+              "NoCurbRamp": 0,
+              "SurfaceProblem": 0,
+              "Obstacle": 0
+            }
+          }
+        ],
+        "audit_summary": {
+          "curb_ramps": 15,
+          "missing_curb_ramps": 2,
+          "surface_problems": 2,
+          "obstacles": 0
+        }
+      },
+      "access_score": 0.86,
+      "access_score_pct": 86,
+      "access_grade": "Highly Accessible",
+      "access_color": "#10B981"
     }
-  ]
+  ],
+  "project_sidewalk": {
+    "source": "Project Sidewalk Access Score API (UW Makeability Lab)",
+    "neighborhood_access_score": 0.84,
+    "score_pct": 84,
+    "grade": "High",
+    "description": "Uptown / Galleria: modern commercial concrete walkways, tactile paving at intersections.",
+    "curb_ramp_percentage": 89,
+    "total_audited_segments": 72,
+    "total_curb_ramps_verified": 99,
+    "total_obstacles_found": 0,
+    "total_surface_problems": 17
+  }
 }
