@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { floorPlanCaption, heatmapZones, localFloorPlan } from "../heatmap.js";
+import { floorPlanCaption, listingHeatmap, localFloorPlan } from "../heatmap.js";
 import { STATUS_LABEL } from "../logic.js";
 
 function PlanImage({ src, caption }) {
@@ -20,10 +20,25 @@ function PlanImage({ src, caption }) {
   );
 }
 
+export function PlanHeatStrip({ listing }) {
+  const zones = listingHeatmap(listing);
+  return (
+    <p className="plan-heat-strip">
+      <span>Floor plan heatmap</span>
+      <span className="plan-heat-dots" aria-label={zones.map((zone) => `${zone.label}: ${zone.status}`).join(", ")}>
+        {zones.map((zone) => (
+          <i key={zone.id} className={zone.status} />
+        ))}
+      </span>
+    </p>
+  );
+}
+
 export function ListingPlan({ listing, needIds }) {
   const address = listing.address || listing.name;
   const plans = (listing.images?.floorplans || []).map((src) => ({ src: localFloorPlan(src) }));
-  const zones = heatmapZones(listing, needIds);
+  const zones = listingHeatmap(listing, needIds);
+  const searching = zones.some((zone) => zone.inSearch);
 
   return (
     <section className="scanned-plan" aria-labelledby="plan-title">
@@ -42,26 +57,22 @@ export function ListingPlan({ listing, needIds }) {
       ) : (
         <p>This listing does not include a floor plan drawing yet.</p>
       )}
-      <h3>Access heatmap</h3>
-      {zones.length === 0 ? (
-        <p className="meta">Select an access need and this heatmap uses those checks.</p>
-      ) : (
-        <>
-          <p className="meta">
-            Each color is a listing check for the needs you selected. It is not a measured room on the drawing.
-          </p>
-          <div className="heat-grid">
-            {zones.map((zone) => (
-              <div key={zone.id} className={`heat ${zone.status}`}>
-                <span className="heat-swatch" aria-hidden="true" />
-                <span className="heat-status">{STATUS_LABEL[zone.status] || zone.status}</span>
-                <strong>{zone.label}</strong>
-                <span className="heat-detail">{zone.title}</span>
-              </div>
-            ))}
+      <h3 id="floor-heatmap">Floor plan heatmap</h3>
+      <p className="meta">
+        Each color is a check on this listing. The drawing does not mark rooms, so the colors sit with the plan
+        instead of inside a room.
+        {searching ? " A darker outline is a check in the search you selected." : ""}
+      </p>
+      <div className="heat-grid">
+        {zones.map((zone) => (
+          <div key={zone.id} className={`heat ${zone.status}${zone.inSearch ? " in-search" : ""}`}>
+            <span className="heat-swatch" aria-hidden="true" />
+            <span className="heat-status">{STATUS_LABEL[zone.status] || zone.status}</span>
+            <strong>{zone.label}</strong>
+            <span className="heat-detail">{zone.title}</span>
           </div>
-        </>
-      )}
+        ))}
+      </div>
     </section>
   );
 }

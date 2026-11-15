@@ -20,21 +20,30 @@ export function floorPlanCaption(address, index, total) {
   return `${which} for ${address}. This is the listing drawing.`;
 }
 
+function zoneFor(listing, id, inSearch) {
+  const finding = listing?.findings?.[id];
+  const meta = CHECKS.find((check) => check.id === id);
+  return {
+    id,
+    label: meta?.label || id,
+    status: finding?.status || "unknown",
+    title: finding?.title || "Not in the listing",
+    inSearch,
+  };
+}
+
+function byHeat(a, b) {
+  return RANK[a.status] - RANK[b.status] || a.label.localeCompare(b.label);
+}
+
 export function heatmapZones(listing, needIds) {
   const selected = new Set(needIds || []);
   const checkIds = ACCESS_NEEDS.filter((need) => selected.has(need.id)).flatMap((need) => need.checks);
-  const unique = [...new Set(checkIds)];
-  return unique
-    .map((id) => {
-      const finding = listing?.findings?.[id];
-      const meta = CHECKS.find((check) => check.id === id);
-      const status = finding?.status || "unknown";
-      return {
-        id,
-        label: meta?.label || id,
-        status,
-        title: finding?.title || "Not in the listing",
-      };
-    })
-    .sort((a, b) => RANK[a.status] - RANK[b.status] || a.label.localeCompare(b.label));
+  return [...new Set(checkIds)].map((id) => zoneFor(listing, id, true)).sort(byHeat);
+}
+
+export function listingHeatmap(listing, needIds = []) {
+  const selected = new Set(heatmapZones(listing, needIds).map((zone) => zone.id));
+  const searching = selected.size > 0;
+  return CHECKS.map((check) => zoneFor(listing, check.id, searching && selected.has(check.id))).sort(byHeat);
 }
