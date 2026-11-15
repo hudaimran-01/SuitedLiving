@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { canTour, floorPlanCaption, heatmapZones, localFloorPlan, tourUrl } from "../src/heatmap.js";
-import { aerialReport, closestAmenities, compareAround, notesFromScan, propertyMediaFor } from "../src/propertyMedia.js";
+import { accessTone, aerialReport, closestAmenities, compareAround, notesFromScan, propertyMediaFor } from "../src/propertyMedia.js";
 import { LISTINGS } from "../src/data.js";
 
 test("scan notes keep one useful line per access topic", () => {
@@ -57,6 +57,20 @@ test("uploaded homes keep the aerial search and the listing carries the floor pl
   const clinic = aerialReport(propertyMediaFor("238641283"), "a clinic");
   assert.equal(clinic.places[0].category, "Medical Place");
   assert.match(clinic.places[0].text, /5 minutes on the sidewalk/);
+});
+
+test("each home has a listing agent and a sidewalk score for the block", () => {
+  for (const home of LISTINGS) {
+    assert.ok(home.manager?.name);
+    assert.match(home.manager.phone, /^\(\d{3}\) \d{3}-\d{4}$/);
+    assert.match(home.manager.email, /@/);
+  }
+  const portland = aerialReport(propertyMediaFor("228418897"), "");
+  assert.equal(portland.projectSidewalk.score_pct, 88);
+  assert.equal(accessTone(88), "observed");
+  assert.equal(accessTone(74), "unknown");
+  assert.equal(accessTone(40), "barrier");
+  assert.equal(portland.places.find((place) => place.category === "Retail Store").accessScorePct, 88);
 });
 
 test("compare uses the sidewalk walk and does not look up a missing sample trip", () => {

@@ -38,6 +38,14 @@ class Images(BaseModel):
     floorplans: list[str] = []        # Matterport floor plan images (SVG), one per level
 
 
+class Manager(BaseModel):
+    name: str = ""
+    company: str = ""
+    phone: str = ""
+    email: str = ""
+    officePhone: str = ""
+
+
 class Listing(BaseModel):
     id: str
     name: str
@@ -56,3 +64,4 @@ class Listing(BaseModel):
     investigations: list[Investigation]
     findings: dict[str, Finding]
     agentNotes: list[str] = []
+    manager: Optional[Manager] = None

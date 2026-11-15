@@ -186,7 +186,14 @@
     },
     "agentNotes": [
       "Accessibility features are built into the home, including a wheelchair-friendly floorplan, wider doorways, and ramps for easy entry and movement."
-    ]
+    ],
+    "manager": {
+      "name": "Anton Edwards",
+      "company": "The LaQuinn Group, Inc.",
+      "phone": "(555) 082-7770",
+      "email": "contact-c48f1533dc@example.com",
+      "officePhone": "(555) 622-9014"
+    }
   },
   {
     "id": "233992469",
@@ -375,7 +382,14 @@
     },
     "agentNotes": [
       "Building amenities include controlled access, elevators, a fitness center, business center, party room, resort-style pool, outdoor kitchen, and beautifully landscaped common areas."
-    ]
+    ],
+    "manager": {
+      "name": "Ali Pourmemar",
+      "company": "Next Trend Realty LLC",
+      "phone": "(555) 753-5412",
+      "email": "contact-540e95c3fd@example.com",
+      "officePhone": "(555) 012-9130"
+    }
   },
   {
     "id": "238641283",
@@ -567,7 +581,14 @@
     "agentNotes": [
       "This two-story Los Angeles property features four bedrooms and two bathrooms downstairs and three bedrooms and two bathrooms upstairs.",
       "A front entry ramp and an interior wheelchair lift provide additional access options; per seller, the lift is operational."
-    ]
+    ],
+    "manager": {
+      "name": "John Reionn Webber",
+      "company": "Vista Verde Services Inc",
+      "phone": "(555) 102-4857",
+      "email": "contact-37be8fd7cd@example.com",
+      "officePhone": "(555) 041-9711"
+    }
   },
   {
     "id": "228418897",
@@ -761,7 +782,14 @@
     "agentNotes": [
       "Oversized pneumatic elevator - unparalleled convenience.",
       "Guest suite or home office on first floor with access to a private back yard oasis."
-    ]
+    ],
+    "manager": {
+      "name": "Emma Del Frate",
+      "company": "Keller Williams Realty Metropolitan",
+      "phone": "(555) 122-5332",
+      "email": "contact-4a9450bfd7@example.com",
+      "officePhone": "(555) 122-5332"
+    }
   },
   {
     "id": "235969334",
@@ -950,7 +978,14 @@
         "ask": "Is the intercom video or text, or sound only?"
       }
     },
-    "agentNotes": []
+    "agentNotes": [],
+    "manager": {
+      "name": "Pius Dawson",
+      "company": "Nan & Company Properties - Corporate Office (Heights)",
+      "phone": "(555) 100-5384",
+      "email": "contact-b4419dfd6c@example.com",
+      "officePhone": "(555) 200-3051"
+    }
   },
   {
     "id": "228897977",
@@ -1141,6 +1176,13 @@
         "ask": "Is the intercom video or text, or sound only?"
       }
     },
-    "agentNotes": []
+    "agentNotes": [],
+    "manager": {
+      "name": "Tikila Adolph",
+      "company": "Orchard Brokerage",
+      "phone": "(555) 863-9563",
+      "email": "contact-ec1686b5b3@example.com",
+      "officePhone": "(555) 767-7875"
+    }
   }
 ]
