@@ -410,6 +410,11 @@ def generate_overview_for_listing(prop_info, output_dir=None):
     ped_outline = Circle((0, 0), 500, fill=False, edgecolor=zone_color, linewidth=2.0, linestyle="--", alpha=0.85, zorder=5)
     ax.add_patch(ped_outline)
 
+    # Clean Single Apartment Pin at Center (0, 0)
+    ax.scatter([0], [0], s=300, marker="*", color="#FFCC00", edgecolors="#000000", linewidths=1.8, zorder=20)
+    apt_halo = Circle((0, 0), 22, fill=True, facecolor="#FFCC00", edgecolor="#FFFFFF", linewidth=1.4, alpha=0.35, zorder=19)
+    ax.add_patch(apt_halo)
+
     # 3. Draw Sidewalk Routes
     for poi in all_pois:
         coords = poi["coordinates"]

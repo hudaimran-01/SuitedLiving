@@ -1398,3 +1398,40 @@ html[data-vision="true"] body {
   font-size: 0.8rem;
   white-space: nowrap;
 }
+
+.amenities-walking-card {
+  margin: 1.25rem 0;
+  padding: 1.2rem 1.4rem;
+  background: var(--paper, #f3eee4);
+  border: 1px solid var(--line, #d9d0c0);
+  border-radius: var(--radius, 18px);
+}
+
+.amenities-walking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--line, #d9d0c0);
+}
+
+.amenities-walking-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink, #1a1714);
+  margin: 0;
+}
+
+.amenities-walking-sub {
+  font-size: 0.82rem;
+  color: var(--ink-soft, #4a453e);
+}
+
+.amenities-walking-list {
+  margin: 0;
+  padding: 0;
+}

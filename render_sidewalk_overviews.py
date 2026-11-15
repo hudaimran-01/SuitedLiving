@@ -107,7 +107,8 @@ PROPERTIES_MAPPING = [
 def render_property(prop_cfg, root_dir: Path):
     vexcel_dir = root_dir / "property_media" / "vexcel"
     prop_dir = vexcel_dir / prop_cfg["folder"]
-    base_img_path = vexcel_dir / prop_cfg["base_img"]
+    raw_ortho_path = prop_dir / "raw_orthophoto.jpg"
+    base_img_path = raw_ortho_path if raw_ortho_path.exists() else (vexcel_dir / prop_cfg["base_img"])
     json_path = prop_dir / "amenities_and_routes.json"
 
     if not json_path.exists():
@@ -163,7 +164,7 @@ def render_property(prop_cfg, root_dir: Path):
         item["access_color"] = scored["color"]
         scored_pois.append((item, scored))
 
-    # 2. Render onto the high-resolution Vexcel Orthophoto
+    # 2. Render onto the clean high-resolution Vexcel Orthophoto
     ortho_img = Image.open(base_img_path).convert("RGB")
     fig, ax = plt.subplots(figsize=(15, 15), dpi=160)
     ax.imshow(ortho_img, extent=[-radius_m, radius_m, -radius_m, radius_m])
@@ -181,6 +182,11 @@ def render_property(prop_cfg, root_dir: Path):
     ax.add_patch(zone_circle)
     zone_border = Circle((0, 0), 500, fill=False, edgecolor=zone_color, linewidth=2.0, linestyle="--", alpha=0.85, zorder=6)
     ax.add_patch(zone_border)
+
+    # Clean Single Apartment Pin at Center (0, 0)
+    ax.scatter([0], [0], s=300, marker="*", color="#FFCC00", edgecolors="#000000", linewidths=1.8, zorder=20)
+    apt_halo = Circle((0, 0), 22, fill=True, facecolor="#FFCC00", edgecolor="#FFFFFF", linewidth=1.4, alpha=0.35, zorder=19)
+    ax.add_patch(apt_halo)
 
     # 3. Draw Project Sidewalk Color-Coded Street Segments
     for poi, scored in scored_pois:

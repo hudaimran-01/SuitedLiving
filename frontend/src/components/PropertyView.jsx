@@ -149,21 +149,29 @@ export function AerialNearby({ media, nearby }) {
           </div>
         </div>
       ) : null}
-      <ul className="check-list plain">
-        {report.places.map((place) => (
-          <li key={place.category} className="place-item">
-            <span>{place.text}</span>
-            {place.accessScorePct ? (
-              <span
-                className="sidewalk-pill"
-                style={{ backgroundColor: place.accessColor || (place.accessScorePct >= 75 ? "#10B981" : "#F59E0B") }}
-              >
-                Sidewalk Access: {place.accessScorePct}%
-              </span>
-            ) : null}
-          </li>
-        ))}
-      </ul>
+      {report.places?.length ? (
+        <div className="amenities-walking-card">
+          <div className="amenities-walking-header">
+            <h4 className="amenities-walking-title">Nearby Amenities & Walking Routes</h4>
+            <span className="amenities-walking-sub">Continuous pedestrian sidewalk network (max 20-min walk)</span>
+          </div>
+          <ul className="check-list plain amenities-walking-list">
+            {report.places.map((place) => (
+              <li key={place.category} className="place-item">
+                <span>{place.text}</span>
+                {place.accessScorePct ? (
+                  <span
+                    className="sidewalk-pill"
+                    style={{ backgroundColor: place.accessColor || (place.accessScorePct >= 75 ? "#10B981" : "#F59E0B") }}
+                  >
+                    Sidewalk Access: {place.accessScorePct}%
+                  </span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
       <Zoom shot={zoom} onClose={() => setZoom(null)} />
     </section>
   );
