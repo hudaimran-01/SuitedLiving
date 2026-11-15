@@ -10,6 +10,8 @@ Source = Literal["CoStar", "Vexcel", "Matterport"]
 CHECK_IDS = ["step-free", "elevator", "parking", "short-walk", "doorways", "bathroom",
              "lighting", "contrast", "signage", "alarms", "doorbell", "intercom"]
 
+# VEXCEL DATA FROM SCHEMA PROVIDED FROM FRONTEND
+# -- COULD BE IMPLEMENTED BACKEND IF NEEDED
 
 class Finding(BaseModel):
     status: Status
@@ -51,4 +53,4 @@ class Listing(BaseModel):
     sketchLabel: str
     investigations: list[Investigation]
     findings: dict[str, Finding]
-    agentNotes: list[str] = []         # ADDEd: Specific agent notes could give more accesibility details
+    agentNotes: list[str] = []         # ADDED: Specific agent notes could give more accesibility details

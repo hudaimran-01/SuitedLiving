@@ -40,7 +40,7 @@ for l in kit.read_jsonl(config.LISTINGS_JSONL):
     st = rv.get("structure") or {}
     print(f"\n=== {l['id']}  {a.get('fullStreetAddress')}, {a.get('city')} ===")
     print(f"price={l.get('currentPrice')}  type={p.get('propertyType')}  beds={p.get('bedsMin')}  "
-          f"baths={p.get('bathsMin')}  sqft={p.get('sqftMin')}  stories={p.get('stories')}  "
+          f"baths={p.get('bathsMin')} (full={p.get('bathsFull')} half={p.get('bathsHalf')} max={p.get('bathsMax')})  sqft={p.get('sqftMin')}  stories={p.get('stories')}  "
           f"storiesTotal={st.get('storiesTotal')}  floor={a.get('floorNumber')}  unit={a.get('unitNumber')}")
     print(f"resoValues: hasElevator={rv.get('hasElevator')}  hasAccessibilityFeatures={rv.get('hasAccessibilityFeatures')}")
     for s in snippets(l.get("remarks")):

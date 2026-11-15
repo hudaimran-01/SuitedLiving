@@ -39,7 +39,8 @@ def main():
             counts[f["status"]] = counts.get(f["status"], 0) + 1
         img = x["images"]
         print(f"{x['id']:>10}  {x['place']:<16} ${x['price']:>11,.0f}  {x['floor']:<12} "
-              f"{counts}  still={'Y' if img['matterport'] else 'NONE'} photos={len(img['photos'])}")
+            f"{x['beds']}bd {x['baths']}ba  {counts}  still={'Y' if img['matterport'] else 'NONE'} "
+            f"photos={len(img['photos'])}")
 
 
 if __name__ == "__main__":
