@@ -14,6 +14,9 @@ REMARK = re.compile(
     r"wheelchair|handicap|accessib|step[- ]?free|no steps|roll-in|zero[- ]entry|\bramp\b|grab bar|elevator",
     re.I,
 )
+"""
+Finds all possible canidates for website's listings 
+"""
 
 
 def yn(v):
