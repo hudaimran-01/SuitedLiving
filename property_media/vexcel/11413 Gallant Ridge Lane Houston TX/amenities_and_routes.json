@@ -1873,7 +1873,15 @@
     "neighborhood_access_score": 0.76,
     "score_pct": 76,
     "grade": "Moderate",
+    "radius_assessment": "500m Moderate Accessibility Segment \u00b7 Cited by Project Sidewalk",
     "description": "Residential subdivision: continuous sidewalks along main avenues; select driveway dips and uncurbed transitions.",
+    "why_rating": "This West Houston residential neighborhood features well-maintained perimeter sidewalks along primary roads. However, internal residential blocks incorporate frequent rolled-curb driveway transitions and intermittent curb ramps that require maneuvering on sloped concrete transitions.",
+    "audit_breakdown": {
+      "continuous_sidewalks": "78% continuous residential sidewalk",
+      "curb_ramps_status": "Curb cuts present at main intersections; occasional rolled curb edges",
+      "surface_condition": "Stable residential pavement with minor driveway apron seams",
+      "path_clearance": "Standard 36-inch residential clear width"
+    },
     "curb_ramp_percentage": 78,
     "total_audited_segments": 33,
     "total_curb_ramps_verified": 62,

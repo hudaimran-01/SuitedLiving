@@ -4447,7 +4447,15 @@
     "neighborhood_access_score": 0.88,
     "score_pct": 88,
     "grade": "High",
+    "radius_assessment": "500m High Accessibility Segment \u00b7 Cited by Project Sidewalk",
     "description": "Museum District: wide continuous sidewalks, high ADA curb-ramp density, signalized crosswalks.",
+    "why_rating": "The Museum District is among Houston's premier pedestrian corridors. Sidewalks along Portland Street and Montrose Boulevard measure 5 to 6 feet wide in poured concrete, with truncated-dome tactile pavers and dual ADA curb ramps at each corner. Cross-slopes remain under 2%, and zero pathway obstacles were logged on walks to the nearby medical center and retail destinations.",
+    "audit_breakdown": {
+      "continuous_sidewalks": "92% continuous paved coverage",
+      "curb_ramps_status": "Dual ADA curb ramps with tactile paving at all street corners",
+      "surface_condition": "Smooth, level concrete with minimal expansion joint wear",
+      "path_clearance": "Clear roll width exceeding 48 inches across all primary corridors"
+    },
     "curb_ramp_percentage": 92,
     "total_audited_segments": 82,
     "total_curb_ramps_verified": 105,

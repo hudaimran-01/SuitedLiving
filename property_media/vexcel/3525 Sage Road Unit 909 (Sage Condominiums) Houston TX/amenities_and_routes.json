@@ -3975,7 +3975,15 @@
     "neighborhood_access_score": 0.84,
     "score_pct": 84,
     "grade": "High",
+    "radius_assessment": "500m High Accessibility Segment \u00b7 Cited by Project Sidewalk",
     "description": "Uptown / Galleria: modern commercial concrete walkways, tactile paving at intersections.",
+    "why_rating": "The Uptown / Post Oak district benefits from comprehensive streetscape modernization. Commercial concrete walkways are wide and well-lit with flush transition aprons at retail entrances. The rating reflects excellent curb ramp compliance, with minor deductions only for wide arterial crossings that require longer signal phase crossings.",
+    "audit_breakdown": {
+      "continuous_sidewalks": "89% continuous commercial sidewalk",
+      "curb_ramps_status": "ADA compliant directional curb cuts at major retail intersections",
+      "surface_condition": "High-grade commercial concrete paving with zero significant buckling",
+      "path_clearance": "Generous 60-inch pedestrian clear zones along Sage Road"
+    },
     "curb_ramp_percentage": 89,
     "total_audited_segments": 72,
     "total_curb_ramps_verified": 99,

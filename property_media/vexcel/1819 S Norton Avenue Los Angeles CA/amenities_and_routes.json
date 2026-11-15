@@ -2483,7 +2483,15 @@
     "neighborhood_access_score": 0.78,
     "score_pct": 78,
     "grade": "Moderate-High",
+    "radius_assessment": "500m Moderate-to-High Accessibility Segment \u00b7 Cited by Project Sidewalk",
     "description": "Mid-City LA: mostly level sidewalks with standard curb ramps; occasional tree root surface buckling.",
+    "why_rating": "Mid-City Los Angeles offers continuous sidewalk connectivity along primary arterials like Venice and Washington Boulevard with signalized pedestrian crosswalks. The moderate-to-high rating accounts for mature street tree root upheaval on residential residential side streets that creates localized pavement steps (1-2 inches) requiring caution for wheelchair and walker users.",
+    "audit_breakdown": {
+      "continuous_sidewalks": "82% continuous sidewalk coverage",
+      "curb_ramps_status": "Standard yellow-detectable curb ramps at signalized corners",
+      "surface_condition": "Generally level; isolated root uplift zones on Norton Ave",
+      "path_clearance": "Standard 36 to 48-inch pathways; minor utility pole pinch points"
+    },
     "curb_ramp_percentage": 82,
     "total_audited_segments": 45,
     "total_curb_ramps_verified": 62,

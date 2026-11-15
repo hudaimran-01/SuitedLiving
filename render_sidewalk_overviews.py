@@ -181,6 +181,22 @@ def render_property(prop_cfg, root_dir: Path):
                 bbox=dict(boxstyle="round,pad=0.25", facecolor="#111111", alpha=0.7, edgecolor="none")
             )
 
+    # Shaded 500m Project Sidewalk Accessibility Radius Zone
+    zone_color = COLOR_HIGH if neighborhood_score >= 0.75 else COLOR_MODERATE
+    zone_circle = Circle((0, 0), 500, fill=True, facecolor=zone_color, edgecolor=zone_color, linewidth=2.5, alpha=0.15, zorder=5)
+    ax.add_patch(zone_circle)
+    zone_border = Circle((0, 0), 500, fill=False, edgecolor=zone_color, linewidth=2.2, linestyle="--", alpha=0.9, zorder=6)
+    ax.add_patch(zone_border)
+
+    # 500m Radius callout text tag
+    rad_banner = f"★ {ps_baseline.get('radius_assessment', 'Accessibility Segment · Cited by Project Sidewalk')} (Radius: 500m / 1,640ft)"
+    ax.text(
+        0, 500, rad_banner,
+        color="#FFFFFF", fontsize=9.2, fontweight="bold",
+        ha="center", va="center", zorder=16,
+        bbox=dict(boxstyle="round,pad=0.35", facecolor=zone_color, edgecolor="#FFFFFF", lw=1.5, alpha=0.96)
+    )
+
     # Center Apartment Marker
     ax.scatter([0], [0], s=440, marker="*", color="#FFCC00", edgecolors="#000000", linewidths=2.0, zorder=20)
     apt_ring = Circle((0, 0), 28, fill=True, facecolor="#FFCC00", edgecolor="#FFFFFF", linewidth=1.5, alpha=0.35, zorder=19)
@@ -351,7 +367,10 @@ def render_property(prop_cfg, root_dir: Path):
         "neighborhood_access_score": neighborhood_score,
         "score_pct": neighborhood_pct,
         "grade": neighborhood_grade,
+        "radius_assessment": ps_baseline.get("radius_assessment", "500m Accessibility Segment · Cited by Project Sidewalk"),
         "description": ps_baseline["description"],
+        "why_rating": ps_baseline.get("why_rating", ""),
+        "audit_breakdown": ps_baseline.get("audit_breakdown", {}),
         "curb_ramp_percentage": ps_baseline["curb_ramp_pct"],
         "total_audited_segments": total_segments_count,
         "total_curb_ramps_verified": all_curb_ramps,
@@ -360,6 +379,13 @@ def render_property(prop_cfg, root_dir: Path):
     }
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
+
+    # Sync to frontend/public/property_media as well
+    pub_prop_dir = root_dir / "frontend" / "public" / "property_media" / "vexcel" / prop_cfg["folder"]
+    if pub_prop_dir.exists():
+        (pub_prop_dir / "overview_map.png").write_bytes(out_png.read_bytes())
+        (pub_prop_dir / "overview_map.jpg").write_bytes(out_jpg.read_bytes())
+        (pub_prop_dir / "amenities_and_routes.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
 
     print(f"  ✓ Rendered overview_map.jpg & overview_map.png with Project Sidewalk colors")
     print(f"  ✓ Updated amenities_and_routes.json (Neighborhood Access Score: {neighborhood_pct}/100)")

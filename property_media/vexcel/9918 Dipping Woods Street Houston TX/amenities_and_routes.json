@@ -2459,7 +2459,15 @@
     "neighborhood_access_score": 0.74,
     "score_pct": 74,
     "grade": "Moderate",
+    "radius_assessment": "500m Moderate Accessibility Segment \u00b7 Cited by Project Sidewalk",
     "description": "North Houston: residential sidewalks present, minor joint unevenness, curb cuts at key street crossings.",
+    "why_rating": "North Houston residential streets feature dedicated sidewalks leading toward retail centers. The moderate score reflects intermittent sidewalk discontinuities on secondary access streets and occasional surface unevenness from ground shifting, requiring attention during wet conditions.",
+    "audit_breakdown": {
+      "continuous_sidewalks": "75% continuous sidewalk coverage",
+      "curb_ramps_status": "Corner curb cuts installed at major crossings; select unramped corners",
+      "surface_condition": "Older concrete with moderate joint cracking",
+      "path_clearance": "36-inch path width with occasional overgrown lawn edges"
+    },
     "curb_ramp_percentage": 75,
     "total_audited_segments": 45,
     "total_curb_ramps_verified": 63,

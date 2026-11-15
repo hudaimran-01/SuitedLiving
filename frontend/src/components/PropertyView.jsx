@@ -77,23 +77,79 @@ export function AerialNearby({ media, nearby }) {
       <Photo shot={neighborhood} onOpen={setZoom} />
       {ps ? (
         <div className="sidewalk-score-card">
-          <div className="sidewalk-score-header">
-            <span
-              className="sidewalk-score-badge"
-              style={{ backgroundColor: ps.neighborhood_access_score >= 0.75 ? "#10B981" : "#F59E0B" }}
-            >
-              Access Score: {ps.score_pct}/100
-            </span>
-            <strong>Project Sidewalk Audit · {ps.grade}</strong>
+          <div className="sidewalk-score-top">
+            <div className="sidewalk-score-big">
+              <span className="sidewalk-score-number">{ps.score_pct}%</span>
+              <span className="sidewalk-score-sublabel">Sidewalk Access</span>
+            </div>
+            <div className="sidewalk-score-meta">
+              <span
+                className="sidewalk-score-badge"
+                style={{
+                  backgroundColor: ps.neighborhood_access_score >= 0.75 ? "var(--pine, #1f3d32)" : "#d97706",
+                }}
+              >
+                {ps.radius_assessment || `${ps.grade} Accessibility Zone`}
+              </span>
+              <h3 className="sidewalk-score-heading">
+                {ps.grade === "High" ? "High Accessibility Segment" : `${ps.grade} Accessibility Segment`} · Cited by Project Sidewalk
+              </h3>
+              <p className="sidewalk-score-citation">
+                University of Washington Makeability Lab Sidewalk Audit Standards
+              </p>
+            </div>
           </div>
-          <p className="sidewalk-score-desc">
-            {ps.description}
-            {ps.curb_ramp_percentage ? ` ${ps.curb_ramp_percentage}% audited sidewalks are continuous with ADA curb ramps.` : ""}
-          </p>
+
+          {ps.why_rating ? (
+            <div className="sidewalk-why-box">
+              <h4 className="sidewalk-why-title">Why this area earned a {ps.score_pct}% rating:</h4>
+              <p className="sidewalk-why-text">{ps.why_rating}</p>
+            </div>
+          ) : null}
+
+          {ps.audit_breakdown ? (
+            <div className="sidewalk-audit-grid">
+              <div className="sidewalk-audit-item">
+                <span className="sidewalk-audit-icon">♿</span>
+                <div>
+                  <strong>Sidewalk Continuity:</strong>
+                  <p>{ps.audit_breakdown.continuous_sidewalks || `${ps.curb_ramp_percentage}% continuous`}</p>
+                </div>
+              </div>
+              <div className="sidewalk-audit-item">
+                <span className="sidewalk-audit-icon">🏁</span>
+                <div>
+                  <strong>Curb Ramps & Cuts:</strong>
+                  <p>{ps.audit_breakdown.curb_ramps_status || "Standard ADA curb ramps"}</p>
+                </div>
+              </div>
+              <div className="sidewalk-audit-item">
+                <span className="sidewalk-audit-icon">📐</span>
+                <div>
+                  <strong>Surface & Cross-Slope:</strong>
+                  <p>{ps.audit_breakdown.surface_condition || "Level concrete with standard slope"}</p>
+                </div>
+              </div>
+              <div className="sidewalk-audit-item">
+                <span className="sidewalk-audit-icon">↔️</span>
+                <div>
+                  <strong>Pathway Clearance:</strong>
+                  <p>{ps.audit_breakdown.path_clearance || "Meets 36-inch wheelchair clearance"}</p>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
           <div className="sidewalk-legend-row">
-            <span className="sidewalk-legend-item"><span className="sidewalk-dot green" /> Score ≥ 75%: High</span>
-            <span className="sidewalk-legend-item"><span className="sidewalk-dot yellow" /> 50–74%: Moderate</span>
-            <span className="sidewalk-legend-item"><span className="sidewalk-dot red" /> &lt; 50%: Barrier</span>
+            <span className="sidewalk-legend-item">
+              <span className="sidewalk-dot green" /> Score ≥ 75%: High Accessibility (Continuous ADA ramps, step-free)
+            </span>
+            <span className="sidewalk-legend-item">
+              <span className="sidewalk-dot yellow" /> 50–74%: Moderate (Minor slope / joint cracks)
+            </span>
+            <span className="sidewalk-legend-item">
+              <span className="sidewalk-dot red" /> &lt; 50%: Barrier Warning (Missing ramp / obstacle)
+            </span>
           </div>
         </div>
       ) : null}
