@@ -11,10 +11,10 @@ export function Shell({ route, savedCount, lowVision, children }) {
               <circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" strokeWidth="2" />
               <circle cx="16" cy="16" r="3" fill="currentColor" />
             </svg>
-            <span>InsideOut</span>
+            <span>SuitedLiving</span>
           </a>
           <nav className="nav" aria-label="Primary">
-            <a href="#/discover" aria-current={route.name === "discover" ? "page" : undefined}>
+            <a href="#/discover" aria-current={route.name === "discover" || route.name === "interior" ? "page" : undefined}>
               Homes
             </a>
             <a href="#/compare" aria-current={route.name === "compare" ? "page" : undefined}>
@@ -35,10 +35,10 @@ export function Shell({ route, savedCount, lowVision, children }) {
       <footer className="footer">
         <div className="wrap footer-inner">
           <p>
-            InsideOut reads the home and the block, and leaves gaps visible. It does not certify
+            SuitedLiving reads the home and the block, and leaves gaps visible. It does not certify
             that either is accessible.
           </p>
-          <p>Sample only. Homes for sale in Houston and Los Angeles, from the listings file.</p>
+          <p>Homes for sale in Houston and Los Angeles.</p>
         </div>
       </footer>
     </div>

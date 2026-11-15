@@ -44,7 +44,7 @@ export function sanitizePrefs(value) {
   const fallback = { maxPrice: PRICE_MAX, beds: null, needs: [], nearby: "" };
   if (!value || typeof value !== "object") return fallback;
   const maxPrice = Number(value.maxPrice);
-  const beds = Number(value.beds);
+  const beds = value.beds == null || value.beds === "" ? null : Number(value.beds);
   const allowed = new Set(ACCESS_NEEDS.map((item) => item.id));
   const needs = Array.isArray(value.needs)
     ? value.needs.filter((id) => allowed.has(id))
@@ -91,7 +91,7 @@ export function findingFor(listing, checkId) {
     source: "None",
     scene: listing.scene,
     title: "No evidence is recorded for this requirement",
-    detail: "This sample file does not have a note for that requirement.",
+    detail: "This listing does not have a note for that requirement.",
     ask: "Can you confirm this in person or with a measured plan?",
   };
 }

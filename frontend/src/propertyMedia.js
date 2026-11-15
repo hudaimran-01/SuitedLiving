@@ -1,16 +1,10 @@
 import { interpretNearby } from "./life.js";
-import dippingNearby from "../../property_media/1_9918_Dipping_Woods_St_Houston_TX/vexcel/nearby_amenities_and_accessibility.json" with { type: "json" };
-import dippingElements from "../../property_media/1_9918_Dipping_Woods_St_Houston_TX/vexcel/elements_summary.json" with { type: "json" };
-import sageNearby from "../../property_media/2_Sage_Condominiums_Unit_909_Houston_TX/vexcel/nearby_amenities_and_accessibility.json" with { type: "json" };
-import sageElements from "../../property_media/2_Sage_Condominiums_Unit_909_Houston_TX/vexcel/elements_summary.json" with { type: "json" };
-import nortonNearby from "../../property_media/3_1819_S_Norton_Ave_Los_Angeles_CA/vexcel/nearby_amenities_and_accessibility.json" with { type: "json" };
-import nortonElements from "../../property_media/3_1819_S_Norton_Ave_Los_Angeles_CA/vexcel/elements_summary.json" with { type: "json" };
-import portlandNearby from "../../property_media/4_205_Portland_St_Houston_TX/vexcel/nearby_amenities_and_accessibility.json" with { type: "json" };
-import portlandElements from "../../property_media/4_205_Portland_St_Houston_TX/vexcel/elements_summary.json" with { type: "json" };
-import gallantNearby from "../../property_media/5_11413_Gallant_Ridge_Ln_Houston_TX/vexcel/nearby_amenities_and_accessibility.json" with { type: "json" };
-import gallantElements from "../../property_media/5_11413_Gallant_Ridge_Ln_Houston_TX/vexcel/elements_summary.json" with { type: "json" };
-import dennisNearby from "../../property_media/6_2711_Dennis_St_Houston_TX/vexcel/nearby_amenities_and_accessibility.json" with { type: "json" };
-import dennisElements from "../../property_media/6_2711_Dennis_St_Houston_TX/vexcel/elements_summary.json" with { type: "json" };
+import dippingNearby from "../../property_media/vexcel/9918 Dipping Woods Street Houston TX/amenities_and_routes.json" with { type: "json" };
+import sageNearby from "../../property_media/vexcel/3525 Sage Road Unit 909 (Sage Condominiums) Houston TX/amenities_and_routes.json" with { type: "json" };
+import nortonNearby from "../../property_media/vexcel/1819 S Norton Avenue Los Angeles CA/amenities_and_routes.json" with { type: "json" };
+import portlandNearby from "../../property_media/vexcel/205 Portland Street Houston TX/amenities_and_routes.json" with { type: "json" };
+import gallantNearby from "../../property_media/vexcel/11413 Gallant Ridge Lane Houston TX/amenities_and_routes.json" with { type: "json" };
+import dennisNearby from "../../property_media/vexcel/2711 Dennis Street Houston TX/amenities_and_routes.json" with { type: "json" };
 
 const TOPICS = [
   ["lights", /\blights?\b|\blamps?\b/i],
@@ -57,57 +51,24 @@ const GALLANT_SCAN_NOTES = [
   "Client declined both garages due to being full of moving items.",
 ];
 
-function folderMedia(id, folder, nearby, elements, options = {}) {
-  const base = `/property_media/${folder}`;
+function folderMedia(id, folder, nearby, options = {}) {
   return {
     id,
-    neighborhood: `${base}/vexcel/neighborhood_overview_accessibility.jpg`,
-    parcel: `${base}/vexcel/ortho_parcel.jpg`,
-    groceryMatch: `${base}/vexcel/embeddings/grocery_stores_match_1.jpg`,
+    neighborhood: `/property_media/vexcel/${encodeURI(folder)}/overview_map.jpg`,
     amenities: nearby.amenities,
-    pool: Boolean(elements.pool_detected),
     scanNotes: options.scanNotes || [],
   };
 }
 
 const MEDIA = {
-  "236060791": folderMedia(
-    "236060791",
-    "1_9918_Dipping_Woods_St_Houston_TX",
-    dippingNearby,
-    dippingElements,
-  ),
-  "233992469": folderMedia(
-    "233992469",
-    "2_Sage_Condominiums_Unit_909_Houston_TX",
-    sageNearby,
-    sageElements,
-  ),
-  "238641283": folderMedia(
-    "238641283",
-    "3_1819_S_Norton_Ave_Los_Angeles_CA",
-    nortonNearby,
-    nortonElements,
-  ),
-  "228418897": folderMedia(
-    "228418897",
-    "4_205_Portland_St_Houston_TX",
-    portlandNearby,
-    portlandElements,
-  ),
-  "235969334": folderMedia(
-    "235969334",
-    "5_11413_Gallant_Ridge_Ln_Houston_TX",
-    gallantNearby,
-    gallantElements,
-    { scanNotes: GALLANT_SCAN_NOTES },
-  ),
-  "228897977": folderMedia(
-    "228897977",
-    "6_2711_Dennis_St_Houston_TX",
-    dennisNearby,
-    dennisElements,
-  ),
+  "236060791": folderMedia("236060791", "9918 Dipping Woods Street Houston TX", dippingNearby),
+  "233992469": folderMedia("233992469", "3525 Sage Road Unit 909 (Sage Condominiums) Houston TX", sageNearby),
+  "238641283": folderMedia("238641283", "1819 S Norton Avenue Los Angeles CA", nortonNearby),
+  "228418897": folderMedia("228418897", "205 Portland Street Houston TX", portlandNearby),
+  "235969334": folderMedia("235969334", "11413 Gallant Ridge Lane Houston TX", gallantNearby, {
+    scanNotes: GALLANT_SCAN_NOTES,
+  }),
+  "228897977": folderMedia("228897977", "2711 Dennis Street Houston TX", dennisNearby),
 };
 
 export function propertyMediaFor(listingId) {
@@ -122,23 +83,51 @@ const FOCUS_CATEGORY = {
   clinic: "Medical Place",
 };
 
+function routeMeters(item) {
+  return item.distance_m ?? item.dist_m ?? Number.POSITIVE_INFINITY;
+}
+
 export function closestAmenities(amenities) {
   const best = new Map();
   for (const item of amenities || []) {
     const current = best.get(item.category);
-    if (!current || item.dist_m < current.dist_m) best.set(item.category, item);
+    if (!current || routeMeters(item) < routeMeters(current)) best.set(item.category, item);
   }
   return CATEGORY_ORDER.map((category) => best.get(category)).filter(Boolean);
 }
 
 function placeText(item) {
   const minutes = `${item.walk_time_min} minute${item.walk_time_min === 1 ? "" : "s"}`;
-  const feet = `${Number(item.dist_ft).toLocaleString("en-US")} ft`;
-  if (item.category === "Retail Store") return `A retail store is about ${minutes} away (${feet}).`;
-  if (item.category === "Medical Place") return `A medical place is about ${minutes} away (${feet}).`;
-  if (item.category === "Accessible Parking") return `Accessible parking shows about ${minutes} away (${feet}).`;
-  if (item.category === "Stairs or Elevator") return `Stairs or an elevator show about ${minutes} away (${feet}).`;
-  return `${item.category} is about ${minutes} away (${feet}).`;
+  const feet = `${Number(item.distance_ft ?? item.dist_ft).toLocaleString("en-US")} ft`;
+  const walk = item.is_sidewalk_route ? "on the sidewalk" : "away";
+  if (item.category === "Retail Store") return `A retail store is about ${minutes} ${walk} (${feet}).`;
+  if (item.category === "Medical Place") return `A medical place is about ${minutes} ${walk} (${feet}).`;
+  if (item.category === "Accessible Parking") return `Accessible parking is about ${minutes} ${walk} (${feet}).`;
+  if (item.category === "Stairs or Elevator") return `Stairs or an elevator are about ${minutes} ${walk} (${feet}).`;
+  return `${item.category} is about ${minutes} ${walk} (${feet}).`;
+}
+
+const ROW_LABEL = {
+  "Retail Store": "Retail store",
+  "Medical Place": "Medical place",
+  "Accessible Parking": "Accessible parking",
+};
+
+export function compareAround(listingId, nearbyText) {
+  const report = aerialReport(propertyMediaFor(listingId), nearbyText);
+  if (!report.query.recognized) return [];
+  const rows = [];
+  if (report.showGroceryMatch) rows.push("Retail Store");
+  if (report.showClinic) rows.push("Medical Place");
+  return rows.map((category) => {
+    const place = report.places.find((item) => item.category === category);
+    return {
+      id: category,
+      label: ROW_LABEL[category] || category,
+      status: "unknown",
+      title: place ? place.text : "This aerial search is not on file for this home.",
+    };
+  });
 }
 
 export function aerialReport(media, nearbyText) {
@@ -157,6 +146,5 @@ export function aerialReport(media, nearbyText) {
     places: ordered.map((item) => ({ category: item.category, text: placeText(item) })),
     showGroceryMatch: query.intents.includes("grocery") || query.intents.includes("pharmacy"),
     showClinic: query.intents.includes("clinic"),
-    pool: Boolean(media?.pool),
   };
 }

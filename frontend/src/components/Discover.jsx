@@ -1,6 +1,7 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife, interpretNearby, lifeHeadline } from "../life.js";
 import { bedsLabel, leadFinding, listingFacts, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
+import { InteriorHomes } from "./Interior.jsx";
 import { ListingPhoto } from "./ListingPhoto.jsx";
 import { Counts } from "./Status.jsx";
 
@@ -44,7 +45,7 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
   }
 
   const summaryLine = open
-    ? "Nothing is selected, so every sample home is listed."
+    ? "Nothing is selected, so every home is listed."
     : `${bedsLabel(prefs.beds)} up to ${money(prefs.maxPrice)}. ${
         prefs.needs.length
           ? nearby.trim()
@@ -81,7 +82,7 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
             })}
           </div>
           <button type="button" className="text-button" onClick={onDemo}>
-            Sample search
+            Wheelchair search
           </button>
           <button type="button" className="text-button" onClick={() => setPrefs(EMPTY_PREFS)}>
             Clear
@@ -144,21 +145,21 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
         </div>
         {nearby.trim() && !interpretNearby(nearby).recognized ? (
           <p className="fine">
-            Aerial images can show a grocery store, a pharmacy, and steps on the way. This sentence
-            does not match those, so the route stays unanswered.
+            A grocery, a pharmacy, or a clinic uses the sidewalk walks. This sentence does not
+            match those, so the route stays unanswered.
           </p>
         ) : (
           <p className="fine">
-            Vexcel can show a grocery store, a pharmacy, and steps between them.
+            A grocery, a pharmacy, or a clinic uses the sidewalk walks around each home.
           </p>
         )}
       </section>
 
       {homes.length === 0 ? (
         <div className="empty">
-          <h2>No sample home fits that filter</h2>
+          <h2>No home fits that filter</h2>
           <p>
-            The sample includes {listings.length} homes for sale, from {money(Math.min(...listings.map((item) => item.price)))} to{" "}
+            This list has {listings.length} homes for sale, from {money(Math.min(...listings.map((item) => item.price)))} to{" "}
             {money(Math.max(...listings.map((item) => item.price)))}.
           </p>
           <button type="button" className="button" onClick={() => setPrefs(EMPTY_PREFS)}>
@@ -237,6 +238,7 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
           })}
         </div>
       )}
+      <InteriorHomes needIds={prefs.needs} />
     </div>
   );
 }

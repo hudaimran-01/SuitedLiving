@@ -17,7 +17,7 @@ function portFree(target) {
 }
 
 if (!(await portFree(port))) {
-  console.log(`InsideOut is already running at http://localhost:${port}`);
+  console.log(`SuitedLiving is already running at http://localhost:${port}`);
   process.exit(0);
 }
 

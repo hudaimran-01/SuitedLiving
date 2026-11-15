@@ -55,42 +55,28 @@ export function AerialNearby({ media, nearby }) {
   const neighborhood = {
     src: media.neighborhood,
     label: "Neighborhood",
-    detail: "Aerial view with the closest places this search found.",
+    detail: "Aerial overview with the sidewalk walks this search found.",
   };
-  const parcel = {
-    src: media.parcel,
-    label: "The lot",
-    detail: "Overhead view of the home and the lot.",
-  };
-  const grocery = {
-    src: media.groceryMatch,
-    label: "Grocery match",
-    detail: "Visual match for a grocery. Confirm it is the store you mean.",
-  };
-  let lead = "Straight-line distances from the aerial search. Steps on the sidewalk are not marked.";
+  let lead = "Walk times follow the sidewalk. Steps along the way are not marked.";
   if (report.showGroceryMatch) {
     lead =
-      "You asked about a store. The closest hit is a retail store, and the small picture is a visual match for a grocery. Confirm the store and the sidewalk. Steps on the walk are not marked.";
+      "You asked about a store. The closest sidewalk walk is to a retail store. Confirm it is the store you want. Steps along the way are not marked.";
   } else if (report.showClinic) {
     lead =
-      "You asked about care nearby. The closest hit is a medical place. Confirm the entrance and the sidewalk. Steps on the walk are not marked.";
+      "You asked about care nearby. The closest sidewalk walk is to a medical place. Confirm the entrance. Steps along the way are not marked.";
   } else if (report.query.text && !report.query.recognized) {
-    lead = `You wrote “${report.query.text}”. The places below are what this aerial search can show. Steps on the sidewalk are not marked.`;
+    lead = `You wrote “${report.query.text}”. The places below are what this aerial search can show. Steps along the way are not marked.`;
   }
 
   return (
     <section className="life" aria-labelledby="aerial-title">
       <h2 id="aerial-title">Around this home</h2>
       <p className="meta">{lead}</p>
-      <div className={report.showGroceryMatch ? "aerial-pair" : "aerial-single"}>
-        <Photo shot={neighborhood} onOpen={setZoom} />
-        <Photo shot={report.showGroceryMatch ? grocery : parcel} onOpen={setZoom} />
-      </div>
+      <Photo shot={neighborhood} onOpen={setZoom} />
       <ul className="check-list plain">
         {report.places.map((place) => (
           <li key={place.category}>{place.text}</li>
         ))}
-        {report.pool ? <li>A pool shows on the aerial image.</li> : null}
       </ul>
       <Zoom shot={zoom} onClose={() => setZoom(null)} />
     </section>

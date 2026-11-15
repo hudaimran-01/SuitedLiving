@@ -80,7 +80,7 @@ function RoomPanel({ room, assessment }) {
           ) : null}
         </>
       )}
-      <p className="fine">Sample notes from CoStar and Matterport where a scan exists. Not a certification.</p>
+      <p className="fine">Listing notes from CoStar and Matterport where a scan exists. Not a certification.</p>
     </div>
   );
 }

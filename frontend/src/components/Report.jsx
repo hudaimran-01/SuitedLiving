@@ -61,7 +61,7 @@ export function Report({ homeId, listings = LISTINGS, prefs, saved, onToggleSave
   if (!listing) {
     return (
       <div className="empty">
-        <h1 id="page-title">That home is not in the sample set</h1>
+        <h1 id="page-title">That home is not in this list</h1>
         <a className="button" href="#/discover">
           Back to homes
         </a>
@@ -165,7 +165,7 @@ export function Report({ homeId, listings = LISTINGS, prefs, saved, onToggleSave
                 ))}
               </ul>
             )}
-            <p className="fine">Sources: CoStar, Vexcel, Matterport. Sample notes, not a certification.</p>
+            <p className="fine">Sources: CoStar, Vexcel, Matterport. Not a certification.</p>
           </section>
         </aside>
       </div>
