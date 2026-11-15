@@ -5,6 +5,12 @@ from checks import LISTED, derive_findings, investigations
 from schema import Listing
 
 
+def _plan_src(uri):
+    """Serve the floor-plan SVG from this site. Chrome blocks the cross-origin file."""
+    match = re.search(r"/i2/([^/]+)/", uri or "")
+    return f"/floorplans/{match.group(1)}.svg" if match else uri
+
+
 def _size(uri, size_id):
     """Homes.com image links carry a /112/ size segment; swap it for a bigger size."""
     return re.sub(r"/112/", f"/{size_id}/", uri, count=1) if uri else None
@@ -39,7 +45,7 @@ def _images(l, model_id):
     shots = [_photo(m) for m in photos[:8]]
     still = _size(scan["thumbnailUri"], 102) if scan and scan.get("thumbnailUri") else None
     # Type 10 is the Matterport floor plan, usually one SVG per level.
-    plans = list(dict.fromkeys(m["uri"] for m in media if m.get("type") == 10 and m.get("uri")))
+    plans = list(dict.fromkeys(_plan_src(m["uri"]) for m in media if m.get("type") == 10 and m.get("uri")))
     return {"matterport": still or (shots[0]["src"] if shots else None),
             "vexcel": None, "hasScan": bool(model_id), "modelId": model_id,
             "photos": shots, "floorplans": plans}
