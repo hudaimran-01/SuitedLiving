@@ -80,7 +80,7 @@ export function Welcome({ listings = LISTINGS, onDemo }) {
           <span>2</span>
           <div>
             <h2>See the list reorder</h2>
-            <p>The same page orders homes for the building and the errand you asked about. A different need can change both.</p>
+            <p>The same page orders homes for the building and the errand you asked about. Apartments with an interior photo score follow that score.</p>
           </div>
         </li>
         <li>

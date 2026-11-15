@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { DEMO_PREFS, LISTINGS, normalizeListings } from "./data.js";
+import { interiorProperty } from "./interior.js";
 import { sanitizePrefs } from "./logic.js";
 import { useSessionState } from "./storage.js";
 import { Compare } from "./components/Compare.jsx";
 import { Discover } from "./components/Discover.jsx";
+import { InteriorReport } from "./components/Interior.jsx";
 import { Report } from "./components/Report.jsx";
 import { Shell } from "./components/Shell.jsx";
 import { Welcome } from "./components/Welcome.jsx";
@@ -14,6 +16,7 @@ function parseHash(hash) {
   if (parts[0] === "needs" || parts[0] === "discover") return { name: "discover" };
   if (parts[0] === "compare") return { name: "compare" };
   if (parts[0] === "home" && parts[1]) return { name: "home", id: parts[1] };
+  if (parts[0] === "interior" && parts[1]) return { name: "interior", id: parts[1] };
   return { name: "welcome" };
 }
 
@@ -72,11 +75,13 @@ export default function App() {
 
   useEffect(() => {
     const listing = listings.find((item) => item.id === route.id);
+    const scored = interiorProperty(route.id);
     const titles = {
       welcome: "InsideOut",
       discover: "Homes · InsideOut",
       compare: "Compare · InsideOut",
       home: listing ? `${listing.name} · InsideOut` : "Home · InsideOut",
+      interior: scored ? `${scored.name} · InsideOut` : "Interior score · InsideOut",
     };
     document.title = titles[route.name] || "InsideOut";
     window.scrollTo(0, 0);
@@ -128,6 +133,9 @@ export default function App() {
         onToggleSaved={toggleSaved}
       />
     );
+  }
+  if (route.name === "interior") {
+    page = <InteriorReport key={route.id} homeId={route.id} needIds={prefs.needs} />;
   }
   if (route.name === "compare") {
     page = <Compare listings={listings} prefs={prefs} saved={saved} onToggleSaved={toggleSaved} />;

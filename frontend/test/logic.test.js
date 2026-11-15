@@ -98,4 +98,5 @@ test("prefs ignore unknown needs and clamp price", () => {
   assert.deepEqual(prefs.needs, ["wheelchair"]);
   assert.equal(prefs.nearby, "");
   assert.equal(sanitizePrefs({ nearby: "  a clinic  " }).nearby, "a clinic");
+  assert.equal(sanitizePrefs({ beds: null, maxPrice: 2000000 }).beds, null);
 });

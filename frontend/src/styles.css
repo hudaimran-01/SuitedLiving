@@ -445,6 +445,43 @@ input[type="range"] { width: 100%; accent-color: var(--pine); margin-top: 0.7rem
 
 .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
 
+.interior-section { margin-top: 2.4rem; }
+
+.interior-card h3 { font-size: 1.7rem; line-height: 1.15; margin-bottom: 0.2rem; }
+
+.interior-card h3 a { color: inherit; text-decoration: none; }
+
+.interior-card h3 a:hover { text-decoration: underline; text-underline-offset: 0.15em; }
+
+.score-row { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; }
+
+.score-mark {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.score-findings > li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.65rem 0.85rem;
+}
+
+.score-mark span {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+}
+
 .card { overflow: hidden; display: flex; flex-direction: column; }
 
 .card-media {

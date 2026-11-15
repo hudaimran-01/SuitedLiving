@@ -1,6 +1,7 @@
 import { ACCESS_NEEDS, LISTINGS } from "../data.js";
 import { focusLife, interpretNearby, lifeHeadline } from "../life.js";
 import { bedsLabel, leadFinding, listingFacts, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
+import { InteriorHomes } from "./Interior.jsx";
 import { ListingPhoto } from "./ListingPhoto.jsx";
 import { Counts } from "./Status.jsx";
 
@@ -237,6 +238,7 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
           })}
         </div>
       )}
+      <InteriorHomes needIds={prefs.needs} />
     </div>
   );
 }
