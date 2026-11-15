@@ -125,7 +125,7 @@ p { margin-bottom: 0.8rem; }
   white-space: nowrap;
 }
 
-.mark { width: 1.6rem; height: 1.6rem; color: var(--pine); }
+.mark { width: 2.6rem; height: 2.6rem; object-fit: contain; flex: none; }
 
 .nav { display: flex; gap: 0.4rem; }
 
