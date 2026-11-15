@@ -12,6 +12,10 @@ KW = re.compile(
     r"grab bar|elevator|first floor|main level|downstairs",
     re.I,
 )
+"""
+PURPOSE (NO LONGER USED):
+    Tested rules and found bugs within flags for accesibility features
+"""
 
 
 def snippets(text, width=70, limit=4):

@@ -4,12 +4,18 @@ from flask import Flask, abort, jsonify
 from flask_cors import CORS
 
 import config
+from project_sidewalk import (
+    KNOWN_PROPERTY_SIDEWALK,
+    score_pedestrian_route,
+    to_project_sidewalk_geojson
+)
 
 app = Flask(__name__)
 app.json.sort_keys = False
 CORS(app)
 
 CACHE_FILE = config.CACHE_DIR / "listings.json"
+MEDIA_DIR = config.ROOT / "property_media" / "vexcel"
 
 
 def load():
@@ -34,6 +40,19 @@ def listing(lid):
         if x["id"] == lid:
             return jsonify(x)
     abort(404)
+
+
+@app.get("/api/sidewalk/access-score/<lid>")
+def sidewalk_score(lid):
+    """Returns Project Sidewalk AccessScore audit details for a listing."""
+    info = KNOWN_PROPERTY_SIDEWALK.get(str(lid))
+    if not info:
+        abort(404, description=f"Listing {lid} not found in Project Sidewalk database")
+    return jsonify({
+        "listing_id": str(lid),
+        "source": "Project Sidewalk Access Score API (UW Makeability Lab)",
+        **info
+    })
 
 
 if __name__ == "__main__":

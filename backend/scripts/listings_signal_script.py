@@ -2,6 +2,10 @@ import json
 import os, sys, re, csv, collections, pathlib
 from dotenv import load_dotenv
 
+"""
+Script counts exact signals per feature id found 
+"""
+
 load_dotenv()
 KIT_DIR = pathlib.Path(os.getenv("KIT_DIR"))
 EXPLICIT = re.compile(r"accessib|handicap|wheelchair|ramp on the main", re.I)

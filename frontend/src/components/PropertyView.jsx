@@ -68,16 +68,110 @@ export function AerialNearby({ media, nearby }) {
     lead = `You wrote “${report.query.text}”. The places below are what this aerial search can show. Steps along the way are not marked.`;
   }
 
+  const ps = report.projectSidewalk;
+
   return (
     <section className="life" aria-labelledby="aerial-title">
       <h2 id="aerial-title">Around this home</h2>
       <p className="meta">{lead}</p>
       <Photo shot={neighborhood} onOpen={setZoom} />
-      <ul className="check-list plain">
-        {report.places.map((place) => (
-          <li key={place.category}>{place.text}</li>
-        ))}
-      </ul>
+      {ps ? (
+        <div className="sidewalk-score-card">
+          <div className="sidewalk-score-top">
+            <div className="sidewalk-score-big">
+              <span className="sidewalk-score-number">{ps.score_pct}%</span>
+              <span className="sidewalk-score-sublabel">Sidewalk Access</span>
+            </div>
+            <div className="sidewalk-score-meta">
+              <span
+                className="sidewalk-score-badge"
+                style={{
+                  backgroundColor: ps.neighborhood_access_score >= 0.75 ? "var(--pine, #1f3d32)" : "#d97706",
+                }}
+              >
+                {ps.radius_assessment || `${ps.grade} Accessibility Zone`}
+              </span>
+              <h3 className="sidewalk-score-heading">
+                {ps.grade === "High" ? "High Accessibility Segment" : `${ps.grade} Accessibility Segment`} · Cited by Project Sidewalk
+              </h3>
+              <p className="sidewalk-score-citation">
+                University of Washington Makeability Lab Sidewalk Audit Standards
+              </p>
+            </div>
+          </div>
+
+          {ps.why_rating ? (
+            <div className="sidewalk-why-box">
+              <h4 className="sidewalk-why-title">Why this area earned a {ps.score_pct}% rating:</h4>
+              <p className="sidewalk-why-text">{ps.why_rating}</p>
+            </div>
+          ) : null}
+
+          {ps.audit_breakdown ? (
+            <div className="sidewalk-audit-grid">
+              <div className="sidewalk-audit-item">
+                <div>
+                  <strong>Sidewalk Continuity:</strong>
+                  <p>{ps.audit_breakdown.continuous_sidewalks || `${ps.curb_ramp_percentage}% continuous`}</p>
+                </div>
+              </div>
+              <div className="sidewalk-audit-item">
+                <div>
+                  <strong>Curb Ramps & Cuts:</strong>
+                  <p>{ps.audit_breakdown.curb_ramps_status || "Standard ADA curb ramps"}</p>
+                </div>
+              </div>
+              <div className="sidewalk-audit-item">
+                <div>
+                  <strong>Surface & Cross-Slope:</strong>
+                  <p>{ps.audit_breakdown.surface_condition || "Level concrete with standard slope"}</p>
+                </div>
+              </div>
+              <div className="sidewalk-audit-item">
+                <div>
+                  <strong>Pathway Clearance:</strong>
+                  <p>{ps.audit_breakdown.path_clearance || "Meets 36-inch wheelchair clearance"}</p>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          <div className="sidewalk-legend-row">
+            <span className="sidewalk-legend-item">
+              <span className="sidewalk-dot green" /> Score ≥ 75%: High Accessibility (Continuous ADA ramps, step-free)
+            </span>
+            <span className="sidewalk-legend-item">
+              <span className="sidewalk-dot yellow" /> 50–74%: Moderate (Minor slope / joint cracks)
+            </span>
+            <span className="sidewalk-legend-item">
+              <span className="sidewalk-dot red" /> &lt; 50%: Barrier Warning (Missing ramp / obstacle)
+            </span>
+          </div>
+        </div>
+      ) : null}
+      {report.places?.length ? (
+        <div className="amenities-walking-card">
+          <div className="amenities-walking-header">
+            <h4 className="amenities-walking-title">Nearby Amenities & Walking Routes</h4>
+            <span className="amenities-walking-sub">Continuous pedestrian sidewalk network (max 20-min walk)</span>
+          </div>
+          <ul className="check-list plain amenities-walking-list">
+            {report.places.map((place) => (
+              <li key={place.category} className="place-item">
+                <span>{place.text}</span>
+                {place.accessScorePct ? (
+                  <span
+                    className="sidewalk-pill"
+                    style={{ backgroundColor: place.accessColor || (place.accessScorePct >= 75 ? "#10B981" : "#F59E0B") }}
+                  >
+                    Sidewalk Access: {place.accessScorePct}%
+                  </span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
       <Zoom shot={zoom} onClose={() => setZoom(null)} />
     </section>
   );

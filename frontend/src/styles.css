@@ -1345,3 +1345,220 @@ html[data-vision="true"] body {
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
 }
+
+/* Project Sidewalk Access Scorecard & Details (Themed for SuitedLiving) */
+.sidewalk-score-card {
+  margin: 1.25rem 0 1.5rem;
+  padding: 1.35rem 1.5rem;
+  background: var(--paper, #f3eee4);
+  border: 1px solid var(--line, #d9d0c0);
+  border-radius: var(--radius, 18px);
+}
+
+.sidewalk-score-top {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.1rem;
+}
+
+.sidewalk-score-big {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  background: var(--paper, #f3eee4);
+  border: 2px solid var(--pine, #1f3d32);
+  border-radius: 14px;
+  min-width: 105px;
+}
+
+.sidewalk-score-number {
+  font-family: var(--serif);
+  font-size: 2.7rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--pine-deep, #163028);
+  letter-spacing: -0.04em;
+}
+
+.sidewalk-score-sublabel {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--pine, #1f3d32);
+  margin-top: 0.2rem;
+}
+
+.sidewalk-score-meta {
+  flex: 1;
+  min-width: 240px;
+}
+
+.sidewalk-score-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.sidewalk-score-heading {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  margin: 0.25rem 0 0.2rem;
+  color: var(--ink, #1a1714);
+}
+
+.sidewalk-score-citation {
+  font-size: 0.84rem;
+  color: var(--ink-soft, #4a453e);
+  margin: 0;
+}
+
+.sidewalk-why-box {
+  background: var(--paper, #f3eee4);
+  border: 1px solid var(--line, #d9d0c0);
+  border-left: 4px solid var(--pine, #1f3d32);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  margin: 1rem 0;
+}
+
+.sidewalk-why-title {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink, #1a1714);
+  margin: 0 0 0.35rem;
+}
+
+.sidewalk-why-text {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-soft, #4a453e);
+  margin: 0;
+}
+
+.sidewalk-audit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.sidewalk-audit-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.65rem 0.85rem;
+  background: var(--paper, #f3eee4);
+  border: 1px solid var(--line, #d9d0c0);
+  border-radius: 10px;
+}
+
+.sidewalk-audit-item strong {
+  font-size: 0.84rem;
+  color: var(--ink, #1a1714);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.sidewalk-audit-item p {
+  font-size: 0.83rem;
+  color: var(--ink-soft, #4a453e);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.sidewalk-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line, #d9d0c0);
+  font-size: 0.82rem;
+  color: var(--ink-soft, #4a453e);
+}
+
+.sidewalk-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sidewalk-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.sidewalk-dot.green { background: #10b981; }
+.sidewalk-dot.yellow { background: #f59e0b; }
+.sidewalk-dot.red { background: #ef4444; }
+
+.place-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+}
+
+.sidewalk-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.amenities-walking-card {
+  margin: 1.25rem 0;
+  padding: 1.2rem 1.4rem;
+  background: var(--paper, #f3eee4);
+  border: 1px solid var(--line, #d9d0c0);
+  border-radius: var(--radius, 18px);
+}
+
+.amenities-walking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--line, #d9d0c0);
+}
+
+.amenities-walking-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink, #1a1714);
+  margin: 0;
+}
+
+.amenities-walking-sub {
+  font-size: 0.82rem;
+  color: var(--ink-soft, #4a453e);
+}
+
+.amenities-walking-list {
+  margin: 0;
+  padding: 0;
+}

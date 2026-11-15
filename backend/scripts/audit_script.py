@@ -3,6 +3,11 @@ import os
 from dotenv import load_dotenv
 import re, collections, pathlib
 
+"""
+Find accesibility secific features and their IDs --
+Also get specific count and the information of features.. 
+"""
+
 load_dotenv()
 
 # specific home path where data kit lives

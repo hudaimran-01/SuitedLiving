@@ -99,6 +99,16 @@ def _agent_notes(l, limit=3, max_len=180):
             break
     return out
 
+
+# Listing data counts each half bath as a bathroom
+def _baths(p):
+    """Full + half/2, the kit's documented convention. bathsMin counted half baths as whole ones."""
+    full, half = p.get("bathsFull"), p.get("bathsHalf")
+    if full is not None:
+        return full + 0.5 * (half or 0)
+    return p.get("bathsMin")
+
+
 def build_listing(l, rec, model_id):
     """One kit listing + its features record -> the frontend's Listing shape (a plain dict)."""
     p = l.get("property") or {}
@@ -112,7 +122,7 @@ def build_listing(l, rec, model_id):
         "place": f"{a.get('city')}, {a.get('state')}",
         "price": l.get("currentPrice"),
         "beds": p.get("bedsMin"),
-        "baths": p.get("bathsMin"),
+        "baths": _baths(p),
         "sqft": p.get("sqftMin"),
         "floor": _floor(l, rec),
         "agentNotes": _agent_notes(l),

@@ -2,6 +2,10 @@ import pathlib
 import sys
 from collections import Counter
 
+"""
+PURPOSE (NO LONGER USED):
+    showed how images are stored. That fed the builders image logic
+"""
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 import config
 import kit
