@@ -125,7 +125,7 @@ p { margin-bottom: 0.8rem; }
   white-space: nowrap;
 }
 
-.mark { width: 1.6rem; height: 1.6rem; color: var(--pine); }
+.mark { width: 2.6rem; height: 2.6rem; object-fit: contain; flex: none; }
 
 .nav { display: flex; gap: 0.4rem; }
 
@@ -698,36 +698,6 @@ input[type="range"] { width: 100%; accent-color: var(--pine); margin-top: 0.7rem
 .heat-detail { margin-top: 0.15rem; color: var(--ink-soft); font-size: 0.88rem; }
 
 .heat-status { font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.72rem; }
-
-.heat.in-search { outline: 2px solid var(--pine); outline-offset: 2px; }
-
-.plan-heat-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
-  margin: 0.2rem 0 0.4rem;
-  color: var(--ink-soft);
-  font-size: 0.85rem;
-}
-
-.plan-heat-dots {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 0.22rem;
-}
-
-.plan-heat-dots i {
-  display: block;
-  width: 0.72rem;
-  height: 0.72rem;
-  border-radius: 3px;
-}
-
-.plan-heat-dots .observed { background: #1f3d32; }
-.plan-heat-dots .unknown { background: #c4b48a; }
-.plan-heat-dots .barrier { background: #9d3f2c; }
 
 .heat.observed { background-color: #e5f2e4; border-color: #b7d4b4; border-left-color: #1f3d32; }
 .heat.observed .heat-swatch { background-color: #1f3d32; }
