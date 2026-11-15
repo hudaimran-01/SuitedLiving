@@ -3,6 +3,7 @@ import { DEMO_PREFS, LISTINGS, normalizeListings } from "./data.js";
 import { interiorProperty } from "./interior.js";
 import { sanitizePrefs } from "./logic.js";
 import { useSessionState } from "./storage.js";
+import { Admin } from "./components/Admin.jsx";
 import { Compare } from "./components/Compare.jsx";
 import { Discover } from "./components/Discover.jsx";
 import { InteriorReport } from "./components/Interior.jsx";
@@ -15,6 +16,8 @@ function parseHash(hash) {
   if (parts.length === 0) return { name: "welcome" };
   if (parts[0] === "needs" || parts[0] === "discover") return { name: "discover" };
   if (parts[0] === "compare") return { name: "compare" };
+  if (parts[0] === "admin" && parts[1]) return { name: "admin", id: parts[1] };
+  if (parts[0] === "admin") return { name: "admin" };
   if (parts[0] === "home" && parts[1]) return { name: "home", id: parts[1] };
   if (parts[0] === "interior" && parts[1]) return { name: "interior", id: parts[1] };
   return { name: "welcome" };
@@ -80,6 +83,7 @@ export default function App() {
       welcome: "SuitedLiving",
       discover: "Homes · SuitedLiving",
       compare: "Compare · SuitedLiving",
+      admin: "Listing desk · SuitedLiving",
       home: listing ? `${listing.name} · SuitedLiving` : "Home · SuitedLiving",
       interior: scored ? `${scored.name} · SuitedLiving` : "Interior score · SuitedLiving",
     };
@@ -139,6 +143,9 @@ export default function App() {
   }
   if (route.name === "compare") {
     page = <Compare listings={listings} prefs={prefs} saved={saved} onToggleSaved={toggleSaved} />;
+  }
+  if (route.name === "admin") {
+    page = <Admin key={route.id || "index"} listings={listings} homeId={route.id} />;
   }
 
   return (

@@ -38,7 +38,10 @@ export function Shell({ route, savedCount, lowVision, children }) {
             SuitedLiving reads the home and the block, and leaves gaps visible. It does not certify
             that either is accessible.
           </p>
-          <p>Homes for sale in Houston and Los Angeles.</p>
+          <p>
+            Homes for sale in Houston and Los Angeles.{" "}
+            <a href="#/admin">Listing desk</a>
+          </p>
         </div>
       </footer>
     </div>
