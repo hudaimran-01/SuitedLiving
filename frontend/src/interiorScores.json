@@ -1,0 +1,1054 @@
+{
+  "disclaimer": "Photo estimate from interior pictures and building facts. Not an accessibility certification.",
+  "buildingCount": 1743,
+  "photoCount": 10,
+  "properties": [
+    {
+      "id": "84327",
+      "name": "8600 Burton Way",
+      "address": "8600 Burton Way",
+      "city": "Los Angeles",
+      "state": "CA",
+      "rentMin": 2595,
+      "rentMax": 6000,
+      "scores": {
+        "wheelchair": {
+          "score": 64,
+          "confidence": 0.45
+        },
+        "walker_or_cane": {
+          "score": 67,
+          "confidence": 0.33
+        },
+        "low_vision": {
+          "score": 92,
+          "confidence": 0.83
+        }
+      },
+      "facts": [
+        "1 passenger elevator(s)"
+      ],
+      "notes": [
+        "built 1988, before 1991 accessibility design rules"
+      ],
+      "findings": [
+        {
+          "id": "step_free_entry",
+          "value": null,
+          "confidence": 0.7,
+          "evidence": "Main entry threshold from the outside or hallway is not clearly visible to determine step-free status."
+        },
+        {
+          "id": "wide_doorways",
+          "value": null,
+          "confidence": 0.7,
+          "evidence": "Interior doorways are visible but exact clearance width cannot be confirmed from photos alone."
+        },
+        {
+          "id": "roll_in_or_walk_in_shower",
+          "value": null,
+          "confidence": 0.9,
+          "evidence": "No bathroom is shown in any of the photos."
+        },
+        {
+          "id": "bathtub_only",
+          "value": null,
+          "confidence": 0.9,
+          "evidence": "No bathroom is shown in any of the photos."
+        },
+        {
+          "id": "grab_bars",
+          "value": null,
+          "confidence": 0.9,
+          "evidence": "No bathroom is shown in any of the photos."
+        },
+        {
+          "id": "hard_flooring_throughout",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Wood-look hard surface flooring is present across all visible living areas, kitchen, and fitness room."
+        },
+        {
+          "id": "open_turning_space",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "The main living space has large open, unobstructed areas suitable for wheelchair turning radius."
+        },
+        {
+          "id": "kitchen_knee_clearance",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "Kitchen sink and counter areas are fitted with solid base cabinets beneath, providing no open knee clearance."
+        },
+        {
+          "id": "lever_door_handles",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Visible interior doors feature horizontal lever-style handles."
+        },
+        {
+          "id": "good_lighting_and_contrast",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Abundant natural daylight through large sliding glass doors and recessed lighting provide bright illumination and clear visual contrast between white walls and wood-toned floors."
+        }
+      ],
+      "photos": [
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/ROVZkcNiMDWOekV0InRCPMe4coTVq7SYzY8SNDW2XK8/113/image.jpg",
+          "caption": "Studio 1"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/scOgpmN5xwSPZRw_PEseWFG9HK2ZZkDg3LkKmWtrnFE/113/image.jpg",
+          "caption": "Studio 3"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/7MisaV4M1wzcF-O33vTcSLyfDOONKplr74Qc--KfFps/113/image.jpg",
+          "caption": "Studio 4"
+        }
+      ]
+    },
+    {
+      "id": "246784",
+      "name": "TENTEN WILSHIRE",
+      "address": "1010 Wilshire Blvd",
+      "city": "Los Angeles",
+      "state": "CA",
+      "rentMin": 2500,
+      "rentMax": 14000,
+      "scores": {
+        "wheelchair": {
+          "score": 61,
+          "confidence": 0.5
+        },
+        "walker_or_cane": {
+          "score": 58,
+          "confidence": 0.5
+        },
+        "low_vision": {
+          "score": 92,
+          "confidence": 0.83
+        }
+      },
+      "facts": [
+        "6 passenger elevator(s)"
+      ],
+      "notes": [
+        "built 1960, before 1991 accessibility design rules"
+      ],
+      "findings": [
+        {
+          "id": "step_free_entry",
+          "value": null,
+          "confidence": 0.5,
+          "evidence": "The exterior entrance path and doorway threshold are not visible in the photos."
+        },
+        {
+          "id": "wide_doorways",
+          "value": null,
+          "confidence": 0.5,
+          "evidence": "Doorways are visible but exact clearance width cannot be confirmed without measurement."
+        },
+        {
+          "id": "roll_in_or_walk_in_shower",
+          "value": null,
+          "confidence": 0.5,
+          "evidence": "Only a partial reflection of the upper shower area is visible in the bathroom mirror."
+        },
+        {
+          "id": "bathtub_only",
+          "value": null,
+          "confidence": 0.5,
+          "evidence": "The base of the shower or bathtub area is not visible in the photos."
+        },
+        {
+          "id": "grab_bars",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "No grab bars are installed on the walls surrounding the toilet."
+        },
+        {
+          "id": "hard_flooring_throughout",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Light wood flooring spans all main living areas, and tile flooring is present in the bathroom, with no carpeting."
+        },
+        {
+          "id": "open_turning_space",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "The open studio layout provides ample floor clearance for turning throughout the living, dining, and bedroom areas."
+        },
+        {
+          "id": "kitchen_knee_clearance",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "The kitchen counters, island, and sink are built over solid cabinets with no open knee space underneath."
+        },
+        {
+          "id": "lever_door_handles",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "The interior door is fitted with a lever-style handle."
+        },
+        {
+          "id": "good_lighting_and_contrast",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "The apartment has bright ceiling lighting, large floor-to-ceiling windows, and strong contrast between dark furniture/doors and light walls/floors."
+        }
+      ],
+      "photos": [
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/Hhf0zNqBfgLUf68jCbPjrG2_ve58MGzfeKE1rwYElGg/113/image.jpg",
+          "caption": "Kitchen"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/rCo_4r5Hbxu1gQMuPrVAG8ugJ4XkmD-xeRT2NhydbB8/113/image.jpg",
+          "caption": "Kitchen"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/0bR5WXDvwezzW1xRWZSR-N9XKYLgd3V3PWhdVPM6r3o/113/image.jpg",
+          "caption": "Living Room and Bedroom"
+        }
+      ]
+    },
+    {
+      "id": "114128",
+      "name": "Avenue M",
+      "address": "1720 Crestdale Dr",
+      "city": "Houston",
+      "state": "TX",
+      "rentMin": 919,
+      "rentMax": 1590,
+      "scores": {
+        "wheelchair": {
+          "score": 59,
+          "confidence": 0.73
+        },
+        "walker_or_cane": {
+          "score": 53,
+          "confidence": 0.72
+        },
+        "low_vision": {
+          "score": 75,
+          "confidence": 0.83
+        }
+      },
+      "facts": [
+        "CoStar says the building has elevator access",
+        "built 2021; US Fair Housing Act accessibility rules apply to multifamily first occupied after 1991 (not proof of compliance)"
+      ],
+      "notes": [],
+      "findings": [
+        {
+          "id": "step_free_entry",
+          "value": null,
+          "confidence": 0,
+          "evidence": "Exterior entry and doorway thresholds are not visible in the provided photos."
+        },
+        {
+          "id": "wide_doorways",
+          "value": null,
+          "confidence": 0,
+          "evidence": "Doorway widths cannot be accurately verified or measured from photos."
+        },
+        {
+          "id": "roll_in_or_walk_in_shower",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "Photo 6 shows a standard bathtub with shower combo, not a roll-in or walk-in shower."
+        },
+        {
+          "id": "bathtub_only",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "The tub in Photo 6 has a shower head mounted above it."
+        },
+        {
+          "id": "grab_bars",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "No grab bars are installed around the bathtub/shower in Photo 6."
+        },
+        {
+          "id": "hard_flooring_throughout",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Wood-look hard plank flooring is installed throughout the living area, kitchen, and bedroom."
+        },
+        {
+          "id": "open_turning_space",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "The open layout in the kitchen, living room, and bedroom provides ample floor turning space."
+        },
+        {
+          "id": "kitchen_knee_clearance",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "The kitchen sink and main countertops feature solid base cabinets underneath without roll-under clearance."
+        },
+        {
+          "id": "lever_door_handles",
+          "value": false,
+          "confidence": 0.85,
+          "evidence": "The door in Photo 6 features a standard round doorknob."
+        },
+        {
+          "id": "good_lighting_and_contrast",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Bright overhead recessed lighting, window daylight, and vanity lights create good illumination and strong visual contrast."
+        }
+      ],
+      "photos": [
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/tqNFjqPmR0bAMC6h4G35AuXEaARa6JXXCU96MkkPj4c/113/image.jpg",
+          "caption": "2BR, 2BA - 960SF - Kitchen"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/tkSLLrG7Q4zBIuvim7mUpt5KVBMUW5qh5C53iB-WtSw/113/image.jpg",
+          "caption": "2BR, 2BA - 960SF - Kitchen"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/K28MJkoksGkWjnmdTCqTDNkLnXnOLOwInBuv-8YLxas/113/image.jpg",
+          "caption": "2BR, 2BA - 960SF - Living Room"
+        }
+      ]
+    },
+    {
+      "id": "28480",
+      "name": "City Lights on Fig",
+      "address": "1300 S Figueroa St",
+      "city": "Los Angeles",
+      "state": "CA",
+      "rentMin": 1728,
+      "rentMax": 4088,
+      "scores": {
+        "wheelchair": {
+          "score": 59,
+          "confidence": 0.73
+        },
+        "walker_or_cane": {
+          "score": 47,
+          "confidence": 0.72
+        },
+        "low_vision": {
+          "score": 75,
+          "confidence": 0.83
+        }
+      },
+      "facts": [
+        "2 passenger elevator(s)",
+        "built 2003; US Fair Housing Act accessibility rules apply to multifamily first occupied after 1991 (not proof of compliance)"
+      ],
+      "notes": [],
+      "findings": [
+        {
+          "id": "step_free_entry",
+          "value": null,
+          "confidence": 0,
+          "evidence": "Exterior entrance and entry door threshold are not visible."
+        },
+        {
+          "id": "wide_doorways",
+          "value": null,
+          "confidence": 0,
+          "evidence": "Doorway dimensions cannot be confirmed without exact measurements."
+        },
+        {
+          "id": "roll_in_or_walk_in_shower",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "Photo 6 shows a bathtub with a step-over rim rather than a roll-in or walk-in shower."
+        },
+        {
+          "id": "bathtub_only",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "Photo 6 shows a shower head mounted above the bathtub."
+        },
+        {
+          "id": "grab_bars",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "No grab bars are installed next to the toilet or inside the tub/shower area in Photo 6."
+        },
+        {
+          "id": "hard_flooring_throughout",
+          "value": false,
+          "confidence": 0.85,
+          "evidence": "Area rugs cover portions of the hard flooring in the main living space."
+        },
+        {
+          "id": "open_turning_space",
+          "value": true,
+          "confidence": 0.85,
+          "evidence": "Photos 1 and 2 show a spacious, open floor plan in the living room and kitchen area."
+        },
+        {
+          "id": "kitchen_knee_clearance",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Photo 1 shows an open breakfast bar counter with knee clearance underneath."
+        },
+        {
+          "id": "lever_door_handles",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Photos 3 and 6 show lever-style door handles on interior doors."
+        },
+        {
+          "id": "good_lighting_and_contrast",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Rooms feature strong ambient and fixture lighting with clear contrast between surfaces."
+        }
+      ],
+      "photos": [
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/KeV5HaQg8DZG7MDSGtsXTjuOaMcZ3OQ3rVmbBjrKMFE/113/image.jpg",
+          "caption": "1BR, 1BA-Living Room"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/b-pty95FonslmXk40vTWuEmxG17Kgjda0m4YGgZNN3o/113/image.jpg",
+          "caption": "1BR, 1BA-Living Room"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/JjgnaxFB1aqjnNA7RF5HUB4NbWxnKP9Yll-bfVIGM-4/113/image.jpg",
+          "caption": "1BR, 1BA-Patio"
+        }
+      ]
+    },
+    {
+      "id": "247985",
+      "name": "255 Grand",
+      "address": "255 S Grand Ave",
+      "city": "Los Angeles",
+      "state": "CA",
+      "rentMin": 1633,
+      "rentMax": 4060,
+      "scores": {
+        "wheelchair": {
+          "score": 57,
+          "confidence": 0.41
+        },
+        "walker_or_cane": {
+          "score": 42,
+          "confidence": 0.5
+        },
+        "low_vision": {
+          "score": 58,
+          "confidence": 0.83
+        }
+      },
+      "facts": [
+        "6 passenger elevator(s)"
+      ],
+      "notes": [
+        "built 1988, before 1991 accessibility design rules"
+      ],
+      "findings": [
+        {
+          "id": "step_free_entry",
+          "value": null,
+          "confidence": 0,
+          "evidence": "Main entrance to the home is not visible in any of the photos."
+        },
+        {
+          "id": "wide_doorways",
+          "value": null,
+          "confidence": 0,
+          "evidence": "Doorway widths cannot be accurately measured from the photos."
+        },
+        {
+          "id": "roll_in_or_walk_in_shower",
+          "value": null,
+          "confidence": 0,
+          "evidence": "No shower enclosure is visible in the provided photos."
+        },
+        {
+          "id": "bathtub_only",
+          "value": null,
+          "confidence": 0,
+          "evidence": "No bathtub is visible in the provided photos."
+        },
+        {
+          "id": "grab_bars",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "No grab bars are present on the walls surrounding the toilet in photos 5 and 6."
+        },
+        {
+          "id": "hard_flooring_throughout",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "The bedrooms feature carpet flooring, so hard flooring is not throughout."
+        },
+        {
+          "id": "open_turning_space",
+          "value": true,
+          "confidence": 0.85,
+          "evidence": "Clear floor space is available in the bedroom and main vanity area."
+        },
+        {
+          "id": "kitchen_knee_clearance",
+          "value": null,
+          "confidence": 0,
+          "evidence": "Kitchen is not shown in the photos."
+        },
+        {
+          "id": "lever_door_handles",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "A traditional round door knob is visible on the door in photo 5 rather than a lever handle."
+        },
+        {
+          "id": "good_lighting_and_contrast",
+          "value": true,
+          "confidence": 0.85,
+          "evidence": "The apartment has good illumination from large windows and lamps."
+        }
+      ],
+      "photos": [
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/p31X_RQOIJXj-evFVpyL_ejpgFWT-lHUkZqsg8GRJD0/113/image.jpg",
+          "caption": "First Bedroom"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/CVuyn2VSuXUeCRMrkgqVEUN7DR9cAFyoy9GENHIil68/113/image.jpg",
+          "caption": "First Bedroom"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/4S23ZLYKxPUmE-_AGWMgzxKPPZ8aOSDKDv6ub72KfPg/113/image.jpg",
+          "caption": "Second Bedroom"
+        }
+      ]
+    },
+    {
+      "id": "84178",
+      "name": "Park Wilshire",
+      "address": "2424 Wilshire Blvd",
+      "city": "Los Angeles",
+      "state": "CA",
+      "rentMin": 1390,
+      "rentMax": 2585,
+      "scores": {
+        "wheelchair": {
+          "score": 52,
+          "confidence": 0.95
+        },
+        "walker_or_cane": {
+          "score": 53,
+          "confidence": 0.83
+        },
+        "low_vision": {
+          "score": 83,
+          "confidence": 1.0
+        }
+      },
+      "facts": [
+        "2 passenger elevator(s)"
+      ],
+      "notes": [
+        "built 1924, before 1991 accessibility design rules"
+      ],
+      "findings": [
+        {
+          "id": "step_free_entry",
+          "value": false,
+          "confidence": 0.85,
+          "evidence": "Photo 1 shows three steps in the lobby leading up to the hallway and elevator area without a visible ramp."
+        },
+        {
+          "id": "wide_doorways",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Photo 2 shows wide double doors opening into the meeting room."
+        },
+        {
+          "id": "roll_in_or_walk_in_shower",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "Photos 5 and 6 show a bathtub installation in the bathroom layout rather than a roll-in shower."
+        },
+        {
+          "id": "bathtub_only",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Photos 5 and 6 show a standard bathtub in the bathroom layout."
+        },
+        {
+          "id": "grab_bars",
+          "value": null,
+          "confidence": 0,
+          "evidence": "No interior photos of the bathroom walls are provided to confirm grab bars."
+        },
+        {
+          "id": "hard_flooring_throughout",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Photos 1, 2, 3, 4, and 5 show hard flooring throughout the common areas and apartment unit with no wall-to-wall carpet."
+        },
+        {
+          "id": "open_turning_space",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Photos 1, 3, 4, and 5 display spacious rooms with clear, open floor space for maneuvering."
+        },
+        {
+          "id": "kitchen_knee_clearance",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "Photo 5 shows standard full-height base cabinets under the kitchen counters and sink."
+        },
+        {
+          "id": "lever_door_handles",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Photo 2 shows a black lever handle on the double door."
+        },
+        {
+          "id": "good_lighting_and_contrast",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Photos 1, 2, and 4 show well-lit interior spaces with clear visual contrast."
+        }
+      ],
+      "photos": [
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/TEACVMvHSTAfLX6EHEp1-lBbA7faIktzq-G-aeI2VPU/113/image.jpg",
+          "caption": "Lobby"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/4KhM4KPqotVEBd3xpFNkB7GG32orKD7fGNU2cCavGto/113/image.jpg",
+          "caption": "Conference"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/AA6RgGu7Kq0i16xWipkjSFYv01WqsCjOKQ5Rlu0smO8/113/image.jpg",
+          "caption": "Library"
+        }
+      ]
+    },
+    {
+      "id": "247637",
+      "name": "Jewelry Trades Building",
+      "address": "220 W 5th St",
+      "city": "Los Angeles",
+      "state": "CA",
+      "rentMin": 0,
+      "rentMax": 3500,
+      "scores": {
+        "wheelchair": {
+          "score": 50,
+          "confidence": 0.73
+        },
+        "walker_or_cane": {
+          "score": 47,
+          "confidence": 0.72
+        },
+        "low_vision": {
+          "score": 92,
+          "confidence": 0.83
+        }
+      },
+      "facts": [
+        "3 passenger elevator(s)"
+      ],
+      "notes": [
+        "built 1912, before 1991 accessibility design rules"
+      ],
+      "findings": [
+        {
+          "id": "step_free_entry",
+          "value": null,
+          "confidence": 0,
+          "evidence": "No building entrance or exterior threshold is shown in the photos."
+        },
+        {
+          "id": "wide_doorways",
+          "value": null,
+          "confidence": 0,
+          "evidence": "Doorway widths cannot be precisely verified from photos alone."
+        },
+        {
+          "id": "roll_in_or_walk_in_shower",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "The bathroom contains a standard bathtub with high sidewalls rather than a walk-in or roll-in shower."
+        },
+        {
+          "id": "bathtub_only",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "The bathroom features a standard bathtub with overhead shower, requiring a step over the tub rim."
+        },
+        {
+          "id": "grab_bars",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "No grab bars are installed on the walls around the tub or toilet."
+        },
+        {
+          "id": "hard_flooring_throughout",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "All visible rooms have hard flooring (wood in living/bedroom areas, tile in kitchen and bathroom)."
+        },
+        {
+          "id": "open_turning_space",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "The unfurnished layout offers ample open floor area for maneuvering."
+        },
+        {
+          "id": "kitchen_knee_clearance",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "Kitchen countertops and sink are built over standard closed base cabinets with no open knee space underneath."
+        },
+        {
+          "id": "lever_door_handles",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Visible interior doors are equipped with lever handles."
+        },
+        {
+          "id": "good_lighting_and_contrast",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Rooms feature bright lighting from ceiling lights and skylights, with good contrast between white walls, wood floors, and dark countertops."
+        }
+      ],
+      "photos": [
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/FtC1boZUg0XG579VveS6DcRqWJVgre6bfhUnHpj63E8/113/image.jpg",
+          "caption": "2BR, 2BA - 1,079SF - KITCHEN"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/jPR5WQB81nWhkLsLvMy-uQO295BbDdEzo_pBOwy7O68/113/image.jpg",
+          "caption": "2BR, 2BA - 1,079SF - LIVING ROOM"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/vVqjDoimTP1tskiUXjfTMAXgaZlB6-q3iXTN60uGJZ8/113/image.jpg",
+          "caption": "2BR, 2BA - 1,079SF - Primary Bedroom"
+        }
+      ]
+    },
+    {
+      "id": "239238",
+      "name": "Remington Park Apartments",
+      "address": "5510 S Rice Ave",
+      "city": "Houston",
+      "state": "TX",
+      "rentMin": 1017,
+      "rentMax": 2535,
+      "scores": {
+        "wheelchair": {
+          "score": 48,
+          "confidence": 0.59
+        },
+        "walker_or_cane": {
+          "score": 44,
+          "confidence": 0.44
+        },
+        "low_vision": {
+          "score": 75,
+          "confidence": 0.83
+        }
+      },
+      "facts": [
+        "walk-up building (no elevator); upper floors need stairs",
+        "built 2000; US Fair Housing Act accessibility rules apply to multifamily first occupied after 1991 (not proof of compliance)"
+      ],
+      "notes": [],
+      "findings": [
+        {
+          "id": "step_free_entry",
+          "value": null,
+          "confidence": 0.5,
+          "evidence": "The exterior entryway threshold is not visible in the photos."
+        },
+        {
+          "id": "wide_doorways",
+          "value": true,
+          "confidence": 0.85,
+          "evidence": "Interior doorways and hallway openings appear spacious and unobstructed."
+        },
+        {
+          "id": "roll_in_or_walk_in_shower",
+          "value": null,
+          "confidence": 0,
+          "evidence": "No bathroom photos are provided."
+        },
+        {
+          "id": "bathtub_only",
+          "value": null,
+          "confidence": 0,
+          "evidence": "No bathroom photos are provided."
+        },
+        {
+          "id": "grab_bars",
+          "value": null,
+          "confidence": 0,
+          "evidence": "No bathroom photos are provided."
+        },
+        {
+          "id": "hard_flooring_throughout",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "Carpet is visible in the adjacent bedroom through the open doorway."
+        },
+        {
+          "id": "open_turning_space",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "The empty main living areas provide ample open turning space."
+        },
+        {
+          "id": "kitchen_knee_clearance",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "The kitchen pass-through counter has a solid base wall with no open knee clearance."
+        },
+        {
+          "id": "lever_door_handles",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Interior doors visible in the hallway are equipped with lever-style handles."
+        },
+        {
+          "id": "good_lighting_and_contrast",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Rooms feature bright ambient lighting and strong visual contrast between dark floors and light walls."
+        }
+      ],
+      "photos": [
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/TeaoYJLIyc8WHUvMiLYpI0bPrPk56tcILrGYaNGHs2c/113/image.jpg",
+          "caption": "2BR, 2BA - 1019SF"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/WhIHCeyyw-NK7L-Q_EFlYqol-gth5H6k4vWs0_wokmU/113/image.jpg",
+          "caption": "2BR, 2BA - 1019SF"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/hT-vl5644wch6plPRcpqj9wuRo5Pi2buMui3zBIC5vI/113/image.jpg",
+          "caption": "2BR, 2BA - 1296SF"
+        }
+      ]
+    },
+    {
+      "id": "91567",
+      "name": "Dover Place Apartments - All Bills Paid",
+      "address": "4137 Dover St",
+      "city": "Houston",
+      "state": "TX",
+      "rentMin": 974,
+      "rentMax": 1174,
+      "scores": {
+        "wheelchair": {
+          "score": 45,
+          "confidence": 0.73
+        },
+        "walker_or_cane": {
+          "score": 36,
+          "confidence": 0.72
+        },
+        "low_vision": {
+          "score": 75,
+          "confidence": 0.83
+        }
+      },
+      "facts": [
+        "walk-up building (no elevator); upper floors need stairs"
+      ],
+      "notes": [
+        "built 1970, before 1991 accessibility design rules"
+      ],
+      "findings": [
+        {
+          "id": "step_free_entry",
+          "value": null,
+          "confidence": 0.5,
+          "evidence": "Exterior threshold and entryway steps leading to the front entrance are not visible."
+        },
+        {
+          "id": "wide_doorways",
+          "value": null,
+          "confidence": 0.6,
+          "evidence": "Doorway widths cannot be confirmed as meeting accessibility standards without precise measurements."
+        },
+        {
+          "id": "roll_in_or_walk_in_shower",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "The bathroom contains a standard bathtub with a high tub wall instead of a roll-in or walk-in shower."
+        },
+        {
+          "id": "bathtub_only",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "The bathtub is equipped with an overhead shower head."
+        },
+        {
+          "id": "grab_bars",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "No grab bars are present around the toilet or inside the bathtub enclosure."
+        },
+        {
+          "id": "hard_flooring_throughout",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Smooth wood-look plank hard flooring is present throughout all visible areas including kitchen, living room, bedroom, and bathroom."
+        },
+        {
+          "id": "open_turning_space",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "The living room and bedroom feature large, clear floor areas suitable for wheelchair turning clearance."
+        },
+        {
+          "id": "kitchen_knee_clearance",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "Kitchen counters and sink are built over enclosed base cabinets with no open knee space underneath."
+        },
+        {
+          "id": "lever_door_handles",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "Doors throughout the home, including the main entry, pantry, and bedroom doors, use standard round knobs."
+        },
+        {
+          "id": "good_lighting_and_contrast",
+          "value": true,
+          "confidence": 0.85,
+          "evidence": "The rooms are well-lit with high contrast between dark wood-look flooring and light neutral walls."
+        }
+      ],
+      "photos": [
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/tQ1u0D_jlAWqDO27VKteCRguJS8IF4p6IcC6RKjh4Js/113/image.jpg",
+          "caption": "2BR, 1BA - 882SF - Kitchen"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/KFc4kQV9R-_7fRhMAkGWT6zo-I_M516h9Wn0_FXVTHw/113/image.jpg",
+          "caption": "2BR, 1BA - 882SF - Dining Area"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/3n4qO1CJhLuWOvGDoeaNvL6fJoFbNhNXzmIooiHInpA/113/image.jpg",
+          "caption": "2BR, 1BA - 882SF - Living Room"
+        }
+      ]
+    },
+    {
+      "id": "92530",
+      "name": "3737 Hillcroft Apartments",
+      "address": "3737 Hillcroft Ave",
+      "city": "Houston",
+      "state": "TX",
+      "rentMin": 749,
+      "rentMax": 1548,
+      "scores": {
+        "wheelchair": {
+          "score": 36,
+          "confidence": 0.73
+        },
+        "walker_or_cane": {
+          "score": 25,
+          "confidence": 0.72
+        },
+        "low_vision": {
+          "score": 75,
+          "confidence": 0.83
+        }
+      },
+      "facts": [
+        "walk-up building (no elevator); upper floors need stairs"
+      ],
+      "notes": [
+        "built 1970, before 1991 accessibility design rules"
+      ],
+      "findings": [
+        {
+          "id": "step_free_entry",
+          "value": null,
+          "confidence": 0.5,
+          "evidence": "Exterior threshold of the primary entrance is not fully visible to confirm step-free access."
+        },
+        {
+          "id": "wide_doorways",
+          "value": null,
+          "confidence": 0.5,
+          "evidence": "Doorways appear standard width and cannot be confirmed as wide without measurements."
+        },
+        {
+          "id": "roll_in_or_walk_in_shower",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "Bathroom reflection shows a standard bathtub rather than a roll-in or walk-in shower."
+        },
+        {
+          "id": "bathtub_only",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Bathroom contains a standard bathtub visible in the mirror reflection."
+        },
+        {
+          "id": "grab_bars",
+          "value": false,
+          "confidence": 0.9,
+          "evidence": "No grab bars are installed near the toilet or bathtub area in the bathroom."
+        },
+        {
+          "id": "hard_flooring_throughout",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Tile flooring is installed across all visible living spaces, bedroom, and kitchen."
+        },
+        {
+          "id": "open_turning_space",
+          "value": true,
+          "confidence": 0.95,
+          "evidence": "Empty rooms offer ample open floor space for wheelchair maneuvering."
+        },
+        {
+          "id": "kitchen_knee_clearance",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "Kitchen sink and countertops feature solid base cabinets with no open knee clearance."
+        },
+        {
+          "id": "lever_door_handles",
+          "value": false,
+          "confidence": 0.95,
+          "evidence": "Doors are fitted with traditional round doorknobs instead of lever handles."
+        },
+        {
+          "id": "good_lighting_and_contrast",
+          "value": true,
+          "confidence": 0.9,
+          "evidence": "Bright lighting fixtures and light-colored walls provide high visual clarity throughout."
+        }
+      ],
+      "photos": [
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/zYRDe9LSf1F3pangkYASX1rOG-OHcunFANEuuOS-Xgk/113/image.jpg",
+          "caption": "1BR, 1BA - 710SF - Living Room"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/3xHI-XK64uaAZMuXvsUpkhKhZ7F9b8bVdFXSG_ISDZk/113/image.jpg",
+          "caption": "1BR, 1BA - 710SF - Dining Room"
+        },
+        {
+          "src": "https://ahprd1cdn.csgpimgs.com/i2/Ck1nfZAzKuyxHHGrg57rQWMcabI7sVpbZVrpO_tI7qI/113/image.jpg",
+          "caption": "1BR, 1BA - 710SF - Kitchen"
+        }
+      ]
+    }
+  ]
+}
