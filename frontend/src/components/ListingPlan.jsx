@@ -1,19 +1,20 @@
+import { useState } from "react";
 import { floorPlanCaption, heatmapZones } from "../heatmap.js";
 import { STATUS_LABEL } from "../logic.js";
 
 function PlanImage({ src, caption }) {
-  const svg = /\.svg(?:\?|$)/i.test(src);
+  const [ratio, setRatio] = useState("");
   return (
     <figure>
-      <div className="plan-frame">
-        {svg ? (
-          <object data={src} type="image/svg+xml" aria-label={caption} width="800" height="600">
-            <img src={src} alt={caption} width="800" height="600" />
-          </object>
-        ) : (
-          <img src={src} alt={caption} width="800" height="600" />
-        )}
-      </div>
+      <img
+        src={src}
+        alt={caption}
+        style={ratio ? { aspectRatio: ratio } : undefined}
+        onLoad={(event) => {
+          const { naturalWidth, naturalHeight } = event.currentTarget;
+          if (naturalWidth > 0 && naturalHeight > 0) setRatio(`${naturalWidth} / ${naturalHeight}`);
+        }}
+      />
       <figcaption>{caption}</figcaption>
     </figure>
   );
