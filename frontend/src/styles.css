@@ -138,6 +138,20 @@ p { margin-bottom: 0.8rem; }
 
 .nav a[aria-current="page"] { background: var(--pine); color: #f6f1e7; }
 
+.nav a.nav-desk {
+  margin-left: 0.35rem;
+  border: 1.5px solid var(--pine);
+  background: var(--pine);
+  color: #f6f1e7;
+  font-weight: 600;
+}
+
+.nav a.nav-desk[aria-current="page"] {
+  background: var(--card);
+  color: var(--pine-deep);
+  border-color: var(--pine);
+}
+
 .nav-count {
   display: inline-block;
   margin-left: 0.35rem;
