@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { canTour, floorPlanCaption, heatmapZones, localFloorPlan, tourUrl } from "../src/heatmap.js";
+import { canTour, floorPlanCaption, heatmapZones, listingHeatmap, localFloorPlan, tourUrl } from "../src/heatmap.js";
 import { accessTone, aerialReport, closestAmenities, compareAround, notesFromScan, propertyMediaFor } from "../src/propertyMedia.js";
 import { LISTINGS } from "../src/data.js";
 
@@ -99,5 +99,10 @@ test("the access heatmap uses the selected checks and the listing floor plan", (
   assert.equal(zones.find((zone) => zone.id === "step-free").status, "observed");
   assert.equal(zones.find((zone) => zone.id === "parking").status, "unknown");
   assert.equal(heatmapZones(home, []).length, 0);
+  const full = listingHeatmap(home);
+  assert.equal(full.length, 12);
+  assert.equal(full.find((zone) => zone.id === "step-free").status, "observed");
+  assert.equal(listingHeatmap(home, ["wheelchair"]).find((zone) => zone.id === "step-free").inSearch, true);
+  assert.equal(listingHeatmap(home, ["wheelchair"]).find((zone) => zone.id === "lighting").inSearch, false);
   assert.equal(zones.some((zone) => zone.id === "lighting"), false);
 });

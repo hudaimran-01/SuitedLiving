@@ -3,6 +3,7 @@ import { focusLife, interpretNearby, lifeHeadline } from "../life.js";
 import { bedsLabel, CITIES, cityLabel, leadFinding, listingFacts, money, PRICE_MAX, PRICE_MIN, summarize, visibleListings } from "../logic.js";
 import { InteriorHomes } from "./Interior.jsx";
 import { ContactManager } from "./Contact.jsx";
+import { PlanHeatStrip } from "./ListingPlan.jsx";
 import { ListingPhoto } from "./ListingPhoto.jsx";
 import { Counts } from "./Status.jsx";
 
@@ -233,6 +234,7 @@ export function Discover({ listings = LISTINGS, prefs, setPrefs, saved, onToggle
                       <span className="source">Around</span> {aroundLead.title}
                     </p>
                   ) : null}
+                  <PlanHeatStrip listing={home} />
                   {prefs.needs.length > 0 ? <Counts counts={summary.counts} label="Inside" /> : null}
                   {around.focused ? <Counts counts={around.counts} label="Around" /> : null}
                   <div className="card-actions">
