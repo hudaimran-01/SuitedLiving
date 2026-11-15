@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { floorPlanCaption, heatmapZones } from "../heatmap.js";
+import { floorPlanCaption, heatmapZones, localFloorPlan } from "../heatmap.js";
 import { STATUS_LABEL } from "../logic.js";
 
 function PlanImage({ src, caption }) {
@@ -22,7 +22,7 @@ function PlanImage({ src, caption }) {
 
 export function ListingPlan({ listing, needIds }) {
   const address = listing.address || listing.name;
-  const plans = (listing.images?.floorplans || []).map((src) => ({ src }));
+  const plans = (listing.images?.floorplans || []).map((src) => ({ src: localFloorPlan(src) }));
   const zones = heatmapZones(listing, needIds);
 
   return (
