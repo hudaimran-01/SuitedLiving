@@ -1,6 +1,6 @@
-# hackprinceton
+# SuitedLiving
 
-Shared repo for the HackPrinceton project.
+HackPrinceton project for accessible home search.
 
 ## Layout
 
