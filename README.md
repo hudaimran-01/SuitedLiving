@@ -1,6 +1,7 @@
 # SuitedLiving
 
 HackPrinceton project for accessible home search.
+https://github.com/hudaimran-01/SuitedLiving.git
 
 ## Layout
 
